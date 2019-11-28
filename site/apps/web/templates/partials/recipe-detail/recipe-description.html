@@ -1,0 +1,111 @@
+{% load web_extras %}
+
+{% if messages %}
+	<div class="container messages">
+		{% for message in messages %}
+			<div class="alert alert-success alert-dismissible ">
+				<strong> {{ message }}</strong>
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			</div>
+		{% endfor %}
+	</div>
+{% endif %}
+
+<section class="recipe-description">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6 col-sm-push-6">
+				<div class="flex-center">
+					<div>
+						<img
+							src="{% if recipe.image %}{{ recipe.image.url }}{% endif %}"
+							alt="{{ recipe.title }} Recipe Image"
+							class="recipe-image"
+						/>
+					</div>
+					<div class="social-contact">
+						<span
+							class="fb-ic mr-3 js-fb-share"
+							data-url="{{ request.build_absolute_uri }}"
+							aria-label="Share this recipe on Facebook"
+						>
+							<i class="fa fa-facebook-square social-mission"> </i>
+						</span>
+						<a
+							class="tw-ic mr-3"
+							href="https://twitter.com/intent/tweet?text={{ recipe.title }}—{{ request.build_absolute_uri }}"
+							target="_blank"
+							aria-label="Share this recipe on Twitter"
+						>
+							<i class="fa fa-lg fa-twitter social-mission"> </i>
+						</a>
+						{% if MEDIA_URL == '/uploads/' %}
+							<a
+								class="pin-ic mr-3"
+								href="http://pinterest.com/pin/create/button/?url={{ request.build_absolute_uri	}}&media={% if recipe.meta_og_image %}{{ request.scheme }}://{{	request.get_host }}{{ recipe.meta_og_image.url }}{% elif recipe.image %}{{ request.scheme	}}://{{ request.get_host }}{{	recipe.image.url }}{% endif %}&description={% if recipe.meta_og_description %}{{ recipe.meta_og_description	}}{% endif %}"
+								target="_blank"
+								aria-label="Share this recipe on Pinterest"
+							>
+								<i class="fa fa-lg fa-pinterest social-mission"></i>
+							</a>
+						{% else %}
+							<a
+								class="pin-ic mr-3"
+								href="http://pinterest.com/pin/create/button/?url={{ request.build_absolute_uri	}}&media={% if recipe.meta_og_image %}{{ recipe.meta_og_image.url	}}{% elif recipe.image %}{{	recipe.image.url }}{% endif %}&description={% if recipe.meta_og_description %}{{	recipe.meta_og_description }}{% endif %}"
+								target="_blank"
+								aria-label="Share this recipe on Pinterest"
+							>
+								<i class="fa fa-lg fa-pinterest social-mission"></i>
+							</a>
+						{% endif %}
+						<span class="contact" onclick="window.print();">Print</span>
+						<span class="contact">
+							<a
+								href="mailto:?subject=Thought you’d love this {{ recipe.title	}} using {{ recipe.featured_product.title }}.&body={{	request.build_absolute_uri }}"
+							>
+								Email
+							</a>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="recipe-info col-sm-6 col-sm-pull-6">
+				{% if recipe.influencer %}
+					{% if recipe.influencer_image %}
+						<img src="{{ recipe.influencer_image.url }}" class="avatar-author" />
+					{% endif %}
+					<span class="name-author">{{ recipe.influencer }}</span>
+				{% endif %}
+				<h1 class="section-recipe-header">
+					{{ recipe.title }}
+				</h1>
+				<div class="reviews">
+					{% include "partials/recipe-detail/star-rating.html" %}
+					<span id="reviews-link" class="link">{{ reviews|length }} Review{{ reviews|length|pluralize }}</span>
+					<span class="reviews link write-a-review-btn">Rate Recipe</span>
+				</div>
+				<p class="description">
+					{{ recipe.description }}
+				</p>
+				{% if recipe.featured_collection %}
+					<div>
+						<span class="feature-in">Featured in</span>
+						<span>
+							<a
+								href="{% url 'collection-detail' slug=recipe.featured_collection.slug %}"
+								class="blogger"
+							>
+								{{ recipe.featured_collection.title }}
+							</a>
+						</span>
+					</div>
+				{% endif %}
+				{% if recipe.featured_product %}
+					<div class="hidden-xs">
+						{% include "partials/recipe-detail/product.html" %}
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</section>

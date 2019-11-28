@@ -1,0 +1,13 @@
+<div class="header-hero header-hero-simple">
+	{% if image %}
+	<div class="dark-overlay"></div>
+     <div class="hero-img">
+     	<img alt="" src="{{image.url}}" data-src="{{image.url}}" class="lazyload">
+     </div>
+	{% endif %}
+	<div class="hero-text">
+		{% if banner %}<div class="banner">{{ banner }}</div><br>{%endif%}
+		<div class="title">{{ hero_title }}</div>
+	</div>
+</div>
+<div class="window hero-short"></div>

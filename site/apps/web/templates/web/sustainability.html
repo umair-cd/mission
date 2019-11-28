@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block body_class %}sustainabilityPage{% endblock body_class %}
+
+{% block content %}
+    <section class="header-hero-image">
+        {% with banner=page.eyebrow_title hero_title=page.title image=page.hero_image %}
+            {% include "partials/header_hero_simple.html" %}
+        {% endwith %}
+    </section>
+
+    <section class="intro background">
+        <div class="container animation-scroll-activated animation-crossfade">
+            {% if page.top_logo %}
+            <img
+                class="topLogo lazyload"
+                data-src="{{ page.top_logo.url }}"
+                src="{{ page.top_logo.url }}"
+                alt="Mission Green Logo"
+            />
+            {% endif %}
+            {{ page.top_paragraphs | safe }}
+        </div>
+    </section>
+
+    {% if page.callout_text %}
+    <div class="background">
+    <section class="div-section animation-scroll-activated animation-crossfade">
+        <h2 class="title">{{ page.callout_text }}</h2>
+    </section>
+    </div>
+    {% endif %}
+
+    <section class="intro background">
+        <div class="container animation-scroll-activated animation-crossfade">
+            <h1>{{ page.first_header }}</h1>
+            <ul>
+                {% for item in page.commitment_list.all %}
+                <li>
+                    <span>{{ item.text }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+            <h1>{{ page.video_header }}</h1>
+
+            {% if page.video_id %}
+                {% include "partials/styled-video.html" with image=page.video_image video_id=page.video_id %}
+            {% endif %}
+
+            <h1>{{ page.recycyle_header }}</h1>
+            {% if page.recycyle_text %}
+            <p class="blur">{{ page.recycyle_text }}</p>
+            {% endif %}
+            
+            {% for item in page.ecostat_list.all %}
+                <h4>{{ item.title }}</h4>
+                <p class="blur">{{ item.text }}</p>
+            {% endfor %}
+
+            {% if page.source_title %}
+            <p class="blur infoSource">{{ page.source_title }}</p>
+            {% endif %}
+
+            {% if page.source_logo %}
+            <img
+                class="infoSourceLogo"
+                src="{{ page.source_logo.url }}"
+                alt="Information Source Logo"
+            />
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}
+
+{% block title %}Mission - Sustainability{% endblock title %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/sustainability.css' %}" />
+{% endblock extra_head %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'js/styled-video.js' %}"></script>
+    {% if page.video_id %}
+    <script>
+        // Load the IFrame Player API code asynchronously.
+        var tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/player_api';
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // Replace the 'ytplayer' element with an <iframe> and
+        // YouTube player after the API code downloads.
+        var player;
+
+        function onYouTubePlayerAPIReady() {
+            player = new YT.Player('yt-player', {
+                host: 'https://www.youtube.com',
+                height: '360',
+                width: '640',
+                videoId: '{{ page.video_id }}',
+            });
+        }
+    </script>
+    {% endif %} 
+{% endblock extra_js %}

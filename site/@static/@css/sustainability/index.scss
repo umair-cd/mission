@@ -1,0 +1,221 @@
+@import '~bootstrap-styles/bootstrap/variables';
+@import '~bourbon-styles/bourbon';
+@import '~breakpoint-styles/breakpoint';
+
+@import '../common/config';
+@import '../common/mixins';
+@import '../common/fonts';
+
+.back-box {
+    position: absolute;
+    z-index: 200;
+    width: 80vw;
+    left: 10vw;
+}
+
+.header-hero-image {
+    position: relative;
+    width: 100%;
+
+    .header-hero {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .hero-img {
+            top: 0px;
+            position: absolute;
+            z-index: 1;
+            height: 100%;
+            width: 100%;
+            background-size: cover;
+        }
+
+        .banner {
+            color: $white;
+        }
+
+        .hero-text {
+            // padding: unset;
+            color: $white;
+            z-index: 10;
+            background-color: transparent;
+            text-align: center;
+            left: 0;
+            right: 0;
+        }
+    }
+}
+
+.sustainabilityPage {
+    width: 100vw;
+    position: relative;
+    flex-direction: column;
+    background: $background-color;
+    overflow: hidden;
+
+    @include breakpoint-sm {
+        .image-wrapper {
+            flex-basis: 50%;
+
+            img {
+                align-self: start;
+                display: block;
+                width: 100%;
+            }
+        }
+    }
+}
+
+.div-section {
+    width: 100%;
+    display: flex;
+    padding: 60px 50px;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+        0deg,
+        rgba(7, 9, 10, 1) 2%,
+        rgba(14, 16, 17, 1) 8%,
+        rgba(21, 23, 24, 1) 14%,
+        rgba(27, 29, 30, 1) 20%,
+        rgba(32, 35, 36, 1) 26%,
+        rgba(36, 38, 40, 1) 32%,
+        rgba(39, 42, 42, 1) 38%,
+        rgba(41, 43, 45, 1) 44%,
+        rgba(42, 45, 46, 1) 50%,
+        rgba(41, 43, 45, 1) 56%,
+        rgba(39, 42, 42, 1) 62%,
+        rgba(36, 38, 40, 1) 68%,
+        rgba(32, 35, 36, 1) 74%,
+        rgba(27, 29, 30, 1) 80%,
+        rgba(21, 23, 24, 1) 86%,
+        rgba(14, 16, 17, 1) 92%,
+        rgba(7, 9, 10, 1) 98%
+    );
+
+    @include breakpoint-md {
+        padding: 120px;
+    }
+
+    .title {
+        @extend %module-title-bourton-sm;
+        color: $white;
+        text-align: center;
+        font-weight: unset;
+        font-size: 24px;
+        letter-spacing: -2px;
+        line-height: 1;
+        @include breakpoint-md {
+            font-size: 2.5em;
+            line-height: 1.5;
+            letter-spacing: -4px;
+            max-width: 53.45vw;
+        }
+    }
+}
+
+.intro {
+    background-color: $background-color;
+    width: 100vw;
+
+    .container {
+        display: flex;
+        align-content: center;
+        background-color: $background-color;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 18px 30px 50px;
+
+        @include breakpoint-sm {
+            padding: 5% 15%;
+        }
+
+        .topLogo {
+            margin-bottom: 60px;
+
+            @include breakpoint-sm-max {
+                width: 300px;
+            }
+        }
+
+        h1 {
+            @extend %module-title-bourton-sm;
+            margin: 50px 0px 30px 0px;
+            padding: 0% 10%;
+            letter-spacing: -2px;
+            text-align: center;
+
+            @include breakpoint-sm-max {
+                font-size: 2em;
+            }
+        }
+
+        h3 {
+            @extend %merlo-bold;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            @extend %module-title-bourton;
+            margin-bottom: 30px;
+            color: $silver;
+            width: 80%;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        h4 {
+            @extend %merlo-medium;
+            @include breakpoint-sm-max {
+                font-size: 18px;
+                text-align: center;
+            }
+        }
+
+        p {
+            @extend %merlo-medium;
+            color: $gray;
+            margin: 0px 0px 30px;
+            text-align: left;
+            line-height: 1.8;
+            width: 90vw;
+            font-size: 0.938em;
+
+            @include breakpoint-sm {
+                width: 53.45vw;
+            }
+        }
+
+        ul {
+            color: red;
+            padding-inline-start: 20px;
+        }
+
+        li {
+            @extend %merlo-medium;
+            list-style-type: square;
+            margin: 30px 0px;
+            font-size: 0.938em;
+            span {
+                color: $gray;
+            }
+        }
+
+        .blur {
+            text-align: center;
+            font-size: 0.938em;
+        }
+
+        .infoSource {
+            margin-top: 60px;
+        }
+    }
+}
+
+.footer {
+    width: 100vw;
+}

@@ -1,0 +1,16 @@
+{% load staticfiles %}
+{% if object.is_gluten_free %}
+    <div class="product-logo gluten-free-logo"></div>
+{% endif %}
+{% if object.no_artificial_colors %}
+    <div class="product-logo no-artificial-colors-logo"></div>
+{% endif %}
+{% if object.no_artificial_flavors %}
+    <div class="product-logo no-artificial-flavors-logo"></div>
+{% endif %}
+{% if object.is_usda_organic %}
+    <div class="product-logo usda-organic-logo"></div>
+{% endif %}
+{% if object.is_non_gmo %}
+    <div class="product-logo non-gmo-logo"></div>
+{% endif %}

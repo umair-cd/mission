@@ -1,0 +1,113 @@
+.other-recipe-collections{
+    background-color: rgba(14, 18, 20, 0.9);
+    position: relative;
+
+    #loadMore {
+        display: none;
+    }
+
+    .container {
+        padding: 0;
+    }
+
+    h1{
+        color:$white;
+        text-align: center;
+        font-family: $bourton;
+        padding: 5% 0 3% 0;
+        @include breakpoint-xs-max{
+            font-size: 36px;
+            letter-spacing: -3px;
+        }
+    }
+    .button-wraper{
+        display: flex;
+        justify-content: center;
+        padding: 5% 0 7% 0;
+        a{
+            color:$alizarin;
+            font-family: $merlo-neue-round;
+            background-color: $white;
+            border:none;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            width: 250px;
+            height: 50px;
+            align-items: center;
+            justify-content: center;
+            transform: scale(1);
+            transition: transform ease-out 0.2s ;
+
+            &:hover{
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    .collections{
+        background-color: transparent;
+        font-family: $merlo-neue-round;
+        text-align: center;
+        width: 314px;
+        padding: 4% 0 3.5% 0;
+        margin:0 9px 0 9px;
+
+        @include breakpoint-md{
+            width: 340px;
+            min-width: 340px;
+            padding: 7% 0 7% 0;
+        }
+        img{
+            width: 100%;
+            height: auto;
+        }
+        h3{
+            color: $white;
+            font-size: 1.375em;
+        }
+        h5{
+            color:$gray;
+            margin-top: 18px;
+        }
+        h6{
+            color:$gray;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-top:40px;
+
+            @include breakpoint-xs-max{
+                margin-top:30px;
+            }
+        }
+        a {
+            color: $white;
+        }
+
+    }
+}
+.image-container{
+    overflow: hidden;
+    width: 315px;
+    height: 315px;
+    @include breakpoint-md{
+        width: 340px;
+        height: 340px;
+    }
+    .image-square-ratio{
+        width: 315px;
+        height: 315px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        transition: transform 1s ease;
+        @include breakpoint-md{
+            width: 340px;
+            height: 340px;
+        }
+
+        &:hover{
+            transform: scale3d(1.1,1.1,1);
+        }
+    }
+}

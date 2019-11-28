@@ -1,0 +1,184 @@
+@import '../common/fonts';
+
+.product-highlight {
+    position: relative;
+    padding: 60px 8% 0;
+    background-color: #d8d8d8;
+    @include breakpoint-sm {
+        padding: 122px 9.38% 0;
+    }
+    .product-title {
+        width: 100%;
+        text-align: center;
+        font-size: 36px;
+        line-height: 35px;
+        font-family: $bourton;
+        color: #333333;
+        letter-spacing: -3px;
+        @include breakpoint-sm {
+            font-size: 60px;
+            line-height: 63px;
+            letter-spacing: -4px;
+        }
+    }
+    .product-description {
+        width: 100%;
+        text-align: center;
+        font-size: 15px;
+        line-height: 22px;
+        font-family: $merlo-neue-round;
+        color: #7f7f7f;
+        padding: 15px 0 30px;
+        @include breakpoint-sm {
+            margin: auto;
+            width: 45.13%;
+            line-height: 26px;
+            font-size: 18px;
+            padding: 20px 0 90px;
+        }
+    }
+    #product-button {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 60px;
+
+        .hero-button {
+            width: 100%;
+            text-align: center;
+        }
+
+        @include breakpoint-sm {
+            display: none;
+        }
+    }
+    .product-images {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .product-card-large {
+        @include breakpoint-sm {
+            width: 100%;
+            flex-direction: row;
+            padding-bottom: 121px;
+        }
+        .product-image {
+            @include breakpoint-sm {
+                width: 37.5vw;
+                height: 37.5vw;
+            }
+        }
+
+        .product-text-container {
+            @include breakpoint-sm {
+                display: inline-block;
+                flex-direction: column;
+                height: fit-content;
+                margin: auto;
+                padding-left: 7.29vw;
+            }
+            div,
+            a {
+                @include breakpoint-sm {
+                    text-align: left;
+                }
+            }
+            .product-image-title {
+                @include breakpoint-sm {
+                    padding-bottom: 25px;
+                }
+            }
+            .product-link {
+                @include breakpoint-sm {
+                    margin-top: 40px;
+                    color: #ffffff;
+                    background-color: #da291c;
+                    width: auto;
+                    padding: 11.5px 40px;
+                }
+            }
+        }
+    }
+    .product-card-medium {
+        @include breakpoint-sm {
+            width: 37.5vw;
+            flex-direction: row;
+        }
+        .product-image {
+            @include breakpoint-sm {
+                width: 37.5vw;
+                height: 37.5vw;
+            }
+        }
+    }
+    .product-card-small {
+        @include breakpoint-sm {
+            width: 23.61vw;
+            flex-direction: row;
+        }
+        .product-image {
+            @include breakpoint-sm {
+                width: 23.61vw;
+                height: 23.61vw;
+                max-width: 23.61vw;
+                max-height: 23.61vw;
+            }
+        }
+    }
+    .product-card {
+        display: inline-flex;
+        flex-wrap: wrap;
+        .product-image {
+            width: 84vw;
+            height: 84vw;
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            @include breakpoint-sm {
+                width: 37.5vw;
+                height: 37.5vw;
+            }
+        }
+        .product-text-container {
+            flex: 1;
+        }
+        .product-image-title {
+            width: 100%;
+            text-align: center;
+            font-size: 26px;
+            line-height: 25px;
+            font-family: $bourton;
+            color: #333333;
+            padding: 30px 0 15px;
+            letter-spacing: -2px;
+            @include breakpoint-sm {
+            }
+        }
+        .product-image-description {
+            width: 100%;
+            text-align: center;
+            font-size: 15px;
+            line-height: 22px;
+            font-family: $merlo-neue-round;
+            color: #7f7f7f;
+            @include breakpoint-sm {
+            }
+        }
+        .product-link {
+            width: 100%;
+            display: inline-block;
+            text-align: center;
+            font-size: 13px;
+            line-height: 28px;
+            font-family: $merlo-neue-round;
+            color: #da291c;
+            margin: 15px auto 60px;
+            @include breakpoint-sm {
+                font-size: 16px;
+                line-height: 23px;
+                margin: 30px auto 90px;
+            }
+        }
+    }
+}

@@ -1,0 +1,142 @@
+.recipe-card {
+    @include flex;
+    background-color: $white;
+    box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    margin: 15px 10px 20px;
+    // overflow: hidden;
+
+    &:hover {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+            0 10px 10px rgba(0, 0, 0, 0.22);
+        transform: translate(-1px, -1px);
+    }
+
+    @include breakpoint-sm {
+        display: inline-block !important;
+        max-width: 270px;
+    }
+
+    .recipe-card-image-container {
+        width: 52%;
+        position: relative;
+
+        @include breakpoint-sm {
+            width: 100%;
+        }
+    }
+
+    .recipe-card-featured-collection {
+        color: #fff;
+        text-transform: uppercase;
+        background: #c0822f;
+        position: absolute;
+        font-family: sans-serif;
+        letter-spacing: 5px;
+        font-weight: 400;
+        width: 100%;
+        padding: 5px 0;
+        top: 0;
+        left: 0;
+        font-size: 12px;
+        display: none;
+
+        @include breakpoint-sm {
+			display: block;
+			text-align: center;
+        }
+    }
+
+    .recipe-card-image {
+        display: block;
+        width: 120px;
+        height: 120px;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        @media (min-width: 330px) {
+            width: 150px;
+            height: 150px;
+        }
+
+        @include breakpoint-sm {
+            width: 270px;
+            height: 200px;
+        }
+    }
+
+    .recipe-card-info {
+        position: relative;
+        width: 165px;
+        // overflow: hidden;
+        background: white;
+
+        @include breakpoint-sm {
+            width: auto;
+            height: 160px;
+        }
+    }
+
+    .recipe-card-title {
+        @extend %merlo-bold;
+        color: $black;
+        line-height: 1.2;
+        font-size: 15px;
+        font-weight: normal;
+        margin: 0 0 33px;
+        padding: 18px 8px 0 15px;
+        text-align: left;
+
+        @include breakpoint-sm {
+            text-align: center;
+            padding: 0 40px;
+            margin: 22px 0 50px;
+            font-size: 18px;
+        }
+    }
+
+    .recipe-card-link {
+        @extend %merlo-medium;
+
+        position: absolute;
+        bottom: 20px;
+        left: 15px;
+        display: inline-block;
+        color: $alizarin;
+        font-size: $font-size-xs-mobile;
+
+        &:hover {
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        @include breakpoint-xs {
+            font-size: $font-size-button;
+        }
+
+        @include breakpoint-sm {
+        }
+    }
+
+    .recipe-card-share-icon {
+        position: absolute;
+        bottom: 15px;
+        right: 25px;
+        cursor: pointer;
+        svg {
+            width: 18px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        path {
+            fill: $alizarin;
+        }
+
+        @include breakpoint-sm {
+            bottom: 17px;
+            right: 25px;
+        }
+    }
+}

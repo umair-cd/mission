@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block body_class %}contact-us{% endblock body_class %}
+
+{% block content %}
+<section class="header-hero-image">
+    <div class="header-hero">
+        <div class="hero-text">
+            <h3 class="banner">{{ contactus.eyebrow_title }}</h3>
+            <br />
+            <h2 class="title">{{ contactus.title }}</h2>
+            <p class="blurb">{{ contactus.intro_text }}</p>
+        </div>
+    </div>
+</section>
+
+<section class="iframe">
+    <div class="container">
+        <iframe
+            id="resize-iframe"
+            class="contact-iframe-test"
+            src="https://protect-us.mimecast.com/s/3udICQWqrof6M3xIxNl39?domain=grumamobility.missionfoods.com"
+            scrolling="no"
+            height="1002px"
+            title="Contact Form"
+        ></iframe>
+
+        <div class="faq-callout">
+            <p class="callout-title">Have Any Questions?</p>
+            <a href="{% url 'faq' %}" class="view-faq">View FAQ</a>
+            <div class="recent-topics">
+                <p class="callout-title">Recent Topics</p>
+                <ul>
+                    <li>Are tortillas safe to eat after the date printed on them?</li>
+                    <li>How do you store/freeze a tortilla?</li>
+                    <li>How do you heat up a tortilla?</li>
+                    <li>
+                        Do Mission<sup>&reg;</sup> products contain any of the major eight allergen
+                        foods?
+                    </li>
+                    <li>Are Mission<sup>&reg;</sup> products Vegan and Vegetarian?</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="give-us-a-call">
+    <div class="container">
+        <h3>{{ contactus.side_bar_title }}</h3>
+        <p>{{ contactus.side_bar_text }}</p>
+        <a href="{{ contactus.side_bar_cta_link }}" class="cta red-btn">
+            {{ contactus.side_bar_cta }}
+        </a>
+    </div>
+</section>
+{% endblock %}
+
+{% block title %}Mission - Contact Us{% endblock title %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/contact-us.css' %}" />
+{% endblock extra_head %}
+
+{% block extra_js %}
+<script type="text/javascript" src="{% static 'js/contact-us.js' %}"></script>
+<script type="text/javascript">
+    function receiveResizeMessage(resizeEvent) {
+        if (resizeEvent.data != '') {
+            if ((resizeEvent.origin !== "https://staticxx.facebook.com") && (resizeEvent.height !== undefined)){
+                document.getElementById('resize-iframe').height = resizeEvent.data + 'px';
+                document.getElementById('resize-iframe').scrolling = 'no';
+            } else {
+                console.log('facebook resize');
+            }
+        }
+    }
+
+    window.addEventListener('message', receiveResizeMessage, false);
+</script>
+{% endblock extra_js %}

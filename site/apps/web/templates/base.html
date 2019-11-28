@@ -1,0 +1,134 @@
+
+{% load staticfiles i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<!doctype html>
+<html class="no-js" lang="{{LANGUAGE_CODE}}">
+    <head>
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-TZHZG4L');</script>
+        <!-- End Google Tag Manager -->
+        
+        <!-- Global Site Tag -->
+        {% include "partials/gtag.html" %}
+        <!-- end Global Site Tag -->
+
+        <!-- Floodlight -->
+        {% comment %} {% include "partials/floodlight.html" %} {% endcomment %}
+        <!-- end Floodlight -->
+
+        <!-- BEGIN ControlTag for "missionfoods.com" -->
+        {% include "partials/salesforce.html" %}
+        <!-- END ControlTag -->
+
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="{% static 'imgs/favicon.png' %}" type="image/x-icon">
+        <link rel="icon" href="{% static 'imgs/favicon.png' %}" type="image/x-icon">
+        <meta name="description" content="{% if object.meta_description %}{{ object.meta_description }}{% else %}{% block description %}{% endblock %}{% endif %}">
+        <meta name="keywords" content="{{ object.meta_keywords }}">
+        <meta name="og:title" content="{% if object.meta_og_title %}{{ object.meta_og_title }}{% else %}{{ object.meta_title }}{% endif %}">
+        <meta name="og:description" content="{% if object.meta_og_description %}{{ object.meta_og_description }}{% else %}{{ object.meta_description }}{% endif %}">
+        <script src="https://afarkas.github.io/lazysizes/lazysizes.min.js" async=""></script>
+
+        {% block extra_meta %}{% endblock extra_meta %}
+
+        <title>{% if object.meta_title %}{{ object.meta_title }}{% else %}{% block title %}{% endblock title %}{% endif %}</title>
+
+        <link rel="stylesheet" media="all" href="{% static 'css/common.css' %}"/>
+
+        {% block extra_head %}{% endblock extra_head %}
+
+        <script>
+            // Create JS namespace
+            window.DJANGO = window.DJANGO || {};
+
+            !(function(window, document, exports){
+                /**
+                * Inject settings from template context into a JS namespace
+                */
+
+                exports["staticUrl"] = "{{STATIC_URL}}";
+                exports["mediaUrl"]  = "{{MEDIA_URL}}";
+
+            })(window, document, window.DJANGO)
+        </script>
+
+        <!-- lazy size background images -->
+        <script type="text/javascript">
+            document.addEventListener('lazybeforeunveil', function(e){
+                var bg = e.target.getAttribute('data-bg');
+                if(bg){
+                    e.target.style.backgroundImage = 'url(' + bg + ')';
+                }
+            });
+        </script>
+    </head>
+
+<body class="{% block body_class %}{% endblock body_class %}">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TZHZG4L"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Destini Widget modal -->
+    {% include "partials/product-detail/destini-widget-modal.html" %}
+    <!-- End Destini Widget modal -->
+    
+    {% block navigation %}
+        {% include "partials/navigation.html" %}
+    {% endblock navigation %}
+
+    {# Extend this block in child templates #}
+    <div class="header-nav-offset" id="main">
+    {% block content %}{% endblock content %}
+    </div>
+
+    {% block footer %}
+        {% include "partials/footer.html" %}
+    {% endblock footer %}
+
+    {% if web_settings.auto_enable_i18n %}
+        <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    {% endif %}
+
+    {% comment %} {% include "partials/analytics.html" %} {% endcomment %}
+
+    <script type="text/javascript" src="{% static 'js/common.js' %}" ></script>
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+            appId            : '{{ facebookAppId }}',
+            autoLogAppEvents : true,
+            xfbml            : true,
+            version          : 'v3.2'
+            });
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    {% block extra_js %}{% endblock extra_js %}
+
+</body>
+{% comment %} 
+<script>
+    $('.buynow').click(function() {
+        var containerId = $(this).attr('data-destini-container');
+        var associationId = $(this).attr('data-destini-association');
+        destini.init(containerId);
+        destini.loadWidget(associationId);  
+    });
+</script> {% endcomment %}
+
+</html>

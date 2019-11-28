@@ -1,0 +1,37 @@
+{# template has subcategory context and it's relative products #}
+<div
+  id="{{ subcategory.slug }}"
+  class="container animation-scroll-activated animation-fade-up-in jumptarget"
+>
+	<div class="subcategory-products">
+    <h3 class="banner">
+      <a
+        href="{% url 'sub-category-detail' category=subcategory.category.first.slug slug=subcategory.slug %}"
+      >
+        {{ subcategory.title }}
+      </a>
+    </h3>
+		<p class="blurb">{{ subcategory.description }}</p>
+		<div class="js-subcategory-product-carousel subcategory-product-carousel">
+			{# iterate over products that the subcategory has #}
+			{% for product in subcategory.product.all %}
+				<div class="product-item" url="{% url 'product-detail' slug=product.slug %}">
+					{% if product.image %}
+					<a href="{% url 'product-detail' slug=product.slug %}">
+            {% if product.is_new %}
+              <div class="product-badge">
+                NEW
+              </div>
+            {% endif %}
+            <img alt="" src="{{ product.image.url }}" />
+            <p class="product-item-title">{{ product.title }}</p>
+					</a>
+					{% endif %}
+          <p class="product-item-cta">
+            <a href="{% url 'product-detail' slug=product.slug %}">Learn More</a>
+          </p>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>

@@ -1,0 +1,7 @@
+<ul class ="grid">
+    {% for recipe in collection.recipe_set.all %}
+        <li>
+            {% include "partials/recipe_card.html" %}
+        </li>
+    {% endfor %}
+</ul>

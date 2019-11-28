@@ -1,0 +1,147 @@
+.additional-products {
+    position: relative;
+    padding: 120px 0;
+    background: #f5f5f5;
+
+    .section-header {
+        @extend %marquee-title-bourton;
+        color: $mine-shaft;
+        margin: 0;
+        letter-spacing: -3px;
+        line-height: 50px;
+        text-align: center;
+
+        @include breakpoint-sm {
+            font-size: $font-size-sub-title;
+        }
+    }
+
+    .additional-products-carousel {
+        opacity: 0;
+        transition: opacity 0.5s ease;
+
+        &.slick-initialized {
+            opacity: 1;
+        }
+    }
+
+    .additional-product-image {
+        margin-bottom: 30px;
+        width: 100%;
+    }
+
+    .additional-product-title {
+		@extend %merlo-bold;
+
+		display: block;
+		color: $mine-shaft;
+		font-size: $font-size-md-mobile;
+		margin-bottom: 10px;
+	}
+
+	.additional-product-link {
+		@extend %merlo-medium;
+
+		display: inline-block;
+		margin: 0 auto;
+		color: $alizarin;
+		font-size: $font-size-sm-mobile;
+	}
+
+    .carousel-container {
+        position: relative;
+        padding: 38px 0;
+
+        .carousel-item {
+            width: 313px;
+        }
+
+        // slick carousel overrides
+        .slick-track {
+            @include flex;
+            align-items: start;
+
+            @include breakpoint-sm {
+                align-items: baseline;
+            }
+        }
+
+        // class for all other slides besides center
+        .slick-slide:not(.slick-center) {
+            transition: all 0.5s ease;
+
+            .additional-product {
+                transform: scale(0.75);
+                opacity: 0.5;
+            }
+
+            .additional-product-image {
+                display: block;
+                width: 100%;
+            }
+
+            .additional-product-title,
+            .additional-product-link {
+                opacity: 0;
+            }
+        }
+
+        .slick-center {
+            text-align: center;
+
+            .additional-product {
+                @include breakpoint-sm {
+                    transform: scale(1);
+                    opacity: 1;
+                    transition: all 0.5s ease;
+                }
+            }
+        }
+
+        .slick-arrow {
+            height: 5vw;
+            width: 5vw;
+            top: 45%;
+            background-size: cover;
+            z-index: 99;
+            @include breakpoint-md {
+                height: 56px;
+                width: 56px;
+            }
+
+            &:before {
+                content: '';
+            }
+        }
+
+        .slick-prev {
+            background-image: url('../../@imgs/arrow-left.svg');
+            left: 6.5vw;
+            @include breakpoint-md {
+                left: 5px;
+            }
+        }
+
+        .slick-next {
+            background-image: url('../../@imgs/arrow-right.svg');
+            right: 6.5vw;
+            @include breakpoint-md {
+                right: 5px;
+            }
+        }
+    }
+
+    .product-arrow-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 35%;
+        margin: auto;
+
+        @include breakpoint-md {
+            width: 25%;
+        }
+    }
+}

@@ -1,0 +1,22 @@
+
+{% if category.subcategory_set.count > 1 %}
+<div class="container">
+	<ul class="subcategory-navigation js-subcategory-navigation">
+	{% for subcategory in category.subcategory_set.all %}
+		<li>
+			<a href="#{{ subcategory.slug }}" class="subcategory-link">{{ subcategory.title }}</a>
+		</li>
+	{% endfor %}
+	</ul>
+
+	<div class="subcategory-naviation-mobile">
+		<div class="mobile-select-menu js-mobile-select-menu">
+			<select class="subcategory-dropdown col-xs-12" ONCHANGE="location = this.options[this.selectedIndex].value;">
+			{% for subcategory in category.subcategory_set.all %}
+				<option value="#{{ subcategory.slug }}">{{ subcategory.title }}</option>
+			{% endfor %}
+			</select>
+		</div>
+	</div>
+</div>
+{% endif %}

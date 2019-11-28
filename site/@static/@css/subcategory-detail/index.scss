@@ -1,0 +1,114 @@
+@import '~bootstrap-styles/bootstrap/variables';
+@import '~bourbon-styles/bourbon';
+@import '~breakpoint-styles/breakpoint';
+
+@import '../common/config';
+@import '../common/mixins';
+@import '../common/fonts';
+
+.subcategory-wrapper {
+    background: $background-color;
+
+    .subcategory-description {
+        text-align: center;
+        color: $gray;
+        font-size: 0.938em;
+        padding-bottom: 162px;
+        max-width: 610px;
+        margin: 0 auto;
+        padding: 50px 30px;
+        font-family: 'Merlo Neue Round';
+        font-size: 1.5em;
+    }
+
+    .subcategory-products {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        max-width: 1404px;
+
+        @media (min-width: 1025px) {
+            justify-content: center;
+        }
+
+        .product-item {
+            font-size: 1.2em;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+            position: relative;
+            width: 130px;
+            height: 235px;
+            margin: 15px;
+            padding: 0;
+            color: $mine-shaft;
+            transition: background-color 0.5s ease;
+            font-family: $merlo-neue-round;
+
+            img {
+                max-width: 120px;
+                max-height: 241px;
+            }
+
+            @media (min-width: 768px) {
+                width: 320px;
+                height: 445px;
+                margin: 15px;
+                padding: 25px;
+
+                img {
+                    max-width: 215px;
+                    max-height: 275px;
+                }
+            }
+
+            //product-item hover on desktop
+            @media (min-width: 1025px) {
+                &:hover {
+                    background: $white;
+
+                    .product-item-cta {
+                        display: inline;
+                    }
+                }
+            }
+
+            // @include breakpoint-sm{
+            //     margin: 50px;
+            //     width: 200px;
+            //     height: 325px;
+            // }
+
+            .product-item-title {
+                margin: 25px 0 0;
+                padding: 0 15px;
+                color: $mine-shaft;
+                font-size: 16px;
+                font-family: $merlo-neue-round;
+
+                @media (max-width: 767px) {
+                    font-size: 15px;
+                    padding: 0;
+                }
+            }
+
+            .product-item-cta {
+                margin-top: 45px;
+                position: relative;
+                color: $alizarin;
+                font-size: 14px;
+                display: none;
+
+                @media (max-width: 767px) {
+                    font-size: 14px;
+                    position: static;
+                    bottom: auto;
+                    margin-top: 16px;
+                }
+            }
+        }
+    }
+}

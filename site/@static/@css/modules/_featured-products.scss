@@ -1,0 +1,248 @@
+.featured-products {
+	position: relative;
+	box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.50);
+
+
+	.featured-products-upper {
+		position: relative;
+		padding-top: 70px;
+		background: #fcfcfc;
+
+		@include breakpoint-sm {
+			padding-top: 150px;
+			padding-bottom: 0;
+		}
+	}
+
+	.container {
+		padding: 0 15px;
+	}
+
+	.featured-products-eyebrow {
+		@extend %merlo-bold;
+
+		font-size: $font-size-eyebrow;
+		color: $gray;
+		letter-spacing: 5px;
+		text-transform: uppercase;
+		margin-bottom: 30px;
+		text-align: center;
+	}
+
+	.section-header {
+		@extend %marquee-title-bourton;
+		color: $mine-shaft;
+		margin-bottom: 20px;
+		text-align: center;
+		letter-spacing: -4px;
+		font-size: 2.250em;
+
+		@include breakpoint-sm {
+			font-size: $font-size-title;
+		}
+	}
+
+	.featured-products-blurb {
+		@extend %merlo-medium;
+
+		color: $gray;
+		text-align: center;
+		font-size: $font-size-md-mobile;
+
+		@media(max-width: 767px) {
+			font-size: 15px;
+		}
+
+		@include breakpoint-sm {
+			max-width: 610px;
+			margin: 0 auto 60px;
+			font-size: 15px;
+		}
+	}
+
+	.featured-products-carousel-container {
+		position: relative;
+	}
+
+	.featured-products-carousel {
+		opacity: 0;
+		transition: opacity .5s ease;
+
+		&.slick-initialized {
+			opacity: 1;
+		}
+	}
+
+	.featured-product-image {
+		margin-bottom: 30px;
+	}
+
+	.featured-product-title {
+		@extend %merlo-bold;
+
+		display: block;
+		color: $mine-shaft;
+		font-size: $font-size-md-mobile;
+		margin-bottom: 10px;
+	}
+
+	.featured-product-link {
+		@extend %merlo-medium;
+
+		display: inline-block;
+		margin: 0 auto;
+		color: $alizarin;
+		font-size: $font-size-sm-mobile;
+	}
+
+	.arrow-container {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 100%;
+		width: 35%;
+		margin: auto;
+
+		@include breakpoint-md {
+			width:25%;
+		}
+	}
+
+	.featured-products-lower {
+		position: relative;
+		z-index: 1;
+		padding-bottom: 0px;
+		background:  $background-color;
+
+		&:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			width: 0;
+			height: 0;
+			margin: auto;
+			border-top: 20px solid rgba(0,0,0,0.035);
+			border-left: 20px solid transparent;
+			border-right: 20px solid transparent;
+		}
+
+	}
+
+	.highlighted-product-info {
+		text-align: center;
+		padding-top: 56px;
+	}
+
+	.btn-wrap {
+		text-align: center;
+
+		.red-btn, .white-red-btn {
+			display: inline-block;
+			vertical-align: middle;
+		}
+
+		.red-btn {
+			margin-right: 30px;
+			padding: 13.8px 26px;
+		}
+
+		.white-red-btn {
+			background-color: transparent;
+			padding: 12.8px 26px;
+
+		}
+	}
+
+	// slick carousel overrides
+	.featured-products-carousel-container {
+
+		.slick-track {
+			@include flex;
+			align-items: start;
+
+			@include breakpoint-sm {
+				align-items: baseline;
+			}
+		}
+
+		// class for all other slides besides center
+		.slick-slide:not(.slick-center) {
+			transition: all 0.5s ease;
+
+			.featured-product {
+				transform: scale(0.75);
+				opacity: 0.5;
+			}
+
+			.featured-product-image {
+				display: block;
+				width: 100%;
+			}
+			.featured-product-title,
+			.featured-product-link {
+				opacity: 0;
+			}
+		}
+
+		.slick-center {
+			text-align: center;
+
+			.featured-product {
+				@include breakpoint-sm {
+					transform: scale(1);
+					opacity: 1;
+					transition: all 0.5s ease;
+				}
+			}
+
+			.featured-product-image {
+				margin: 0 0 30px;
+				width: 100%;
+			}
+		}
+
+		.slick-arrow {
+			height: 5vw;
+			width: 5vw;
+			top: 45%;
+			background-size: cover;
+			z-index: 99;
+            @include breakpoint-md {
+                height: 55px;
+                width: 55px;
+            }
+
+			&:before {
+				content: "";
+			}
+		}
+
+		.slick-prev {
+			background-image: url("../../@imgs/arrow-left.svg");
+            left: 6.5vw;
+            @include breakpoint-md {
+                left: 5px;
+            }
+		}
+
+		.slick-next {
+			background-image: url("../../@imgs/arrow-right.svg");
+            right: 6.5vw;
+            @include breakpoint-md {
+                right: 5px;
+            }
+        }
+	}
+}
+
+.featured-gradient {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: 90%;
+	margin: auto;
+	background: linear-gradient(-180deg, rgba(255,255,255,0) 0%, rgba(131,131,131,0.035) 10%, rgba(0,0,0,0.075) 100%);
+}

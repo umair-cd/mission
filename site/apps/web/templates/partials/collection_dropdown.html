@@ -1,0 +1,22 @@
+
+<section class="js-collapsible-quick-snack collapsible-quick-snack">
+	<span class="dropdown-cta">{{ homepage.here_to_make_text }} </span>
+	<a class="dropdown-toggle" data-toggle="collapse" data-target="#quick-snack-list">
+		<span class="selected-collection">
+		{% for hpc in collections.all %}
+			<span class="{% if not forloop.first %}next-selected-label{% endif %} js-collection-title">{{ hpc.collection.title }}.</span>
+		{% endfor %}
+		</span>
+		<span class="caret-container">{% include "partials/svg/caret.html" %}</span>
+	</a>
+	<div id="quick-snack-list" class="collapse" role="menu">
+		<ul class="collapsible-wrapper">
+			{% for hpc in collections.all %}
+				<li class="quick-snack-item"><a class="dropdown-link" href="{% url 'collection-detail' hpc.collection.slug %}">{{ hpc.collection.title }}</a></li>
+			{% endfor %}
+		</ul>
+		<div class="dropdown-cta-btn">
+			<a href="{% url 'collection-landing' %}" class="view-all-btn">View all Recipe Collections</a>
+		</div>
+	</div>
+</section>

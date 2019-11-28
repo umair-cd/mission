@@ -1,0 +1,45 @@
+@import "~bootstrap-styles/bootstrap/variables";
+@import "~bourbon-styles/bourbon";
+@import "~breakpoint-styles/breakpoint";
+
+@import "../common/config";
+@import "../common/mixins";
+@import "../common/fonts";
+
+
+.dark-overlay {
+    display: none;
+    @include breakpoint-sm {
+        display: block;
+    }
+}
+.window {
+	@include breakpoint-sm{
+		max-height: 600px;
+	}
+}
+.header-hero {
+    display: block !important;
+    @include breakpoint-sm {
+        @include flex;
+    }
+}
+
+.header-hero-image{
+    position: relative;
+}
+
+.where-to-buy{
+    .destini-locator {
+        background: $background-color;
+        min-height: 100vh;
+        padding: 20px 0;
+
+        iframe{
+            border:none;
+            background: transparent;
+        }
+    }
+}
+
+

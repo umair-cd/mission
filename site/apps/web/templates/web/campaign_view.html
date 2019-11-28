@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block body_class %}{{ campaign.body_class }}{% endblock body_class %}
+
+{% block content %}
+{% autoescape off%}
+    {{ campaign.content|safe}}
+{% endautoescape %}
+{% endblock %}
+
+{% block extra_head %}
+{% autoescape off%}
+    {{ campaign.head_content|safe }}
+{% endautoescape %}
+{% endblock extra_head %}
+
+{% block extra_js %}
+{% autoescape off%}
+    {{ campaign.js_content|safe }}
+{% endautoescape %}
+{% endblock extra_js %}

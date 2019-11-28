@@ -1,0 +1,53 @@
+.instafeed {
+	text-align: center;
+	padding: 70px 20px 0;
+
+	@include breakpoint-md {
+		padding: 120px 0 0;
+	}
+
+	.title {
+		@extend %marquee-title-bourton;
+		color: $black;
+		text-transform: uppercase;
+		font-size: 2.250em;
+		letter-spacing: -3px;
+		font-weight: normal;
+		margin-top: 0;
+		margin-bottom: 20px;
+
+		@include breakpoint-sm {
+			font-size: $font-size-sub-title;
+		}
+	}
+
+	.blurb {
+		@extend %merlo-medium;
+		color: $gray;
+		font-weight: normal;
+		font-size: 15px;
+		text-rendering: geometricPrecision;
+		max-width: 600px;
+		margin: 0 auto 60px;
+		padding: 0 10px;
+	}
+
+	.instafeed-grid-container {
+		max-width: 1020px;
+		margin: 0 auto;
+	}
+
+	.follow-us {
+		display: inline-block;
+		margin: 60px auto 70px;
+
+		@include breakpoint-sm {
+			margin: 60px auto 150px;
+		}
+	}
+}
+
+.eapps-instagram-feed-posts-grid-load-more-container {
+		background-color: $alizarin;
+		display:none!important;
+	}

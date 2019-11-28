@@ -1,0 +1,32 @@
+
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block body_class %}error{% endblock body_class %}
+
+{% block content %}
+
+<section class="errorContainer">
+    <img src="{% static 'imgs/500-error-chips.png' %}"/>
+    <div class="side">
+        <div class="text">
+            <h1>oops! 500!<br>that's an error</h1>
+            <p>There was an error. Please try again later. That's all we know.</p>
+        </div>
+        <a href="{% url 'home' %}" class="red-btn">
+            Go to Homepage
+        </a>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block title %}Error 500{% endblock title %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/errorPages.css' %}">
+{% endblock extra_head %}
+
+
+

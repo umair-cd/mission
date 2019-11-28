@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block body_class %}about-us{% endblock body_class %}
+
+{% block content %}
+<section class="header-hero-image">
+  {% with subTitle=about_us.eyebrow_hero title=about_us.hero_title paragraph=about_us.hero_subtitle image=about_us.hero_image %}
+    {% include "partials/header_hero.html" %}
+  {% endwith %}
+</section>
+<div class="background">
+  <section class="intro animation-scroll-activated animation-crossfade">
+      <div class="container">
+        {{ about_us.main_copy | safe }}
+      </div>
+  </section>
+  <section class="our-history black-gradient animation-scroll-activated animation-crossfade">
+      {% if about_us.tile_set1_image %}
+        <div class="image-wrapper">
+          <img
+            class="lazyload"
+            data-src="{{ about_us.tile_set1_image.url }}"
+            src="{{ about_us.tile_set1_image.url }}"
+            alt="Our History"
+          />
+        </div>
+      {% endif %}
+    <div class="text-content">
+      <h3>{{ about_us.tile_set1_eyebrow }}</h3>
+      <h2>
+        {{ about_us.tile_set1_title1 }}
+        <span class="school-bus">{{ about_us.tile_set1_title2 }}</span>
+      </h2>
+      <p>{{ about_us.tile_set1_description | safe }}</p>
+      <a
+        href="{{ about_us.tile_set1_cta_link }}"
+        class="white-btn learn-more-btn"
+        aria-label="Learn more on {{ about_us.tile_set1_title1 }} {{ about_us.tile_set1_title2 }}"
+      >
+        {{ about_us.tile_set1_cta_text }}
+      </a>
+    </div>
+  </section>
+  <section class="sustainability black-gradient animation-scroll-activated animation-crossfade">
+    {% if about_us.tile_set2_image %}
+      <div class="image-wrapper">
+        <img
+          class="lazyload"
+          data-src="{{ about_us.tile_set2_image.url }}"
+          src="{{ about_us.tile_set2_image.url }}"
+          alt="Sustainability"
+        />
+      </div>
+    {% endif %}
+    <div class="text-content">
+      <h3>{{ about_us.tile_set2_eyebrow }}</h3>
+      <h2>
+        {{ about_us.tile_set2_title1 }}
+        <span class="school-bus">{{ about_us.tile_set2_title2 }}</span>
+      </h2>
+      <p>{{ about_us.tile_set2_description | safe }}</p>
+      <a
+        href="{{ about_us.tile_set2_cta_link }}"
+        class="white-btn learn-more-btn"
+        alt="Learn more on {{ about_us.tile_set2_title1 }} {{ about_us.tile_set2_title2 }}"
+      >
+        {{ about_us.tile_set2_cta_text }}
+      </a>
+    </div>
+  </section>
+  <section class="cards">
+    <div class="container animation-scroll-activated animation-fade-up-in">
+      {% for card in about_us.about_us_cards.all %}
+        <div class="card">
+          <a href="{{ card.link }}">{{ card.cta_text }}</a>
+          <p>{{ card.description }}</p>
+          <h3>{{ card.title }}</h3>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+{% endblock %}
+
+{% block title %}Mission - {{ about_us.title }}{% endblock title %}
+
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'css/about-us.css' %}" />
+{% endblock extra_head %}

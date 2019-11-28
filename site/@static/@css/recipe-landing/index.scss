@@ -1,0 +1,274 @@
+@import "~bootstrap-styles/bootstrap/variables";
+@import "~bourbon-styles/bourbon";
+@import "~breakpoint-styles/breakpoint";
+
+@import "../common/config";
+@import "../common/mixins";
+@import "../common/fonts";
+
+header{
+    position: relative;
+}
+
+.slide-content{
+    z-index: 10000;
+
+    .slide-title{
+        @media(max-width: 767px) {
+            font-size:36px;
+        }
+
+
+
+        @include breakpoint-lg {
+            .slide-main-title {
+                padding: 0 10px 20px
+            }
+            
+        }
+    }
+    .eyebrown-title{
+        @extend %module-eyebrow-bourton;
+        font-size: 0.85em;
+        margin: 0;
+        @include breakpoint-xs-max{
+            margin-top: 4rem;
+            color: #7f7f7f;
+        }
+
+        @include breakpoint-sm {
+            color: white;
+            background-color: $alizarin;
+            padding:5px;
+        }
+    }
+}
+.red-btn{
+  border-width: 0px;
+    @include breakpoint-xs-max{
+        width:100%;
+    }
+  ;
+}
+form {
+    padding: 0px;
+    @include breakpoint-xs-max{
+        padding: 0px;
+    }
+}
+
+.search-box-wrapper {
+    margin-top: 60px;
+    display: flex;
+    font-size: $font-size-xl-desktop;
+    input[type="text"] {
+        @extend %merlo-medium;
+        background: $background-color;
+        box-shadow: none;
+        border: 1px solid $gray;
+        border-left: 0;
+        border-radius: 0;
+        height: 50px;
+        background-image: url("data:image/svg+xml;utf8,<svg fill='transparent' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+        &:focus {
+            border: 1px solid $alizarin;
+            border-left: 0;
+            outline: 0 none;
+        }
+    }
+    .btn-inline {
+        border: 1px solid $gray;
+        background: $background-color;
+        border-right: 0;
+        height: 50px;
+        outline: 0;
+        padding-left:  26px;
+        padding-right: 0px;
+        .fa {
+            color: $gray;
+            font-size: $font-size-large;
+            -webkit-text-stroke: 1px $background-color;
+        }
+        &.highlight{
+            border: 1px solid $alizarin;
+            border-right: 0;
+            outline: 0 none;
+        }
+    }
+}
+
+legend {
+    border: none;
+    margin-bottom: 2rem;
+}
+
+.line-behind {
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    z-index: 1;
+    &:before {
+         border-top: 1px solid $gray;
+         content:"";
+         margin: 0 auto; /* this centers the line to the full width specified */
+         position: absolute; /* positioning must be absolute here, and relative positioning must be applied to the parent */
+        top: 50%; left: 0; right: 0; bottom: 0;
+        width: 100%;
+        z-index: -1;
+    }
+
+    span {
+        /* to hide the lines from behind the text, you have to set the background color the same as the container */
+        margin: 0 auto;
+        background: $background-color;
+        padding: 0 15px;
+        font-size: 12px;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        color: $gray;
+        @include breakpoint-xs-max{
+            font-size: 1.42rem;
+         }
+    }
+}
+
+.search-form-filter {
+    margin-top: 2rem;
+}
+
+fieldset{
+    @extend %merlo-medium;
+}
+
+.search-form-filter-fields {
+    position:relative;
+    @extend %merlo-medium;
+    display: flex;
+    justify-content: space-between;
+    select {
+        @include breakpoint-sm{
+            flex-grow: 0.32649;
+         }
+    }
+    @include breakpoint-xs-max{
+       flex-direction: column;
+    }
+
+
+    option {
+        padding:0 30px 0 10px;
+        min-height:40px;
+        display:flex;
+        align-items:center;
+        background:#333;
+        border-top:#222 solid 1px;
+        position:absolute;
+        top:0;
+        width: 100%;
+        pointer-events:none;
+        order:2;
+        z-index:1;
+        transition:background .4s ease-in-out;
+        box-sizing:border-box;
+        overflow:hidden;
+        white-space:nowrap;
+    }
+}
+
+select {
+    height: 50px;
+    color: $gray;
+    background-color: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 0;
+    border: 1px solid $gray;
+    background-position: right 50%;
+    background-repeat: no-repeat;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='#{$gray}' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    padding: .5em;
+    padding-right: 1.5em;
+    padding-left: 15px;
+    @include breakpoint-xs-max{
+        margin: 1em 0;
+     }
+}
+
+
+h1 {
+    margin: 1.5rem auto;
+    text-align: center;
+    @extend %module-title-bourton;
+    font-size: 48px;
+}
+
+.recipe-list-content{
+    background-color: $background-color;
+    position: relative;
+    padding: 0 30px;
+
+    .container {
+        padding: 0; 
+    }
+}
+
+.container-grid{
+
+    @include breakpoint-md{
+        padding-left: 0;
+        padding-right: 0;
+     }
+
+    h2{
+        margin: 64px 0 57px;
+        text-align: center;
+        @extend %module-title-bourton;
+        font-size: 26px;
+
+        @include breakpoint-sm{
+            font-size: 48px;
+         }
+
+    }
+    h2#recipes-header {
+        @include breakpoint-xs-max{
+            margin-top:0;
+            padding-top:64px;
+        }
+
+        @include breakpoint-sm{
+            padding-top: 200px;
+            margin-top: -136px;
+        }
+    }
+    h3{
+        margin: 50px;
+        text-align: center;
+        @extend %merlo-medium;
+    }
+    ul {
+      padding-bottom: 40px;
+    }
+}
+
+.breadcrumb-back{
+    position: absolute;
+    top: 0;
+}
+
+.list-of-collections{
+    list-style-type:none;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0px;
+
+    @include breakpoint-xs-max{
+        padding: 0;
+        margin: 0 0 0 21px;
+    }
+}
+
+.pagination-wrapper {
+    padding-bottom: 90px;
+}

@@ -1,0 +1,144 @@
+@import '~bootstrap-styles/bootstrap/variables';
+@import '~bourbon-styles/bourbon';
+@import '~breakpoint-styles/breakpoint';
+
+@import '../common/config';
+@import '../common/mixins';
+@import '../common/fonts';
+
+.header-collection {
+    position: relative;
+
+    .dark-overlay {
+        display: none;
+        @include breakpoint-sm {
+            display: block;
+        }
+    }
+
+    .header-hero {
+        display: block !important;
+        @include breakpoint-sm {
+            @include flex;
+        }
+        .hero-text {
+            padding-top: 50px;
+        }
+    }
+
+    .window {
+        height: 600px;
+    }
+}
+
+.collection-desc {
+    font-family: 'Merlo Neue Round';
+    color: $gray;
+    font-size: 1.375em;
+    max-width: 60%;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 60px;
+}
+
+.collections-section {
+    background-color: $background-color;
+    padding: 0% 15px;
+    .container-load-more {
+        display: flex;
+        justify-content: center;
+        .load-more {
+            display: none;
+
+            @include breakpoint-xs-max {
+                background-color: transparent;
+                color: $gray;
+                border: 1px solid $gray;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                width: 314px;
+            }
+        }
+    }
+}
+.collections {
+    background-color: transparent;
+    font-family: $merlo-neue-round;
+    text-align: center;
+    width: 340px;
+    padding: 7% 0 7% 0;
+    img {
+        width: 100%;
+        height: auto;
+    }
+    h3 {
+        font-size: 1.5em;
+    }
+    h5 {
+        color: $gray;
+        margin-top: 18px;
+    }
+    h6 {
+        color: $gray;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        margin-top: 40px;
+
+        @include breakpoint-xs-max {
+            margin-top: 30px;
+        }
+    }
+    a {
+        color: $mine-shaft;
+    }
+
+    @include breakpoint-xs-max {
+        width: 314px;
+        padding: 4% 0 3.5% 0;
+    }
+}
+
+.list-of-collections {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding-inline-start: 0;
+
+    @include breakpoint-xs-max {
+        padding: 0;
+        margin: 0;
+        justify-content: center;
+    }
+    .collections {
+        display: none;
+    }
+}
+
+#loadMore {
+    text-decoration: none;
+    display: block;
+    margin: 60px auto;
+    width: 30%;
+    text-align: center;
+    color: $gray;
+    background-color: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 0;
+    border: 1px solid $gray;
+    padding: 10px 40px;
+    transition: all 600ms ease-in-out;
+    -webkit-transition: all 600ms ease-in-out;
+    -moz-transition: all 600ms ease-in-out;
+    -o-transition: all 600ms ease-in-out;
+    @include breakpoint-xs-max {
+        width: 90%;
+    }
+}
+
+#loadMore:hover {
+    color: #6f6f6f;
+}

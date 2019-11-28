@@ -1,0 +1,20 @@
+<div class="recipes-section">
+    <div class="section-title">
+        {{ recipes_section.title }}
+    </div>
+    <div class="section-description">
+        {{ recipes_section.description }}
+    </div>
+    <ul class="grid">
+        {% for recipe in recipes_section.recipes %}
+            <li>
+                {% include "partials/recipe_card.html" %}
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="section-button">
+        <a href="{{ recipes_section.button_link }}" class="red-btn">
+            {{ recipes_section.button_label }}
+        </a>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block body_class %}{{ campaign.body_class }}{% endblock body_class %}
+
+{% block content %}
+    {% if hero_section.visible %}
+        {% include "partials/campaign_hero.html" %}
+    {% endif %}
+    {% if highlighted_products_section.visible %}
+        {% include "partials/product-highlight.html" %}
+    {% endif %}
+    {% if additional_products_section.visible %}
+        {% include "partials/additional_products.html" %}
+    {% endif %}
+    {% if find_a_store_section.visible %}
+        {% include "partials/where_to_buy.html" %}
+    {% endif %}
+    {% if influencers_section.visible %}
+        {% include "partials/influencers_section.html" %}
+    {% endif %}
+    {% if recipes_section.visible %}
+        {% include "partials/recipes_section.html" %}
+    {% endif %}
+{% endblock %}
+
+{% block extra_head %}
+{% autoescape off%}
+    {{ campaign.head_content|safe }}
+{% endautoescape %}
+{% endblock extra_head %}
+
+{% block extra_js %}
+<script type="text/javascript" src="{% static 'js/campaign.js' %}" ></script>
+{% endblock extra_js %}

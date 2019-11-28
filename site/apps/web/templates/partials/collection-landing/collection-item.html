@@ -1,0 +1,21 @@
+<div>
+    {% if collection.image %}
+    <a
+        href="{% url 'collection-detail' slug=collection.slug %}"
+        aria-label="{{ collection.title }} Collection"
+    >
+        <div class="image-container">
+            <div
+                class="image-square-ratio lazyload"
+                data-bg="{{ collection.image.url }}"
+                style="background-image: url({{ collection.image.url }});"
+            ></div>
+        </div>
+    </a>
+    {% endif %}
+    <h6>Collection</h6>
+    <h3>
+        <a href="{% url 'collection-detail' slug=collection.slug %}">{{ collection.title }}</a>
+    </h3>
+    <h5>{{ collection.recipe_set.count }} Recipes</h5>
+</div>

@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block body_class %}recipe-detail{% endblock body_class %}
+
+{% block content %}
+
+    {% include "partials/recipe-detail/recipe-description.html" %}
+
+    {% include "partials/recipe-detail/recipe-metric.html" %}
+
+    {% include "partials/recipe-detail/instructions-reviews.html" %}
+
+    {% include "partials/recipe-detail/related-recipe.html" %}
+
+    {% include "partials/share-modal.html" %}
+
+    <section>
+        {% include "partials/find_a_store.html" %}
+    </section>
+    {% include "partials/image-modal.html" %}
+{% endblock %}
+
+{% block title %}{{ recipe.title }} - Mission Foods{% endblock %}
+{% block description %}Our {{ recipe.title }} recipe is carefully crafted to make your next meal time extraordinary. Get the step by step instructions to make this delicious dish.{% endblock %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/recipe-detail.css' %}">
+    <script type="application/ld+json">
+        {
+         "@context": "http://schema.org/",
+         "@type": "Recipe",
+         "name": "{{ recipe.title }}",
+         "image": [
+           "{% if recipe.image.url %} {%  if 'http' in  recipe.image.url%}{{recipe.image.url}}{% else %}https://www.missionfoods.com{{recipe.image.url}}{% endif %}{% endif %}"
+           ],
+         "author": {
+           "@type": "Person",
+           "name": "{{ recipe.influencer }}"
+         },
+         "datePublished": "",
+         "description": "{{ recipe.description }}",
+         "prepTime": "PT{{ recipe.prep_time }}M",
+         "cookTime": "PT{{ recipe.cook_time }}M",
+         "totalTime": "PT{{ recipe.prep_time }}M",
+         "keywords": "",
+         "recipeYield": "{{ recipe.makes }}",
+         "recipeCategory": "{{ recipe.meal_type }}",
+         "recipeCuisine": "Mexican",
+         "nutrition": {
+           "@type": "NutritionInformation",
+           "calories": "{{ recipe.nutrition }} calories"
+            },
+         "recipeIngredient": [
+            {% for recipe_ingredient in recipe.recipe_ingredient.all %}
+              {% if forloop.last %}
+                {% if recipe_ingredient.amount %}
+                    "{{ recipe_ingredient.amount }}  {{recipe_ingredient.name}}"
+                {% elif recipe_ingredient.fraction %}
+                   "{{ recipe_ingredient.fraction }} {{recipe_ingredient.name}}"
+                {% else %}
+                  "{{recipe_ingredient.name}}"
+                {% endif %}
+              {% else %}
+                {% if recipe_ingredient.amount %}
+                  "{{ recipe_ingredient.amount }}  {{recipe_ingredient.name}}",
+                {% elif recipe_ingredient.fraction %}
+                  "{{ recipe_ingredient.fraction }} {{recipe_ingredient.name}}",
+                {% else %}
+                  "{{recipe_ingredient.name}}",
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+            ],
+         "recipeInstructions": [
+            {% for recipe_instruction in recipe.recipe_instruction.all %}
+              {% if forloop.last %}
+                {
+                "@type": "HowToStep",
+                "text": "{{ recipe_instruction.description }}"
+                }
+              {% else %}
+                {
+                "@type": "HowToStep",
+                "text": "{{ recipe_instruction.description }}"
+                },
+              {% endif %}
+            {% endfor %}
+            ]
+          {% if reviews|length > 0 %}
+          ,
+            "aggregateRating": {
+            "@type": "AggregateRating",
+              "ratingValue": "{{ recipe.average_rating }}",
+              "ratingCount": "{{ reviews|length }}"
+            }
+          {% endif %}
+      }
+    </script>
+
+    <!-- Destini Widget Script -->
+        <script src="//destinilocators.com/missionfoods/widget2/install/"></script>
+    <!-- End Destini Widget -->
+{% endblock extra_head %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'js/recipe-detail.js' %}" ></script>
+    <script type="text/javascript" src="{% static 'js/styled-video.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/product-detail.js' %}"></script>
+    <script>
+        // Load the IFrame Player API code asynchronously.
+        var tag = document.createElement("script");
+        tag.src = "https://www.youtube.com/player_api";
+        var firstScriptTag = document.getElementsByTagName("script")[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // Replace the 'ytplayer' element with an <iframe> and
+        // YouTube player after the API code downloads.
+        var player;
+
+        function onYouTubePlayerAPIReady() {
+          player = new YT.Player("yt-player", {
+            host: 'https://www.youtube.com',
+            height: '360',
+            width: '640',
+            videoId: '{{ recipe.video_id }}'
+          });
+        }
+    </script>
+{% endblock extra_js %}

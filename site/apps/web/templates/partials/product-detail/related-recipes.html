@@ -1,0 +1,13 @@
+<div class="product-related-recipes">
+	{% if object.related_recipe_text %}
+		<p class="blurb">{{ object.related_recipe_text|striptags }}</p>
+	{% endif %}
+	<div class="related-recipes">
+		{% for recipe in related_recipes %}
+			{% include "partials/recipe_card.html" %}
+		{% endfor %}
+	</div>
+	<div class="red-btn-container">
+		<a href="/recipes/" class="product-red-btn">More Recipes</a>
+	</div>
+</div>

@@ -1,0 +1,195 @@
+// ------------------------------------
+// HELPERS
+// ------------------------------------
+
+// Bootstrap Helpers
+// ====================================
+
+.text-thin {
+    font-weight: 100;
+}
+
+.text-heavy {
+    @extend %merlo-bold;
+}
+
+// Alt to .img-responsive
+.img-fluid {
+    width: 100% !important;
+}
+
+// Spacing Utilities
+// Adapted from BS4 "spacing" utilities
+// See: https://v4-alpha.getbootstrap.com/utilities/spacing/
+
+.m-0 {
+    margin: 0 !important;
+}
+
+.mb-0 {
+    margin-bottom: 0 !important;
+}
+
+.mt-0 {
+    margin-top: 0 !important;
+}
+
+.mx-0 {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.my-0 {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.p-0 {
+    padding: 0 !important;
+}
+
+.pb-0 {
+    padding-bottom: 0 !important;
+}
+
+.pt-0 {
+    padding-top: 0 !important;
+}
+
+.px-0 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.py-0 {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+// Colors
+.school-bus { color: $school-bus; }
+
+// Buttons
+.white-btn {
+    @extend %merlo-medium;
+
+    display: inline-block;
+    text-transform: capitalize;
+    font-size: $font-size-button-xs;
+    background-color: $white;
+    color: $black;
+    padding: 16px 44px;
+
+    &:hover {
+        cursor: pointer;
+        text-decoration: none;
+        color: $black;
+    }
+
+    @include breakpoint-sm {
+        font-size: $font-size-button;
+    }
+
+    @include breakpoint-xs-max {
+        width: 315px;
+        height: 40px;
+        line-height: 1;
+        padding: 14px 44px;
+    }
+}
+
+.red-btn {
+    @extend %merlo-medium;
+
+    text-transform: capitalize;
+    font-size: $font-size-button-xs;
+    background-color: $alizarin;
+    color: $white;
+    padding: 11px 22px;
+    border-width: 0px;
+
+    &:hover {
+        cursor: pointer;
+        text-decoration: none;
+        color: $white;
+    }
+
+    @include breakpoint-sm {
+        padding: 14px 26px;
+        font-size: $font-size-button;
+    }
+}
+
+.white-red-btn {
+    @extend %merlo-medium;
+    padding: 10px 20px;
+    color: $alizarin;
+    background-color: $white;
+    font-size: $font-size-button-xs;
+    border: 1px solid $alizarin;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+        color: $alizarin;
+    }
+
+    @include breakpoint-sm {
+        padding: 13px 26px;
+        font-size: $font-size-button;
+    }
+}
+
+// Misc
+.background-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-180deg, rgba(255,255,255,0.00) 0%, rgba(0,0,0,0.38) 100%);
+    background-color: rgba(14, 18, 20, .9);
+    box-shadow: 0 15px 35px 0 rgba(0,0,0,0.30);
+}
+
+.btn-cta {
+    font-size: $font-size-button;
+    font-weight: bold;
+    background-color: $alizarin;
+    color: white;
+}
+
+.buy-now {
+    @extend %merlo-medium;
+    font-size: $font-size-button;
+    color: $alizarin;
+
+    &:hover {
+        color: $alizarin;
+    }
+
+    @media(max-width: 767px) {
+        font-size: 15px;
+        position: absolute;
+        bottom: 0;
+
+    }
+}
+
+.scrollable-wraper{
+    display: flex;
+    overflow-x: auto;
+}
+
+.scrollable-wraper::-webkit-scrollbar {
+    display: none;
+}
+
+.lazyload,
+.lazyloading {
+    opacity: 0;
+}
+.lazyloaded {
+    opacity: 1;
+    transition: opacity 300ms;
+}

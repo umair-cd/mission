@@ -1,0 +1,28 @@
+{% load web_extras %}
+
+<div class="featured-influences black-gradient animation-scroll-activated animation-crossfade">
+	<div class="influences-img">
+		<img
+			class="lazyload"
+			src="{% if homepage.featured_influencer_image %} {{	homepage.featured_influencer_image.url }}{% endif %}"
+			alt="Our featured influencer image"
+		/>
+	</div>
+	<div class="content influences-content">
+		<h3 class="banner">{{ homepage.eyebrow_title_influencer }}</h3>
+		{% with homepage.featured_influencer_title|cut_last as featured_influencer_title %}
+			<h2 class="title">
+				{{ featured_influencer_title.0 }}
+				<span class="school-bus"> {{ featured_influencer_title.1 }}</span>
+			</h2>
+		{% endwith %}
+		<p class="blurb">{{ homepage.featured_influencer_description }}.</p>
+		<a
+			class="white-btn learn-more-btn"
+			href="/recipes/collections/mission-tastemakers/"
+			aria-label="Learn more about {{ homepage.featured_influencer_title }}"
+		>
+			Learn More
+		</a>
+	</div>
+</div>

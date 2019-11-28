@@ -1,0 +1,271 @@
+{% load staticfiles %}
+
+<div class="navbar" role="navigation">
+  {# {% include "partials/skip-links.html" %} #}
+		
+	<div class="container-fluid">
+		<div class="navigation-container">
+			<div class="navbar-brand-container">
+				<a class="navbar-brand" href="{% url 'home' %}" aria-label="Go to Homepage">
+					<img class="mission-logo" alt="Mission Foods Logo" src="{% static 'imgs/mission-logo.png' %}">
+				</a>
+			</div>
+
+			<nav class="navbar-static-top" role="navigation">
+				<div class="navbar-header">
+					<button class="hamburger-box js-hamburger navbar-toggle" type="button">
+						{% include "partials/svg/hamburger.html" %}
+					</button>
+				</div>
+				<ul class="nav navbar-nav">
+					<li><a href="{% url 'all-recipes' %}" id="desktop-recipes-link">Recipes</a></li>
+					<li><a href="{% url 'all-products' %}" id="desktop-products-link">Products</a></li>
+					<li><a href="{% url 'about-us' %}" id="desktop-about-link">About Us</a></li>
+					<li><a href="{% url 'where-to-buy' %}" id="where-buy-link">Where to Buy</a></li>
+				</ul>
+
+				<div id="mobile-navbar" class="overlay">
+					<a class="navbar-brand" href="{% url 'home' %}" aria-label="Go to Homepage">
+						<img class="mission-logo" alt="Mission Foods Logo" src="{% static 'imgs/mission-logo.png' %}">
+					</a>
+					<a href="javascript:void(0)" class="closebtn">&times;</a>
+					<div class="mobile-navbar-content">
+						<button id="recipes-link">Recipes</button>
+						<button id="products-link">Products</button>
+						<button id="about-us-link">About Us</button>
+						<a href="{% url 'where-to-buy' %}">Where to Buy</a>
+						<button id="searchButtonMobile">Search</button>
+					</div>
+					<div class="search-container-mobile">
+						<form name="mobile-search-form" method="GET" action="{% url 'nav-search' %}">
+							<div class="holder left">
+								<select class="searchSelector" name="st">
+									<option selected="selected" value="products">Products</option>
+									<option value="recipes">Recipes</option>
+									<option value="faq">FAQ</option>
+								</select>
+
+								<div class="search-caret"><img src="{% static 'imgs/angle-arrow-down.svg' %}"></div>
+							</div>
+							<div class="search-holder">
+								<div class="holder-left">
+									<input aria-label="Search" type="text" class="searchInput" name="q" placeholder="Type to search products"/>
+								</div>
+								<div class="holder-right">
+									<button type="submit" class="searchButton"></button>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div id="socialLinksContainer" class="social-links">
+						<h3 class="social-title">Follow Us</h3>		
+						<ul class="social-wrap">
+							<li class="social-item">
+								<a
+									class=" social-icon"
+									href="https://www.facebook.com/MissionFoodsUS/"
+									target="_blank"
+									aria-label="Follow us on Facebook"
+								>
+									<i class="fa fa-facebook-official"></i>
+								</a>
+							</li>
+							<li class="social-item">
+								<a
+									class="social-icon"
+									href="https://twitter.com/MissionFoodsUS"
+									target="_blank"
+									aria-label="Follow us on Twitter"
+								>
+									<i class="fa fa-twitter"></i>
+								</a>
+							</li>
+							<li class="social-item">
+								<a
+									class="social-icon"
+									href="https://www.instagram.com/MissionFoodsUS/"
+									target="_blank"
+									aria-label="Follow us on Instagram"
+								>
+									<i class="fa fa-instagram"></i>
+								</a>
+							</li>
+							<li class="social-item">
+								<a
+									class="social-icon"
+									href="https://www.youtube.com/MissionFoodsUS"
+									target="_blank"
+									aria-label="Subscribe to us on YouTube"
+								>
+									<i class="fa fa-youtube-play"></i>
+								</a>
+							</li>
+							<li class="social-item">
+								<a
+									class="social-icon"
+									href="https://www.pinterest.com/missionfoodsus/"
+									target="_blank"
+									aria-label="Follow us on Pinterest"
+								>
+									<i class="fa fa-pinterest"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div id="recipes-nav" class="overlay sub-nav">
+					<a href="#" class="back" aria-label="back">
+						<i class="arrow-left" aria-hidden="true" title="Back to navigation"></i>
+					</a>
+					<h3>recipes</h3>
+					<a href="javascript:void(0)" class="closebtn">&times;</a>
+					<div class="mobile-navbar-content">
+						<a href="{% url 'all-recipes' %}">All Recipes</a>
+						<a href="{% url 'collection-landing' %}">Recipe Collections</a>
+					</div>
+				</div>
+				<div id="products-nav" class="overlay sub-nav">
+					<a href="#" class="back" aria-label="back">
+						<i class="arrow-left" aria-hidden="true" title="Back to navigation"></i>
+					</a>
+					<h3>products</h3>
+					<a href="javascript:void(0)" class="closebtn">&times;</a>
+					<div class="mobile-navbar-content">
+						{% for cat in categories %}
+							<div class="product-category">
+								<button id="{{ cat.slug }}-link" class="product-category-button">{{ cat.title }}</button>
+
+								{% for sub in cat.subcategory_set.all %}
+									<a href="{% url 'sub-category-detail' category=cat.slug slug=sub.slug %}" class="product-category-link">{{ sub.title }}</a>
+								{% endfor %}
+							</div>
+						{% endfor %}
+						<a href="{% url 'all-products' %}#category-wrapper-id" class="view-all-products">View All Products</a>
+					</div>
+				</div>
+				<div id="about-us-nav" class="overlay sub-nav">
+					<a href="#" class="back" aria-label="back">
+						<i class="arrow-left" aria-hidden="true" title="Back to navigation"></i>
+					</a>
+					<h3>About Us</h3>
+					<a href="javascript:void(0)" class="closebtn">&times;</a>
+					<div class="mobile-navbar-content">
+						<a href="{% url 'about-us' %}" class="sub-title">About Us</a>
+						<a href="{% url 'our-history' %}">Our History</a>
+						<a href="{% url 'sustainability' %}">Sustainability</a>
+						<a href="{% url 'careers' %}">Careers</a>
+						<a href="{% url 'faq' %}">FAQ</a>
+						<a href="{% url 'contact-us' %}">Contact Us</a>
+					</div>
+				</div>
+			</nav>
+			<div id="desktopSearchButton" class="search-icon">
+				{% include "partials/svg/search-icon.html" %}
+			</div>
+		</div>
+	</div>
+</div>
+<section class="desktop-navbar-content">
+	<div class="products-content">
+		<div class="container">
+			<ul>
+				{% for cat in categories %}
+				<li>
+					<h3><a href="{% url 'category-detail' slug=cat.slug %}">{{ cat.title }}</a></h3>
+					<ul>
+						{% for sub in cat.subcategory_set.all %}
+						<li>
+							<a href="{% url 'sub-category-detail' category=cat.slug slug=sub.slug %}">{{ sub.title }}</a>
+						</li>
+						{% endfor %}
+					</ul>
+				</li>
+				{% endfor %}
+			</ul>
+			<a href="{% url 'all-products' %}#category-wrapper-id" class="view-all-btn">View All Products</a>
+		</div>
+	</div>
+	<div class="recipes-content">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-2 aside">
+					<div>
+						<a href="{% url 'all-recipes' %}">All Recipes</a>
+						<a href="{% url 'collection-landing' %}">Recipe Collections</a>
+					</div>
+					<div class="recipes-list">
+						{% for collection in recipe_nav.featured_collections.all %}
+							<a href="{% url 'collection-detail' slug=collection.slug %}">{{ collection.title }}</a>
+						{% endfor %}
+					</div>
+				</div>
+				<div class="col-sm-10 main">
+					<div class="nav-featured-item">
+						<h3>{{ recipe_nav.featured_recipe_eyebrow }}</h3>
+						{% if recipe_nav.featured_recipe.image %}
+						<a href="{% url 'recipe-detail' slug=recipe_nav.featured_recipe.slug %}">
+							<div class="feature-item-image lazyload" data-bg="{{ recipe_nav.featured_recipe.image.url }}" style="background-image: url({{ recipe_nav.featured_recipe.image.url }});"></div>
+						</a>
+						{% endif %}
+						<h4><a href="{% url 'recipe-detail' slug=recipe_nav.featured_recipe.slug %}">{{ recipe_nav.featured_recipe.title }}</a></h4>
+					</div>
+					<div class="nav-featured-item">
+						<h3>{{ recipe_nav.featured_collection_eyebrow }}</h3>
+						{% if recipe_nav.featured_collection.image %}
+						<a href="{% url 'collection-detail' slug=recipe_nav.featured_collection.slug %}">
+							<div class="feature-item-image lazyload" data-bg="{{ recipe_nav.featured_collection.image.url }}" style="background-image: url({{ recipe_nav.featured_collection.image.url }});"></div>
+						{% endif %}
+						<h4><a href="{% url 'collection-detail' slug=recipe_nav.featured_collection.slug %}">{{ recipe_nav.featured_collection.title }}</a></h4>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="about-content">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-2 aside">
+					<div>
+						<div><a href="{% url 'careers' %}">Careers</a></div>
+						<div><a href="{% url 'faq' %}">FAQ</a></div>
+						<div><a href="{% url 'contact-us' %}">Contact Us</a></div>
+					</div>
+				</div>
+				<div class="col-sm-10 main">
+					<div class="nav-featured-item">
+						<h3>Our History</h3>
+						<a href="{% url 'our-history' %}">
+							<div class="feature-item-image" alt="Featured Image for Our History" style="background-image: url({% static 'imgs/our-history.png' %});"></div>
+						</a>
+						<h4><a href="{% url 'our-history' %}">Humble Beginnings</a></h4>
+					</div>
+					<div class="nav-featured-item">
+						<h3>Sustainability</h3>
+						<a href="{% url 'sustainability' %}">
+							<div class="feature-item-image" alt="Featured Image for Sustainability" style="background-image: url({% static 'imgs/sustainability.png' %});"></div>
+						<h4><a href="{% url 'sustainability' %}">Protecting Our Future</a></h4>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="search-content">
+		<div class="container">
+			<form name="search-form" class="search-container" method="GET" action="{% url 'nav-search' %}">
+				<div class="holder left">
+					<select class="searchSelector" name="st">
+						<option selected="selected" value="products">Products</option>
+						<option value="recipes">Recipes</option>
+						<option value="faq">FAQ</option>
+					</select>
+				</div>
+				<div class="holder">
+					<input aria-label="Search" type="text" class="searchInput" name="q" placeholder="Type to search products"/>
+				</div>
+				<div class="holder right">
+					<button type="submit" class="searchButton"><i class="arrow-right">↗</i></button>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>

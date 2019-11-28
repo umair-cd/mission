@@ -1,0 +1,14 @@
+<div class="header-hero">
+	{% if image %}
+	<div class="dark-overlay"></div>
+	<div class="hero-img">
+		<img alt="" src="{{ image.url }}" data-src="{{ image.url }}" class="lazyload">
+	</div>
+	{% endif %}
+	<div class="hero-text">
+		<div class="banner">{{ subTitle }}</div><br>
+		<div class="title">{{ title }}</div>
+		<p class="blurb">{{ paragraph }}</p>
+	</div>
+</div>
+<div class="window"></div>

@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block body_class %}faq-page{% endblock body_class %}
+
+{% block content %}
+<header>
+	<div class="container container-questions">
+		<h3>frequently asked questions</h3>
+		<h1 class="js-results-title">{{ faq.title }}</h1>
+		<p>{{ faq.description }}</p>
+	</div>
+</header>
+<main>
+	<div class="container container-faq">
+		<form method="GET" action="{% url 'faq' %}">
+			<div class="search-box-wrapper animation-scroll-activated animation-crossfade">
+				<button class="btn btn-inline" aria-label="Search questions">
+					<i class="fa fa-search"></i>
+				</button>
+				<input
+					class="form-control"
+					placeholder="Ask a question..."
+					aria-label="Ask a Question"
+					name="q"
+					type="text"
+					value="{{ keyword }}"
+				/>
+			</div>
+		</form>
+		<ul class="container questions-menu">
+			{% for faq_category in faq_categories %}
+				<li>
+						<a href="#{{ faq_category.title }}">{{ faq_category.title }}</a>
+				</li>
+			{% endfor %}
+		</ul>
+		<div class="custom-select animation-scroll-activated animation-crossfade">
+			<div class="select-selected">ingredients</div>
+			<div id="options" class="select-items select-hide">
+				{% for faq_category in faq_categories %}
+					<a href="#{{ faq_category }}">{{ faq_category }}</a>
+				{% endfor %}
+			</div>
+		</div>
+		{% if search_results %}
+			{% regroup search_results by category as question_list %}
+			{% for question in question_list %}
+				<h2 id="{{ question.grouper }}">{{ question.grouper }}</h2>
+				<hr class="title-divider" />
+				<div class="questions animation-scroll-activated animation-crossfade">
+				{% for question in question.list %}
+					<div class="questions-item">
+						<div class="container">
+							<span>{{ question.question }}</span>
+							<div class="visibilityAnim">
+								<p>{{ question.answer }}</p>
+							</div>
+						</div>
+						<hr />
+					</div>
+				{% endfor %}
+					<a class="load-more">load more</a>
+				</div>
+			{% endfor %}
+		{% else %}
+			<div class="questions">
+				No Results Found. <a class="view-all-faq" href="{% url 'faq' %}">View All</a>
+			</div>
+		{% endif %}
+	</div>
+<section class="contact-us animation-scroll-activated animation-crossfade">
+	<div class="container">
+		<h2>We are here to help</h2>
+		<p>If you'd like to ask something more specific, contact us directly</p>
+		<a href="{% url 'contact-us'%}">contact us</a>
+	</div>
+</section>
+</main>
+{% endblock %}
+
+{% block title %}Mission - FAQ{% endblock title %}
+
+{% block extra_head %}
+	<link rel="stylesheet" href="{% static 'css/faq.css' %}" />
+	<script type="application/ld+json">
+		{
+			"@context":"http://schema.org/",
+			"@type": "FAQPage",
+			"mainEntity": [
+			{% for faq_category in faq_categories %}
+				{% for question in faq_category.question_set.all %}
+					{% if forloop.last %}
+						{
+							"@type": "Question",
+							"name": "{{ question.question }}",
+							"acceptedAnswer":{
+									"@type": "Answer",
+									"text": "{{ question.answer|escapejs }}"
+							}
+						}
+					{% else %}
+						{
+							"@type": "Question",
+							"name": "{{ question.question }}",
+							"acceptedAnswer":{
+									"@type": "Answer",
+									"text": "{{ question.answer|escapejs }}"
+							}
+						},
+					{% endif %}
+				{% endfor %}
+				{% if not forloop.last %},{% endif %}
+			{% endfor %}
+			]
+		}
+	</script>
+{% endblock extra_head %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'js/faq.js' %}"></script>
+{% endblock extra_js %}

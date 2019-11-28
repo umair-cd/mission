@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block body_class %}product-detail{% endblock body_class %}
+
+{% block content %}
+
+{% include "partials/share-modal.html" %}
+
+<section class="product-basic-info">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-1 js-product-thumbnails product-thumbnails">
+				{% for thumb in product_images %}
+					<div
+						class="product-thumbnail-container js-product-thumbnail-container {% if forloop.first %}is-active{% endif %}"
+					>
+						<img
+							class="product-thumbnail"
+							src="{{ thumb.image.url }}"
+							alt="Thumbnail for {{ object.title }}"
+						/>
+					</div>
+				{% endfor %}
+			</div>
+
+			<div class="col-sm-5 product-detail-image">
+				<div class="product-detail-main-image-container">
+					{% if object.image %}
+						<img
+							class="product-detail-main-image js-product-detail-main-image"
+							src="{{ object.image.url }}"
+							alt="{{ object.title }}"
+						/>
+					{% endif %}
+				</div>
+				<div class="product-logos-container">
+					{% include "partials/product-detail/product-logos-row.html" %}
+				</div>
+			</div>
+			<div class="col-sm-6 product-detail-info">
+				<h1 class="product-title">{{ object.title }}</h1>
+				{% with option_list=object.product_options.all %}
+					{% if option_list %}
+						<div class="available-sizes">
+							<span class="available-sizes-cta">Available Sizes</span>
+							{% for option in option_list %}
+								<div class="product-size-circle">
+									<span class="product-size-count">{{ option.name }}</span>
+								</div>
+							{% endfor %}
+						</div>
+					{% endif %}
+				{% endwith %}
+				<div class="purchase-cta">
+					<span
+						class="js-buy-now red-btn"
+						data-toggle="modal"
+						data-target="#widget-modal"
+						data-destini-container="destini-modal"
+						data-destini-association="{{ object.upc_code }}"
+					>
+						Where to buy
+					</span>
+				</div>
+				<div class="product-logos-container-mobile">
+					{% include "partials/product-detail/product-logos-row.html" %}
+				</div>
+				<div class="product-information">
+					<div class="product-description">{{ object.description | safe }}</div>
+					{% if object.availability_cta %}
+					<p class="availability-cta">{{ object.availability_cta }}</p>
+					{% endif %}
+				</div>
+				{% if object.nutritional_facts %}
+				<div class="nutrition-fact-container">
+					<a
+						data-src="{{ object.nutritional_facts.url }}"
+						class="link js-open-image-modal"
+					>
+						See Full Nutrition Facts
+					</a>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</section>
+
+{% if object.featured_recipe %}
+	{% include "partials/product-detail-video.html" with recipe=object.featured_recipe %}
+{% endif %}
+
+{% include "partials/product-detail/related-section.html" %}
+
+<section class="related-products">
+	<div class="title-container">
+			<h1 class="title">Related Products</h1>
+	</div>
+	<div class="products-container js-related-products">
+		{% for product in object.sub_category.first.product.all|slice:"4" %}
+			<div class="product-card">
+				{% if product.image %}
+					<a href="{% url 'product-detail' slug=product.slug %}">
+						{% if product.is_new %}
+							<div class="product-badge">
+									NEW
+							</div>
+						{% endif %}
+						<img class="prod-img" alt="{{ product.title }}" src="{{ product.image.url }}">
+					</a>
+				{% endif %}
+				<a class="product-item-title" href="{% url 'product-detail' slug=product.slug %}">{{ product.title }}</a>
+				<a class="product-item-cta" href="{% url 'product-detail' slug=product.slug %}">Learn More</a>
+			</div>
+		{% endfor %}
+	</div>
+</section>
+{% include "partials/image-modal.html" %}
+
+{% endblock %}
+
+{% block title %}{{ object.title }} - Mission Foods{% endblock %}
+{% block description %}Get all the details of our {{ object.title }} including the ingredients list, full nutrition facts, and where to buy.{% endblock %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/product-detail.css' %}">
+    <script type="application/ld+json">
+        {
+          "@context": "http://schema.org/",
+          "@type": "Product",
+          "name": "{{ object.title }}",
+          "image": [
+            {% if object.image %}
+                "{%  if 'http' in  object.image.url %}{{ object.image.url }}{% else %}https://www.missionfoods.com{{ object.image.url }}{% endif %}",
+            {% endif %}
+            {% for thumb in product_images %}
+                {% if forloop.last %}
+                    "{%  if 'http' in  thumb.image.url %}{{ thumb.image.url }}{% else %}https://www.missionfoods.com{{ thumb.image.url }}{% endif %}"
+                {% else %}
+                    "{%  if 'http' in  thumb.image.url %}{{ thumb.image.url }}{% else %}https://www.missionfoods.com{{ thumb.image.url }}{% endif %}",
+                {% endif %}
+            {% endfor %}
+           ],
+          "description": "{{ object.description }}",
+          "mpn": "{{ object.upc_code }}",
+          "brand": {
+            "@type": "Thing",
+            "name": "Mission"
+          }
+        }
+    </script>
+    <!-- Destini Widget Script -->
+        <script src="//destinilocators.com/missionfoods/widget2/install/"></script>
+    <!-- End Destini Widget -->
+{% endblock extra_head %}
+
+{% block extra_js %}
+	<script type="text/javascript" src="{% static 'js/product-detail.js' %}" ></script>
+	<script type="text/javascript" src="{% static 'js/styled-video.js' %}"></script>
+	<script>
+		// Load the IFrame Player API code asynchronously.
+		var tag = document.createElement('script');
+		tag.src = 'https://www.youtube.com/player_api';
+		var firstScriptTag = document.getElementsByTagName('script')[0];
+		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+		// Replace the 'ytplayer' element with an <iframe> and
+		// YouTube player after the API code downloads.
+		var player;
+
+		function onYouTubePlayerAPIReady() {
+			player = new YT.Player('yt-player', {
+				host: 'https://www.youtube.com',
+				height: '360',
+				width: '640',
+				videoId: '{{ object.featured_recipe.video_id }}',
+			});
+		}
+	</script>
+{% endblock extra_js %}

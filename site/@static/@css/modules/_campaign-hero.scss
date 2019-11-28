@@ -1,0 +1,61 @@
+.campaign-hero {
+    position: fixed;
+    width: 100vw;
+    z-index: 0;
+    height: fit-content;
+    background: #fff;
+
+    .campaign-carousel-slide {
+        display: flex;
+        justify-content: center;
+    }
+
+    .hero-background {
+        width: 100%;
+
+        @include breakpoint-sm {
+            min-height: 715px;
+            min-width: 1440px;
+        }
+
+        img {
+            width: 100%;
+
+            @media (max-width: 768px) {
+                min-width: 375px;
+            }
+        }
+    }
+
+    .hero-content {
+        position: absolute;
+        top: 448px;
+        display: none;
+
+        @include breakpoint-sm {
+            display: block;
+        }
+    }
+
+    .hero-button {
+        display: inline-block;
+        transition: transform 0.2s ease-out;
+        width: 100%;
+
+        @include breakpoint-sm {
+            width: auto;
+        }
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}
+
+.campaign-hero-window {
+    height: 186px;
+
+    @include breakpoint-sm {
+        height: 715px;
+    }
+}

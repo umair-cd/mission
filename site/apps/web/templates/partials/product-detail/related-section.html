@@ -1,0 +1,33 @@
+<section class="product-detail-related-section animation-scroll-activated animation-crossfade">
+	<div class="container">
+		<ul class="nav nav-tabs">
+		  	<li class="nav-item active" rel="tab1"><a class="nav-link"  data-toggle="tab" href="#related-recipes">Related Recipes</a></li>
+		  	<li class="nav-item" rel="tab2"><a class="nav-link"  data-toggle="tab" href="#menu1">Nutrition &amp; Ingredients</a></li>
+		</ul>
+
+		<div class="tab-content">
+		 	<div id="related-recipes" class="tab-pane fade in active">
+		 		{# probably have to pass in recipes at some point #}
+		 		{% include "partials/product-detail/related-recipes.html" %}
+		  	</div>
+		  	<div id="menu1" class="tab-pane fade">
+		  		{# only thing hooked up here is the ingredients #}
+		  		{% include "partials/product-detail/nutrition-and-ingredients.html" %}
+		  	</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	//handles tab slide animation
+	document.addEventListener('DOMContentLoaded', function() {
+		[].forEach.call(document.querySelectorAll('.nav-item'), function(el) {
+			el.addEventListener('click', function() {
+				if(this.getAttribute("rel") == "tab2"){
+					document.querySelector('.nav-tabs').classList.add('slide');
+				}else{
+					document.querySelector('.nav-tabs').classList.remove('slide');
+				}
+			})
+		});
+	});
+	</script>
+</section>

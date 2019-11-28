@@ -1,0 +1,56 @@
+
+
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block body_class %}home-page{% endblock body_class %}
+
+{% block content %}
+
+{% include "partials/home_carousel.html" %}
+
+{% include "partials/collection_dropdown.html" %}
+
+{% include "partials/share-modal.html" %}
+
+<div class="background">
+    {% include "partials/featured_recipes.html" %}
+
+    {% include "partials/featured_influences.html" %}
+
+    {% include "partials/featured_products.html" %}
+
+    {% include "partials/instafeed.html" %}
+</div>
+
+{% endblock %}
+
+{% block title %}Mission Foods{% endblock title %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'imgs/apple-icon-180x180.png' %}">
+{% endblock extra_head %}
+
+{% block extra_meta %}
+    <meta name="Description" content="Mission Foods home page">
+    <meta name="theme-color" content="#da291c"/>
+{% endblock extra_meta %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'js/home.js' %}" ></script>
+    <script src="https://apps.elfsight.com/p/platform.js"></script>
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "url": "https://www.missionfoods.com",
+          "logo": "https://www.missionfoods.com/static/imgs/mission-logo-square.png",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "{{ search_uri }}?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        }
+    </script>
+{% endblock extra_js %}

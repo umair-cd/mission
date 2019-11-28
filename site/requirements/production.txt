@@ -1,0 +1,7 @@
+-r base.txt
+
+gunicorn
+django-postgrespool
+gevent<=1.2.99
+newrelic
+

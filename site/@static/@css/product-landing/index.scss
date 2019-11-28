@@ -1,0 +1,340 @@
+@import "~bootstrap-styles/bootstrap/variables";
+@import "~bourbon-styles/bourbon";
+@import "~breakpoint-styles/breakpoint";
+
+@import "../common/config";
+@import "../common/mixins";
+@import "../common/fonts";
+
+@import "../category-detail/index";
+
+.product-category-grid {
+	position:relative;
+	overflow: hidden;
+	color:$black;
+	text-align: center;
+	background:#f4f5f4;
+	padding: 60px 15px 60px;
+
+	@include breakpoint-sm {
+		padding-top: 64px;
+		padding-bottom: 0;
+	}
+
+	.title {
+		text-transform: uppercase;
+		font-weight:bold;
+		font-size: 26px;
+		letter-spacing: -1.63px;
+		font-family: $bourton;
+		margin: 0 auto;
+		padding: 0 15px 30px;
+
+		@include breakpoint-sm {
+			max-width: 900px;
+			font-size: 2.25em;
+			letter-spacing: -2.25px;
+			padding-bottom: 90px;
+		}
+	}
+
+	a {
+		display: block;
+		margin-bottom: 28px;
+	}
+
+	a, a:visited, a:hover {
+		text-decoration: none;
+	}
+
+	ul {
+		@include flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		margin:0;
+		padding:0;
+
+		@include breakpoint-sm {
+			margin-bottom: 31px;
+		}
+	}
+
+	.desktop-product-menu{
+		display: none !important;
+		opacity: 0;
+		transition: opacity 700ms ease-in-out;
+		@include breakpoint-sm {
+			display: flex !important;
+			opacity: 1;
+		}
+	}
+
+	.mobile-select-menu {
+		margin: 20px auto;
+		width: 100%;
+		z-index: 1;
+		position: relative;
+
+		@include breakpoint-sm {
+			display: none;
+		}
+
+		&.sticky {
+			position: fixed;
+			top: 60px;
+			left: 0;
+			padding-top: 10px;
+			background: $background-color;
+			margin-top: 0;
+
+		}
+
+		select{
+			height: 50px;
+			width: 90%;
+			color: #7f7f7f;
+			background-color: transparent;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			border-radius: 0;
+			border: 1px solid #7f7f7f;
+			background-position: right 50%;
+			background-repeat: no-repeat;
+			background-image: url("data:image/svg+xml;utf8,<svg fill='#7f7f7f' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+			padding: .5em 1.5em .5em 15px;
+		}
+	}
+
+	.fixed-subnav {
+		display: none !important;
+		opacity: 0;
+		transition: opacity 700ms ease-in-out;
+
+		@include breakpoint-sm {
+			&.sticky {
+				position: fixed;
+				display: flex !important;
+				margin: 0;
+				top: 110px;
+				left: 0;
+				z-index: 10;
+				width: 100%;
+				padding: 10px 0;
+				background:#f4f5f4;
+				opacity: 1;
+
+				.category-wrapper {
+					h3 {
+						margin: 0;
+						padding: 10px 0;
+					}
+				}
+			}
+		}
+
+
+	}
+
+	li {
+		list-style: none;
+		text-decoration: none;
+
+		@include breakpoint-sm {
+			margin-bottom: 88px;
+		}
+	}
+
+	li img {
+		margin:0 auto;
+		max-width: 210px;
+		max-height: 156px;
+	}
+
+	li h3 {
+		@extend %merlo-bold;
+		font-size: 1.125em;
+		color:$black;
+		text-transform: capitalize;
+		margin-bottom: 20px;
+		margin-top: 47px;
+		padding-bottom: 42px;
+		opacity: .5;
+	}
+
+	.category-tab {
+		padding: 0;
+		width: 210px;
+		margin: 0px 15px;
+		cursor: pointer;
+
+		.category-wrapper{
+			transition: background-color 0.5s ease;
+			width: 210px;
+			margin-left: auto;
+			margin-right: auto;
+			overflow: hidden;
+
+			@include breakpoint-sm {
+				margin-left: 10px;
+				margin-right: 10px;
+			}
+
+		}
+
+		&.active, &:hover {
+			.category-wrapper{
+				background-color: $white;
+				box-shadow: 0 8px 20px 0 rgba(0,0,0,0.05);
+			}
+
+			h3 {
+				opacity: 1;
+			}
+		}
+	}
+
+	.view-products-cta {
+		// TODO: move this into a helper class
+		@extend %merlo-medium;
+		display: inline-block;
+		font-size: $font-size-xs-mobile;
+		color: $alizarin;
+		margin-bottom: 30px;
+
+		@include breakpoint-sm { display: none; }
+	}
+}
+
+.category-tab-wrapper {
+	padding-top: 40px;
+	position: relative;
+	@extend .category-detail;
+
+	&:before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		width: 0;
+		height: 0;
+		margin: auto;
+		border-top: 20px solid rgba(0, 0, 0, 0.075);
+		border-left: 20px solid transparent;
+		border-right: 20px solid transparent;
+	}
+
+	#snacks-salsa-dips.category-tab-page .subcategory-product-carousel {
+		justify-content: center;
+	}
+
+	.category-tab-page {
+		display: none;
+		position: relative;
+		padding: 130px 30px 0;
+
+		&.active {
+		 	display: block;
+		}
+
+		@include breakpoint-xs-max{
+			padding: 0px;
+		}
+
+		.subcategory-product-carousel {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			max-width: 1200px;
+			margin: 0 auto;
+			justify-content: center;
+
+			@include breakpoint-xs-max{
+				justify-content: space-evenly;
+			}
+
+			.product-card {
+				font-size: 1.2em;
+				display: flex;
+				flex-direction: column;
+				text-align: center;
+				align-items: center;
+				position: relative;
+				width: 270px;
+				margin: 10px;
+				padding: 15px;
+				color: $mine-shaft;
+				transition: background-color 300ms ease-in-out;
+
+				@include breakpoint-md{
+					width: 270px;
+					height: 445px;
+					margin: 15px;
+					padding: 25px;
+				}
+
+				@include breakpoint-xs-max{
+                    width: 160px;
+                    padding: 0px;
+				}
+				
+				// hover only on desktop 
+				@media(min-width:1025px) {
+					&:hover{
+						background-color: $white;
+
+						.product-item-cta {
+	                        display: inline;
+							font-family: "Merlo Neue Round";
+
+	                        @include breakpoint-xs-max{
+	                            display: inline-block;
+	                            position: relative;
+	                            margin: 31px 0 0 0;
+	                        }
+						}
+					}
+				}
+				.prod-img{
+					max-width: 215px;
+					max-height: 275px;
+
+					@include breakpoint-xs-max{
+						width: 160px;
+					}
+				}
+				.product-item-title {
+					margin: 25px 0 0;
+					padding: 0 15px;
+					color: $mine-shaft;
+                    font-size: .9375em;
+                    max-width:200px;
+
+                    @include breakpoint-xs-max{
+						margin: 25px 0 0;
+						padding: 0;
+					}
+				}
+				.product-item-cta {
+					display: none;
+					bottom: 20px;
+					position: absolute;
+					color: $alizarin;
+					opacity: 1;
+					font-size: .9375em;
+				}
+			}
+		}
+	}
+}
+
+.product-categories{
+	position: relative;
+	.back-button-header-container{
+		position: absolute;
+		top: 0;
+		left: 10vw;
+		z-index: 200;
+		width: 80vw;
+	}
+}

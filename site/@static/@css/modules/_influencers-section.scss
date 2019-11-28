@@ -1,0 +1,129 @@
+.influencers-section {
+    position: relative;
+    padding: 108px 0 106px;
+    background: #7f7f7f;
+
+    .section-title {
+        width: 100%;
+        text-align: center;
+        font-size: 36px;
+        line-height: 35px;
+        font-family: $bourton;
+        color: #ffffff;
+        letter-spacing: -3px;
+        @include breakpoint-sm {
+            font-size: 60px;
+            line-height: 63px;
+            letter-spacing: -4px;
+        }
+    }
+
+    .section-description {
+        width: 100%;
+        text-align: center;
+        font-size: 15px;
+        line-height: 22px;
+        font-family: $merlo-neue-round;
+        color: $silver;
+        padding: 15px 40px 30px;
+        @include breakpoint-sm {
+            margin: auto;
+            width: 45.13%;
+            line-height: 26px;
+            font-size: 18px;
+            padding: 15px 0 60px;
+        }
+    }
+
+    .influencer-arrow-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: calc(100% - 58px);
+        margin: auto;
+
+        .slick-arrow {
+            height: 5vw;
+            width: 5vw;
+            background-size: cover;
+            z-index: 99;
+            @include breakpoint-md {
+                height: 56px;
+                width: 56px;
+            }
+
+            &:before {
+                content: '';
+            }
+        }
+
+        .slick-prev {
+            background-image: url('../../@imgs/arrow-left.svg');
+            left: 6.5vw;
+            @include breakpoint-md {
+                left: 5px;
+            }
+        }
+
+        .slick-next {
+            background-image: url('../../@imgs/arrow-right.svg');
+            right: 6.5vw;
+            @include breakpoint-md {
+                right: 5px;
+            }
+        }
+    }
+
+    .influencer-carousel {
+        margin: 0 auto;
+        max-width: 1170px;
+
+        .influencer {
+            display: flex !important;
+            flex-direction: column;
+            align-items: center;
+
+            .influencer-image {
+                width: 315px;
+                height: 235px;
+                background-size: cover;
+
+                @include breakpoint-sm {
+                    max-width: 370px;
+                    max-height: 275px;
+                    width: 37.5vw;
+                    height: 37.5vw;
+                }
+            }
+
+            .influencer-eyebrow {
+                @extend %merlo-bold;
+
+                font-size: $font-size-eyebrow;
+                color: $silver;
+                letter-spacing: 5px;
+                text-transform: uppercase;
+                margin: 30px auto 12px;
+                text-align: center;
+            }
+
+            .influencer-recipe-title {
+                font-family: $merlo-neue-round;
+                color: #ffffff;
+                font-size: 22px;
+                line-height: 30px;
+                font-weight: bold;
+                margin-bottom: 53px;
+            }
+
+            .influencer-link {
+                font-family: $merlo-neue-round;
+                color: #ffffff;
+                font-size: 16px;
+                line-height: 25px;
+            }
+        }
+    }
+}

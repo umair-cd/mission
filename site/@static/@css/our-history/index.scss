@@ -1,0 +1,304 @@
+@import '~bootstrap-styles/bootstrap/variables';
+@import '~bourbon-styles/bourbon';
+@import '~breakpoint-styles/breakpoint';
+
+@import '../common/config';
+@import '../common/mixins';
+@import '../common/fonts';
+
+.our-history {
+    .slick-prev:before,
+    .slick-next:before {
+        content: '';
+    }
+
+    .slick-next,
+    .slick-prev {
+        z-index: 99;
+        height: 50px;
+        width: 50px;
+    }
+
+    .slick-prev {
+        left: 0px;
+        margin-top: -180px;
+        background-image: url('../../@imgs/arrow-left.svg');
+
+        @media (min-width: 1024px) {
+            margin-top: 0;
+            left: -60px;
+        }
+    }
+
+    .slick-next {
+        right: 0px;
+        margin-top: -180px;
+        background-image: url('../../@imgs/arrow-right.svg');
+
+        @media (min-width: 1024px) {
+            margin-top: 0;
+            right: -60px;
+        }
+    }
+
+    .header-hero {
+        .hero-img img {
+            height: 100%;
+
+            @media (min-width: 1440px) {
+                width: 100%;
+                height: unset;
+            }
+        }
+    }
+
+    header {
+        position: relative;
+        background: $background-color;
+
+        p {
+            font-family: $merlo-neue-round;
+            color: $gray;
+            padding: 60px 30px 80px;
+            text-align: center;
+            margin: 0px;
+            @include breakpoint-sm {
+                width: 650px;
+                font-size: $font-size-sm-desktop;
+                margin-right: auto;
+                margin-left: auto;
+            }
+        }
+    }
+
+    .section-header {
+        color: white;
+        text-align: center;
+        font-family: $bourton;
+        font-size: 2.25em;
+        padding: 0px 0 10px;
+        letter-spacing: -2.85px;
+
+        @include breakpoint-sm {
+            font-size: 48px;
+        }
+    }
+
+    .timeline {
+        background: #f5f5f5;
+        margin-top: -1px;
+        font-family: $merlo-neue-round;
+
+        @media (min-width: 768px) {
+            .container {
+                width: 700px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                width: 900px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .container {
+                width: 1170px;
+            }
+        }
+
+        .titles-container {
+            display: flex;
+
+            .timeline-title {
+                width: 50%;
+                flex-basis: 50%;
+                font-family: $merlo-neue-round;
+                font-size: 16px;
+                text-align: center;
+                color: $gray;
+                border-bottom: 5px solid gray;
+                padding-bottom: 20px;
+                cursor: pointer;
+            }
+
+            .timeline-title.active {
+                border-bottom: 5px solid red;
+            }
+        }
+
+        .timeline-slide {
+            position: relative;
+
+            @media (min-width: 1024px) {
+                display: flex !important;
+                align-items: center;
+            }
+
+            .timeline-img {
+                width: 100%;
+
+                @media (min-width: 768px) {
+                    width: 80%;
+                    margin: 0 auto;
+                }
+
+                @media (min-width: 1024px) {
+                    flex-basis: 50%;
+                }
+            }
+
+            .timeline-img img {
+                padding: 50px 0;
+                width: 100%;
+            }
+
+            .timeline-info {
+                width: 100%;
+                padding: 0 5% 10%;
+
+                @media (min-width: 768px) {
+                    width: 80%;
+                    margin: 0 auto;
+                }
+
+                @media (min-width: 1024px) {
+                    flex-basis: 50%;
+                    padding: 0 10%;
+                }
+            }
+        }
+    }
+
+    .our-locations {
+        width: 100%;
+        padding: 50px 0 80px;
+        background-image: url('../../@imgs/map-bg.jpg');
+        background-size: cover;
+
+        .blurb {
+            color: #c8c8c8;
+            font-size: 0.938em;
+            max-width: 610px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .map-container {
+            display: none;
+            position: relative;
+
+            @include breakpoint-sm {
+                display: block;
+            }
+
+            .map {
+                position: relative;
+
+                .location img {
+                    width: 100%;
+                }
+            }
+
+            .map-nav .map-tab {
+                color: gray;
+                font-family: 'BourtonBase';
+                text-align: center;
+            }
+
+            .slick-current .map-tab {
+                color: white;
+            }
+        }
+
+        .map-container-mobile {
+            display: block;
+
+            @include breakpoint-sm {
+                display: none;
+            }
+
+            .mobile-map img {
+                width: 100%;
+                padding: 20px 0;
+            }
+
+            .mobile-map-list {
+                ul {
+                    padding: 0;
+                }
+
+                ul li {
+                    text-align: center;
+                    list-style: none;
+                    color: white;
+                    font-family: 'BourtonBase';
+                    font-size: 20px;
+                    padding: 5px 0;
+                }
+            }
+        }
+    }
+
+    .mission-news {
+        background: $background-color;
+        padding: 50px 0;
+
+        .section-header {
+            color: $black;
+        }
+
+        .news-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .news {
+            padding: 1%;
+            flex: 100% 0;
+
+            @include breakpoint-sm {
+                flex: 48% 0;
+            }
+
+            .news-img img {
+                width: 100%;
+            }
+
+            .news-date {
+                font-size: 12px;
+                font-family: $merlo-neue-round;
+                text-transform: uppercase;
+                letter-spacing: 5px;
+                color: $gray;
+            }
+
+            .news-title {
+                font-family: $merlo-neue-round;
+                font-weight: bold;
+                font-size: 22px;
+            }
+
+            .news-blurb {
+                font-family: $merlo-neue-round;
+                font-size: 16px;
+                color: $gray;
+                width: 90%;
+
+                @include breakpoint-sm {
+                    min-height: 100px;
+                }
+
+                @include breakpoint-lg {
+                    min-height: 65px;
+                }
+            }
+        }
+    }
+}
+
+body.our-history {
+    overflow: visible;
+}

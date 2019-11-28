@@ -1,0 +1,29 @@
+{% load web_extras %}
+
+<div class="featured-influences black-gradient animation-scroll-activated animation-crossfade">
+	{% if page_info.featured_image %}
+		<div class="influences-img">
+			<img
+				class="lazyload"
+				data-src="{{ page_info.featured_image.url }}"
+				src="{{ page_info.featured_image.url }}"
+				alt="Featured Product"
+			/>
+		</div>
+	{% endif %}
+	<div class="content influences-content">
+		<h3 class="banner">{{ page_info.featured_eyebrow_title }}</h3>
+		<h2 class="title">
+			{{ page_info.featured_title1 }}
+			<span class="school-bus">{{ page_info.featured_title2 }}</span>
+		</h2>
+		<p class="blurb">{{ page_info.featured_description }}</p>
+		<a
+			href="{{ page_info.featured_link }}"
+			class="white-btn learn-more-btn"
+			aria-label="{{ page_info.featured_cta_text }} on {{ page_info.featured_title1 }} {{ page_info.featured_title2 }}"
+		>
+			{{ page_info.featured_cta_text }}
+		</a>
+	</div>
+</div>

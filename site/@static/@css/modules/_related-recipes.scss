@@ -1,0 +1,70 @@
+.related-recipes {
+	margin-top: 30px;
+	margin-bottom: 65px;
+
+	@include breakpoint-sm {
+		margin-bottom: 90px;
+	}
+
+	.related-recipes-title {
+		text-align: center;
+		margin-bottom: 28px;
+		padding: 0 30px;
+
+		@include breakpoint-sm {
+			padding: 0;
+		}
+	}
+
+	.related-recipes-header {
+		@extend %merlo-bold;
+		color: $gray;
+		font-size: $font-size-eyebrow;
+		text-transform: uppercase;
+		letter-spacing: 5px;
+		padding: 0;
+		margin: 0;
+	}
+
+	.slick-list {
+		@include breakpoint-sm {
+			overflow: visible;
+		}
+	}
+
+	.related-recipe-items {
+		padding-left: 30px;
+
+		@include breakpoint-sm {
+			padding-left: 0;
+		}
+
+		// slick overrides for related recipes carousel
+		.slick-list {
+			width: 100%;
+			overflow: visible;
+		}
+
+		.slick-track {
+			width: 100%;
+
+			&:before,
+			&:after { display: none; }
+		}
+
+		.slick-slide {
+            padding-right: 10px;
+			@include breakpoint-sm {
+				width: auto !important;
+				padding-right: 0;
+			}
+		}
+
+		.slick-slide > div {
+			@include breakpoint-xs-max {
+				width: 315px;
+			}
+		}
+	}
+
+}

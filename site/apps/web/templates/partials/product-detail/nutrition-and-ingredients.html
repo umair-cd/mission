@@ -1,0 +1,55 @@
+<div class="nutrition-and-ingredients">
+	<div class="highlights">
+		<h3 class="banner">Highlights</h3>
+		<span class="eyebrow">per serving</span>
+		<div class="nutrition-highlights">
+			<div class="container">
+				<div class="row">
+					{% if object.calories %}
+						<div class="nutrition-highlight col-xs-6 col-sm-4">
+							<span class="nutrition-category">Calories</span>
+							<span class="nutrition-value">{{ object.calories }}</span>
+						</div>
+					{% endif %}
+					{% if object.fiber %}
+						<div class="nutrition-highlight col-xs-6 col-sm-4">
+							<span class="nutrition-category">Fiber</span>
+							<span class="nutrition-value">{{ object.fiber }}</span>
+						</div>
+					{% endif %}
+					{% if object.protein %}
+						<div class="nutrition-highlight col-xs-6 col-sm-4">
+							<span class="nutrition-category">Protein</span>
+							<span class="nutrition-value">{{ object.protein }}</span>
+						</div>
+					{% endif %}
+					{% if object.trans_fat %}
+						<div class="nutrition-highlight col-xs-6 col-sm-4">
+							<span class="nutrition-category">Trans Fat</span>
+							<span class="nutrition-value">{{ object.trans_fat }}</span>
+						</div>
+					{% endif %}
+					{% if object.carbs %}
+						<div class="nutrition-highlight col-xs-6 col-sm-4">
+							<span class="nutrition-category">Carbs</span>
+							<span class="nutrition-value">{{ object.carbs }}</span>
+						</div>
+					{% endif %}
+					{% if object.cholestrol %}
+						<div class="nutrition-highlight col-xs-6 col-sm-4">
+							<span class="nutrition-category">Cholesterol</span>
+							<span class="nutrition-value">{{ object.cholestrol }}</span>
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="ingredients-section">
+		<h3 class="banner">Ingredients</h3>
+		<p class="ingredients">{{ object.ingredients|striptags }}</p>
+		{% if object.nutritional_facts %}
+			<a data-src="{{ object.nutritional_facts.url }}" class="nutrition-facts-cta js-open-image-modal">See Full Nutrition Facts</a>
+		{% endif %}
+	</div>
+</div>

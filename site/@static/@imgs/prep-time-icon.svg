@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="58px" viewBox="0 0 64 58" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>4F6DEBD5-640D-4D9C-97A2-85C370EE8011</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M26.337,29.908 C26.337,30.737 27.008,31.408 27.836,31.408 L27.836,31.408 C28.665,31.408 29.336,30.737 29.336,29.908 L29.336,29.908 C29.336,29.079 28.665,28.408 27.836,28.408 L27.836,28.408 C27.008,28.408 26.337,29.079 26.337,29.908 L26.337,29.908 Z" id="path-1"></path>
+    </defs>
+    <g id="D---Recipe-Detail" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="D---Recipe-Detail---Icons" transform="translate(-135.000000, -790.000000)">
+            <g id="•-Recipe-Numbers" transform="translate(0.000000, 750.000000)">
+                <g id="Icon-/-Prep-Time" transform="translate(137.000000, 41.000000)">
+                    <path d="M51.0791,0.3018 L22.0171,29.3638 L7.6101,43.7698 C6.6111,45.1528 6.8771,46.6098 8.4101,48.1418 C9.9411,49.6738 11.3031,49.8448 12.4941,48.6538 L26.7851,34.3628 L27.0631,34.6408 L31.0941,38.6708 C39.7231,29.8218 45.6061,22.4058 48.7441,16.4258 C51.8811,10.4448 52.6591,5.0708 51.0791,0.3018 Z" id="Stroke-1" stroke="#DA291C" stroke-width="2.25" stroke-linejoin="round"></path>
+                    <path d="M21.855,29.292 L27.31,34.747" id="Stroke-3" stroke="#DA291C" stroke-width="2"></path>
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Clip-7" fill="#DA291C" xlink:href="#path-1"></use>
+                    <path d="M56.1641,11.7344 C58.4341,12.8774 60.0001,15.2314 60.0001,17.9334 L60.0001,48.0664 C60.0001,51.8804 56.8801,55.0004 53.0671,55.0004 L6.9331,55.0004 C3.1201,55.0004 0.0001,51.8804 0.0001,48.0664 L0.0001,17.9334 C0.0001,14.1204 3.1201,11.0004 6.9331,11.0004 L33.8751,11.0004" id="Stroke-9" stroke="#DA291C" stroke-width="2.5" stroke-linecap="round"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

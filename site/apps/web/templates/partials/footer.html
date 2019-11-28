@@ -1,0 +1,84 @@
+{% load staticfiles %}
+
+<footer class="footer" id="footer">
+    <div class="container">
+        <a href="{% url 'home' %}" class="footer-brand-logo">
+            <img
+                class="footer-mission-logo"
+                alt="Mission Foods logo"
+                src="{% static 'imgs/mission-logo.png' %}"
+            />
+        </a>
+        <h3 class="footer-title">Follow Us</h3>
+
+        <ul class="social-wrap">
+            <li class="social-item">
+                <a
+                    class="fa fa-facebook-official social-icon"
+                    id="fb"
+                    href="https://www.facebook.com/MissionFoodsUS/"
+                    target="_blank"
+                    aria-label="Follow us on Facebook"
+                ></a>
+            </li>
+            <li class="social-item">
+                <a
+                    class="fa fa-twitter social-icon"
+                    id="tweet"
+                    href="https://twitter.com/MissionFoodsUS"
+                    target="_blank"
+                    aria-label="Follow us on Twitter"
+                ></a>
+            </li>
+            <li class="social-item">
+                <a
+                    class="fa fa-instagram social-icon"
+                    id="insta"
+                    href="https://www.instagram.com/MissionFoodsUS/"
+                    target="_blank"
+                    aria-label="Follow us on Instagram"
+                ></a>
+            </li>
+            <li class="social-item">
+                <a
+                    class="fa fa-youtube-play social-icon"
+                    id="yt"
+                    href="https://www.youtube.com/MissionFoodsUS"
+                    target="_blank"
+                    aria-label="Subscribe to us on YouTube"
+                ></a>
+            </li>
+            <li class="social-item">
+                <a
+                    class="fa fa-pinterest social-icon"
+                    id="pin"
+                    href="https://www.pinterest.com/missionfoodsus/"
+                    target="_blank"
+                    aria-label="Follow us on Pinterest"
+                ></a>
+            </li>
+        </ul>
+        <span class="divider"></span>
+        <ul class="footer-nav">
+            <li><a href="{% url 'our-history' %}">Our History</a></li>
+            <li><a href="{% url 'careers' %}">Careers</a></li>
+            <li><a href="{% url 'faq' %}">FAQ</a></li>
+            <li><a href="{% url 'contact-us' %}">Contact Us</a></li>
+            <li><a href="http://www.missionfoodservice.com/" target="_blank">Food Service</a></li>
+        </ul>
+        <span class="divider"></span>
+    </div>
+    <div class="legal-copy">
+        <div class="container">
+            <span class="copyright">&copy; {% now "Y" %} Mission Foods, North America</span>
+            <div class="legal-copy-right">
+                <span class="privacy-policy">
+                    <a href="{% url 'privacy-policy' %}">Privacy Policy</a>
+                </span>
+                <span class="supply-chain-transparency">
+                    <a href="{% url 'supply-chain' %}">Supply Chain Transparancy</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</footer>

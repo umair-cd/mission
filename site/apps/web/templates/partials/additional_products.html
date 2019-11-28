@@ -1,0 +1,29 @@
+<div class="additional-products">
+    <h2 class="section-header">{{ additional_products_section.title }}</h2>
+    <div class="carousel-container">
+        <div class="product-arrow-container"></div>
+        <div class="additional-products-carousel owl-carousel">
+            {% for additional_product in additional_products_section.products %}
+            <div
+                class="additional-product carousel-item"
+                data-initial="true"
+                prod-url="{% url 'product-detail' additional_product.cta_link %}"
+                prod-title="{{ additional_product.title }}"
+                prod-cta="{{ additional_product.cta_label }}"
+            >
+                <img
+                    class="additional-product-image"
+                    src="{{ additional_product.image_url }}"
+                    alt="{{ additional_product.title }}"
+                />
+                <div class="hightlighted-product-info">
+                    <span class="additional-product-title">{{ additional_product.title }}</span>
+                    <a href="{{ additional_product.cta_link }}" class="additional-product-link">
+                        {{ additional_product.cta_label }}
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

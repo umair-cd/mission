@@ -1,0 +1,57 @@
+.where-to-buy {
+    position: relative;
+    background-color: #fcfcfc;
+    text-align: center;
+
+    .module-title {
+        @extend %module-title-bourton-sm;
+        letter-spacing: -3px;
+        padding: 132px 0 40px;
+        margin: 0;
+
+        @include breakpoint-sm {
+            padding: 60px 0 30px;
+            font-size: $font-size-sub-title;
+        }
+    }
+
+    .input-container {
+        @include flex;
+        padding: 0 40px 141px;
+        @include breakpoint-sm {
+            display: inline-block;
+            max-width: 375px;
+            margin: 0 auto;
+            padding: 0 0 62px;
+        }
+
+        .red-btn {
+            transform: scale(1);
+            transition: all 400ms ease-in-out;
+            &:hover {
+                @include breakpoint-sm {
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+
+    .zip-code-input {
+        padding: 11px 20px;
+        font-size: 16px;
+        flex-grow: 1;
+        border: 1px solid $alizarin;
+        border-radius: 0;
+
+        @include breakpoint-sm {
+            font-size: $font-size-sm-mobile;
+            padding: 12px 20px 15px;
+        }
+    }
+
+    .red-btn {
+        @include breakpoint-sm-max {
+            font-size: 17px;
+        }
+    }
+}

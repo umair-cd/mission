@@ -1,0 +1,29 @@
+
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block body_class %}error{% endblock body_class %}
+
+{% block content %}
+
+<section class="errorContainer">
+    <img src="{% static 'imgs/404-error-chips.jpg' %}"/>
+    <div class="side">
+        <div class="text">
+            <h1>oops! 404!<br>that's an error</h1>
+            <p>The page you are looking for might have been removed, had it's name changed or it's temporarily unavailible.</p>
+        </div>
+        <a href="{% url 'home' %}" class="red-btn">
+            Go to Homepage
+        </a>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block title %}Error 404{% endblock title %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/errorPages.css' %}">
+{% endblock extra_head %}

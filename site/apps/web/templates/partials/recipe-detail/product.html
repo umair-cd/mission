@@ -1,0 +1,23 @@
+<div class="product">
+	{% if recipe.featured_product.image %}
+		<div>
+			<a href="{% url 'product-detail' slug=recipe.featured_product.slug %}" tabindex="0">
+				<img
+					class="featured-product-image"
+					src="{{ recipe.featured_product.image.url }}"
+					alt="{{ recipe.featured_product.title }}"
+				>
+			</a>
+		</div>
+	{% endif %}
+	<div class="info">
+		<h2 class="prod-title">
+			<a href="{% url 'product-detail' slug=recipe.featured_product.slug %}" tabindex="0">{{ recipe.featured_product.title }}</a>
+		</h2>
+		<a class="product-cta" href="{% url 'product-detail' slug=recipe.featured_product.slug %}" tabindex="0">Learn More</a>
+	</div>
+
+	{% if recipe.featured_product.upc_code %} 
+		<button class="js-buy-now where-to-buy-cta" data-toggle="modal" data-target="#widget-modal" data-destini-container="destini-modal" data-destini-association="{{ recipe.featured_product.upc_code }}">Where to Buy</button></a>
+	{% endif %}
+</div>

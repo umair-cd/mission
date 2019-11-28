@@ -1,0 +1,17 @@
+<div class="js-share-modal share-modal modal">
+    <div class="modal-content">
+        <span class="js-close-modal close-btn">x</span>
+        <h3 class="share-title">SHARE</h3>
+        <div class="share-icons">
+            <a href="javascript:void(0)" class="js-share-facebook share-facebook" data-url="{{ request.build_absolute_uri }}">F</a>
+            <a href="#" class="js-share-twitter share-twitter" target="_blank">T</a>
+            <a href="#" class="js-share-pinterest share-pinterest" target="_blank" >P</a>
+        </div>
+        <button class="send-email white-red-btn"><a class="js-share-email share-email" href="mailto:?subject=Thought you’d love this {{ recipe.title }} using {{ recipe.featured_product.title }}.&body={{ request.build_absolute_uri }}">
+            Send an Email
+            </a>
+        </button>
+        <input type="text" id="copy-link-input" />
+        <button class="copy-link white-red-btn js-copy-link">Copy Link</button>
+    </div>
+</div>

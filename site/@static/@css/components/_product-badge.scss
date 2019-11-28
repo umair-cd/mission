@@ -1,0 +1,34 @@
+@import '../common/fonts';
+
+$badge-size: 50;
+$badge-margin: -$badge-size/3 * 1px;
+
+.product-badge {
+    @include flex;
+    width: $badge-size/1.5 * 1px;
+    height: $badge-size/1.5 * 1px;
+    font-size: 1rem;
+    background-color: #da291c;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f8dc49;
+    position: absolute;
+    font-family: $bourton;
+    z-index: 1;
+    @include breakpoint-sm {
+        width: $badge-size * 1px;
+        height: $badge-size * 1px;
+        font-size: 2rem;
+    }
+}
+
+.subcategory-product-carousel {
+    .product-item {
+        .product-badge {
+            left: 4.5px;
+            top: 81.91667px;
+        }
+    }
+}

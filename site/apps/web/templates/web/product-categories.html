@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block body_class %}product-landing{% endblock body_class %}
+
+{% block content %}
+<div class="product-categories">
+	{% with banner=page_info.eyebrow_title hero_title=page_info.title image=page_info.hero_image %}
+		{% include "partials/header_hero_simple.html" %}
+	{% endwith %}
+
+	{% include "partials/product_categories.html" %}
+
+	<div class="category-tab-wrapper products" id="category-wrapper-id">
+	{% for category in categories %}
+		<div id="{{ category.slug }}" class="js-category-tab-page category-tab-page product-grid {% if forloop.first %}active{% endif %}">
+			{% for subcategory in category.subcategory_set.all %}
+				{% if subcategory.product.all %}
+					<div class="subcategory-products animation-scroll-activated animation-fade-up-in">
+						<h3 class="banner"><a href="{% url 'sub-category-detail' category=subcategory.category.first.slug slug=subcategory.slug %}">{{ subcategory.title }}</a></h3>
+						<p class="blurb">{{ subcategory.description }}</p>
+						<div class="subcategory-product-carousel">
+							{# iterate over products that the subcategory has #}
+							{% for product in subcategory.product.all %}
+								<div class="product-card" url="{% url 'product-detail' slug=product.slug %}">
+                                    {% if product.image %}
+										<a href="{% url 'product-detail' slug=product.slug %}">
+                                            {% if product.is_new %}
+                                                <div class="product-badge">
+                                                    NEW
+                                                </div>
+                                            {% endif %}
+                                            <img class="prod-img lazyload" alt="{{ product.title }}" src="{{ product.image.url }}" src="{{ product.image.url }}">
+                                        </a>
+									{% endif %}
+									<a class="product-item-title" href="{% url 'product-detail' slug=product.slug %}">{{ product.title }}</a>
+									<a class="product-item-cta" href="{% url 'product-detail' slug=product.slug %}">Learn More</a>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				{% endif %}
+			{% endfor %}
+		</div>
+	{% endfor %}
+	</div>
+
+
+	{% include "partials/featured_product.html" %}
+
+	{% include "partials/find_a_store.html" %}
+</div>
+{% endblock %}
+
+{% block title %}Mission - Categories{% endblock title %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/product-landing.css' %}">
+{% endblock extra_head %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'js/product-landing.js' %}" ></script>
+{% endblock extra_js %}
+

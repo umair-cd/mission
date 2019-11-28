@@ -1,0 +1,13 @@
+<div class="product-detail-video">
+	<div class="video-container">
+			<h3 class="eyebrow">Featured Recipe</h3>
+			<h2 class="recipe-video-title">
+					<a href="{% url 'recipe-detail' slug=recipe.slug %}">{{ recipe.title }}</a>
+			</h2>
+			{% if recipe.video_id %}
+			<div class="video-container">
+					{% include "partials/styled-video.html" with image=recipe.video_image video_id=recipe.video_id %}
+			</div>
+			{% endif %}
+	</div>
+</div>

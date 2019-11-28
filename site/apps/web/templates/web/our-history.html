@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block body_class %}our-history{% endblock body_class %}
+
+{% block content %}
+
+{% include "partials/header_hero_simple.html" with image=header.hero_image banner=header.eyebrow_title hero_title=header.title %}
+<header>
+    {% if header.intro_text %}
+        <p>{{ header.intro_text }}</p>
+    {% endif %}
+</header>
+<section class="timeline">
+    <div class="container">
+        <div class="titles-container">
+            <div class="timeline-title active" id="js-mission-us-title">Mission Foods US</div>
+            <div class="timeline-title" id="js-global-title">Around the Globe</div>
+        </div>
+        <div class="js-timeline-carousel mission-us-carousel">
+            <!-- Mission Foods Us --> 
+            {% for event in timeline_us %}
+                <div class="timeline-slide mission-us">
+                    <div class="timeline-img">
+                    <img
+                        class="lazyload"
+                        data-src="{{ event.image.url }}"
+                        src="{{ event.image.url }}"
+                        alt="An event in our history"
+                    />
+                    </div>
+                    <div class="timeline-info">
+                        <h3>{{ event.date_formatted }}</h3>
+                    <p>{{ event.description | safe }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <!-- Around the globe --> 
+            {% for event in timeline_world %}
+                <div class="timeline-slide around-globe">
+                    <div class="timeline-img">
+                        <img src="{{ event.image.url }}" alt="An event in our history" />
+                    </div>
+                    <div class="timeline-info">
+                    <h3>{{ event.location | default:"Global" }}</h3>
+                    <p>{{ event.description | safe }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<section class="our-locations">
+    <div class="container">
+        <h2 class="section-header">Our Locations</h2>
+
+        <div class="map-container">
+            <div class="js-map-carousel map">
+                <div class="location">
+                    <img src="{% static 'imgs/map-us.png' %}" alt="Our locations in the US" />
+                </div>
+                <div class="location">
+                    <img src="{% static 'imgs/map-mexico.png' %}" alt="Our locations in Mexico" />
+                </div>
+                <div class="location">
+                    <img
+                        src="{% static 'imgs/map-central-america.png' %}"
+                        alt="Our locations in Central America"
+                    />
+                </div>
+                <div class="location">
+                    <img src="{% static 'imgs/map-europe.png' %}" alt="Our locations in Europe" />
+                </div>
+                <div class="location">
+                    <img src="{% static 'imgs/map-asia.png' %}" alt="Our locations in Asia" />
+                </div>
+                <div class="location">
+                    <img src="{% static 'imgs/map-oceania.png' %}" alt="Our locations in Oceania" />
+                </div>
+                <div class="location">
+                    <img
+                        class="lazyload"
+                        data-src="{% static 'imgs/map-all.png' %}"
+                        src="{% static 'imgs/map-all.png' %}"
+                        alt="Our locations around the world"
+                    />
+                </div>
+            </div>
+
+           <div class="js-map-nav map-nav">
+               <div class="map-tab map-1">United States</div>
+               <div class="map-tab">Mexico</div>
+               <div class="map-tab">Central America</div>
+               <div class="map-tab">Europe</div>
+               <div class="map-tab">Asia</div>
+               <div class="map-tab">Oceania</div>
+            </div>
+        </div>
+
+        <div class="map-container-mobile">
+            <div class="mobile-map">
+                <img
+                    src="{% static 'imgs/map-all.png' %}"
+                    alt="Our locations around the world"
+                />
+            </div>
+
+            <div class="mobile-map-list">
+                <ul>
+                    <li>United States</li>
+                    <li>Mexico</li>
+                    <li>Central America</li>
+                    <li>Europe</li>
+                    <li>Asia</li>
+                    <li>Oceania</li>
+                </ul>
+            </div>
+        </div>    
+    </div>
+</section>
+<section class="mission-news">
+    <div class="container">
+        <div class="section-header">Mission News</div>
+        <div class="news-container">
+            {% for event in timeline %}
+                <div class="news">
+                    <div class="news-img">
+                    <img
+                        class="lazyload"
+                        data-src="{{ event.image.url }}"
+                        src="{{ event.image.url }}"
+                        alt="A news event"
+                    />
+                    </div>
+                    <div class="news-text">
+                        <h3 class="news-title">{{ event.title }}</h3>
+                        <p class="news-date">{{ event.date_formatted }}</p>
+                        <div class="news-blurb">{{ event.description | safe }}</div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>    
+</section>
+
+{% endblock %}
+
+{% block title %}Mission - Our History{% endblock title %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/our-history.css' %}" />
+{% endblock extra_head %}
+{% block extra_js %}
+   <script type="text/javascript" src="{% static 'js/our-history.js' %}"></script>
+{% endblock extra_js %}

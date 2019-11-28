@@ -1,0 +1,77 @@
+version: 2
+jobs:
+  build-deploy-production:
+    docker:
+      - image: circleci/python:3.6.4-stretch
+        environment:
+          PIPENV_VENV_IN_PROJECT: true
+          DATABASE_URL: postgresql://root@localhost/circle_test?sslmode=disable
+      - image: circleci/postgres:9.6.2
+        environment:
+          POSTGRES_USER: root
+          POSTGRES_DB: circle_test
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            -"a9:56:b1:62:44:fa:b4:b7:39:37:b8:ce:1a:c8:dc:aa"
+            -"39:32:9a:75:f5:9d:f2:aa:5a:48:25:38:90:73:9f:c9"
+      - checkout
+      - run: sudo chown -R circleci:circleci /usr/local/bin
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
+      - run:
+          command: |
+            sudo apt update -y
+            sudo apt install -y rsync
+            sudo apt install -y sshpass
+            ssh-keyscan 23.99.254.122 >> ~/.ssh/known_hosts
+            sshpass -p $SSHPASSWORD rsync -a -e ssh . missionadmin@23.99.254.122:/home/missionadmin/mission
+            sshpass -p $SSHPASSWORD ssh missionadmin@23.99.254.122 'cd mission/site && pip3 install --user -r requirements.txt'
+            sshpass -p $SSHPASSWORD ssh missionadmin@23.99.254.122 '. ~/.nvm/nvm.sh && cd mission && make prod.setup'
+            sshpass -p $SSHPASSWORD ssh missionadmin@23.99.254.122 'cd mission/site && export DJANGO_SETTINGS_MODULE=apps.config.settings.prod && python3 manage.py collectstatic --noinput && sudo systemctl restart gunicorn.socket'
+            sshpass -p $SSHPASSWORD ssh missionadmin@23.99.254.122 'cd mission/site && export DJANGO_SETTINGS_MODULE=apps.config.settings.prod && python3 manage.py migrate && python3 manage.py clear_cache'
+
+  build-deploy-staging:
+    docker:
+      - image: circleci/python:3.6.4-stretch
+        environment:
+          PIPENV_VENV_IN_PROJECT: true
+          DATABASE_URL: postgresql://root@localhost/circle_test?sslmode=disable
+      - image: circleci/postgres:9.6.2
+        environment:
+          POSTGRES_USER: root
+          POSTGRES_DB: circle_test
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            -"a9:56:b1:62:44:fa:b4:b7:39:37:b8:ce:1a:c8:dc:aa"
+            -"39:32:9a:75:f5:9d:f2:aa:5a:48:25:38:90:73:9f:c9"
+      - checkout
+      - run: sudo chown -R circleci:circleci /usr/local/bin
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
+      - run:
+          command: |
+            sudo apt update -y
+            sudo apt install -y rsync
+            sudo apt install -y sshpass
+            ssh-keyscan 23.99.251.180 >> ~/.ssh/known_hosts
+            sshpass -p $SSHPASSWORD rsync -a -e ssh . missionadmin@23.99.251.180:/opt/mission
+            sshpass -p $SSHPASSWORD ssh missionadmin@23.99.251.180 'cd /opt/mission/site && python3 -m pip install --user -r requirements.txt'
+            sshpass -p $SSHPASSWORD ssh missionadmin@23.99.251.180 '. ~/.nvm/nvm.sh && cd /opt/mission/site/\@static && WEBPACK_ENV=staging ./node_modules/.bin/webpack --config webpack.config.js && cd ../'
+            sshpass -p $SSHPASSWORD ssh missionadmin@23.99.251.180 'cd /opt/mission/site && export DJANGO_SETTINGS_MODULE=apps.config.settings.staging && python3 manage.py collectstatic --noinput && sudo systemctl restart gunicorn.socket'
+            sshpass -p $SSHPASSWORD ssh missionadmin@23.99.251.180 'cd /opt/mission/site && export DJANGO_SETTINGS_MODULE=apps.config.settings.staging && python3 manage.py migrate && python3 manage.py clear_cache'
+
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build-deploy-production:
+          filters:
+            branches:
+              only:
+                - master
+      - build-deploy-staging:
+          filters:
+            branches:
+              only:
+                - staging

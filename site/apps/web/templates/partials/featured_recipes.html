@@ -1,0 +1,84 @@
+{% load staticfiles web_extras %}
+
+<div class="featured-recipes background">
+	<div class="content black-gradient">
+		<h3 class="banner">{{ homepage.eyebrow_title_recipe }}</h3>
+		{% with homepage.featured_recipe_title|cut_last as featured_recipe_title %}
+			<h2 class="title">
+				{{ featured_recipe_title.0 }}
+				<span class="school-bus"> {{ featured_recipe_title.1 }}</span>
+			</h2>
+		{% endwith %}
+		<p class="blurb">{{ homepage.featured_recipe_description }}.</p>
+	</div>
+
+	<div class="container animation-scroll-activated animation-fade-up-in">
+		<div class="js-featured-recipes featured-recipes-carousel row">
+			{% for featured_recipe in featured_recipes %}
+				<div class="products col-12 col-sm-4">
+					<div class="product-image-container">
+						<div class="product-image-overlay">
+							<a
+								href="{% url 'recipe-detail' featured_recipe.slug %}"
+								class="product-title-link"
+							>
+								<h3 class="product-title">{{ featured_recipe.title }}</h3>
+							</a>
+						</div>
+							<a
+								href="{% url 'recipe-detail' featured_recipe.slug %}"
+								class="product-title-link"
+								aria-label="{{ featured_recipe.title }} Link"
+							>
+								<img
+									class="recipe-img"
+									src="{% if featured_recipe.image %}{{	featured_recipe.image.url	}}{% endif %}"
+									alt="An image of {{ featured_recipe.title }}"
+								/>
+							</a>
+					</div>
+					<div class="title-mobile-container visible-sm visible-xs">
+						<a
+							class="title-mobile-link"
+							href="{% url 'recipe-detail' featured_recipe.slug %}"
+						>
+							<h3 class="title-mobile">{{ featured_recipe.title }}</h3>
+						</a>
+					</div>
+					<div class="wrap">
+						{% comment %}
+							<img
+								src="{% if featured_recipe.featured_product.image %}{{ featured_recipe.featured_product.image.url }}{% endif %}"
+								class="prod-img"
+								alt="An image of {{ feature_recipe.featured_product.title }}"
+							/>
+						{% endcomment %}
+						<a href="{% url 'product-detail' featured_recipe.featured_product.slug %}">
+							<img
+								src="{{ featured_recipe.featured_product.image.url }}"
+								data-test=""
+								class="prod-img"
+								alt="An image of {{ featured_recipe.featured_product.title }}"
+							/>
+						</a>
+						<div class="info">
+							<h3 class="prod-title">
+								<a
+									href="{% url 'product-detail' featured_recipe.featured_product.slug %}"
+								>
+									{{ featured_recipe.featured_product.title }}
+								</a>
+							</h3>
+							<a
+								href="{% url 'product-detail' featured_recipe.featured_product.slug %}"
+								class="buy-now"
+							>
+								{{ featured_recipe.featured_product.homepage_cta }}
+							</a>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>

@@ -1,0 +1,17 @@
+# -------------------------------------
+# .DOCKERIGNORE
+# -------------------------------------
+
+.*
+tests
+.gitignore
+.vagrant/
+.git/
+*.md
+*/collected-static/
+docker-compose.yml
+circle.yml
+docs/
+deploy/
+uploads
+Makefile

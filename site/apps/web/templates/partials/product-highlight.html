@@ -1,0 +1,36 @@
+<div class="product-highlight">
+    <div class="product-title">
+        {{ highlighted_products_section.title }}
+    </div>
+    <div class="product-description">
+        {{ highlighted_products_section.description }}
+    </div>
+    <div id="product-button"></div>
+    <div class="product-images">
+        {% for product in highlighted_products_section.products %}
+            {% if highlighted_products_section.products|length == 1 %}
+            <div class="product-card product-card-large">
+            {% elif highlighted_products_section.products|length == 2%}
+            <div class="product-card product-card-medium">
+            {% else %}
+            <div class="product-card product-card-small">
+            {% endif %}
+                    <div class="product-image"
+                         style="background-image: url('{{product.image_url}}')"
+                         title="{{product.image_alt_text}}"
+                    ></div>
+                    <div class="product-text-container">
+                        <div class="product-image-title">
+                            {{product.title}}
+                        </div>
+                        <div class="product-image-description">
+                            {{product.description}}
+                        </div>
+                        <a href="{{ product.link }}" class="product-link">
+                            {{product.link_label}}
+                        </a>
+                    </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

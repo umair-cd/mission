@@ -1,0 +1,132 @@
+@import '~bootstrap-styles/bootstrap/variables';
+@import '~bourbon-styles/bourbon';
+@import '~breakpoint-styles/breakpoint';
+
+@import '../common/config';
+@import '../common/mixins';
+@import '../common/fonts';
+
+.header-collection {
+    position: relative;
+}
+
+.header-hero .banner {
+    font-weight: normal;
+}
+
+.arrow-left {
+    border: solid white;
+    border-width: 0 1px 1px 0;
+    display: inline-block;
+    padding: 3.5px;
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+}
+
+.header-hero .hero-img {
+    img {
+        height: 100%;
+
+        @media (min-width: 600px) {
+            width: 100%;
+            height: unset;
+        }
+    }
+}
+
+.collection-recipes {
+    background-color: $background-color;
+    @include breakpoint-lg {
+        width: 1230px;
+        padding-bottom: 60px;
+    }
+
+    @include breakpoint-xs-max {
+        padding-bottom: 90px;
+    }
+
+    .grid {
+        li.hidden {
+            @include breakpoint-xs-max {
+                display: none;
+            }
+        }
+    }
+
+    .recipes {
+        padding: 0 0 5% 0;
+    }
+
+    p {
+        font-family: $merlo-neue-round;
+        color: $gray;
+        font-size: 1.375em;
+        max-width: 60%;
+        margin: 6% auto 60px;
+        text-align: center;
+
+        @include breakpoint-xs-max {
+            font-size: 15px;
+            max-width: 100%;
+            margin: 60px 15px 60px;
+        }
+    }
+}
+
+.container-load-more {
+    display: flex;
+    justify-content: space-evenly;
+
+    .load-more {
+        text-decoration: none;
+        display: block;
+        margin: 60px auto;
+        width: 30%;
+        text-align: center;
+        color: $gray;
+        background-color: transparent;
+        -webkit-appearance: none;
+        border-radius: 0;
+        border: 1px solid $gray;
+        padding: 10px 40px;
+        transition: all 600ms ease-in-out;
+        -webkit-transition: all 600ms ease-in-out;
+        -moz-transition: all 600ms ease-in-out;
+        -o-transition: all 600ms ease-in-out;
+
+        @include breakpoint-xs-max {
+            background-color: transparent;
+            color: $gray;
+            border: 1px solid $gray;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            width: 99%;
+            margin: 10% 0 5% 0;
+        }
+    }
+}
+
+.list-of-collections {
+    list-style-type: none;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0px;
+
+    @include breakpoint-xs-max {
+        padding: 0 15px;
+
+        li {
+            width: 100%;
+            padding: 15px 10px 15px;
+
+            .collections {
+                width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+        }
+    }
+}

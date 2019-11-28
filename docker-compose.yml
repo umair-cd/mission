@@ -1,0 +1,35 @@
+version: "2"
+services:
+    django:
+        image: python:3.6-stretch
+        container_name: mission_django_1
+        ports:
+            - "8000:8000"
+        volumes:
+            - .:/usr/app
+        stdin_open: true
+        working_dir: /usr/app/site
+        tty: true
+        command: "/bin/bash"
+        links:
+            - postgres:postgres
+        environment:
+            DJANGO_SETTINGS_MODULE: apps.config.settings.local
+            PYTHONPATH: /usr/app/site/apps:/usr/app/site/vendor
+            PIPENV_VENV_IN_PROJECT: 1
+            DEBUG: "true"
+        logging:
+            driver: none
+
+    postgres:
+        image: postgres:latest
+        container_name: mission_postgres_1
+        restart: unless-stopped
+        volumes:
+            - /usr/lib/postgresql
+            - .:/usr/app/django
+        environment:
+            POSTGRES_USER: djangodb
+            POSTGRES_PASSWORD: djangodb
+        logging:
+            driver: none

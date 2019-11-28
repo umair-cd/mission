@@ -1,0 +1,120 @@
+// ------------------------------------
+// PROJECT FONTS
+// ------------------------------------
+
+@font-face {
+  font-family: "BourtonBase";
+  src:  url('../../@fonts/BourtonBase.ttf') format('truetype'),
+    url('../../@fonts/bourtonbase-webfont.woff') format('woff');
+       
+  font-weight: normal;
+  font-style: normal;
+}
+
+$bourton: "BourtonBase", sans-serif;
+
+@font-face {
+  font-family: "Merlo Neue Round";
+  src: url("../../@fonts/merlo_neue_round_medium_alt-webfont.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  text-rendering: geometricPrecision;
+}
+
+@font-face {
+  font-family: "Merlo Neue Round";
+  src: url("../../@fonts/merlo_neue_round_medium_alt-webfont.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  text-rendering: geometricPrecision;
+}
+
+@font-face {
+  font-family: "Merlo Neue Round Bold";
+  src: url("../../@fonts/MerloeNeueRound-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Nunito Extra Bold";
+  src: url("../../@fonts/Nunito-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Asap";
+  src: url("../../@fonts/Asap-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+$merlo-neue-round: "Merlo Neue Round";
+
+// ------------------------------------
+// Bourton Utility Extend Classes
+// ------------------------------------
+
+%marquee-title-bourton {
+  font-family: $bourton;
+  font-weight: 200;
+  letter-spacing: -4px;
+  line-height: .9;
+  font-size: 2.875em;
+
+  @include breakpoint-sm {
+    letter-spacing: -10px;
+    font-size: 6em;
+  }
+
+  @include breakpoint-lg {
+    font-size: $font-size-hero;
+  }
+}
+
+%module-eyebrow-bourton {
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 5px;
+
+  @include breakpoint-sm {
+    font-size: $font-size-eyebrow;
+  }
+}
+
+%module-title-bourton {
+  font-family: $bourton;
+  font-weight: 400;
+  font-size: $font-size-title-mobile;
+  letter-spacing: -2.85px;
+
+  @include breakpoint-sm {
+    letter-spacing: -4px;
+    font-size: $font-size-title;
+  }
+}
+
+%module-title-bourton-sm {
+  font-family: $bourton;
+  letter-spacing: -4px;
+  font-size: $font-size-title-mobile;
+}
+
+// ----------------------------------------
+// Merlo Neue Round Utility Extend Classes
+// ----------------------------------------
+
+%merlo-medium {
+  font-family: $merlo-neue-round;
+  font-weight: 500;
+  font-style: normal;
+  text-rendering: geometricPrecision;
+}
+
+%merlo-bold {
+  font-family: $merlo-neue-round;
+  font-weight: 700;
+  font-style: normal;
+}
+

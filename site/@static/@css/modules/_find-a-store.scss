@@ -1,0 +1,66 @@
+.find-a-store-module-bg {
+	background-color: #fcfcfc;
+}
+.find-a-store-module {
+	padding: 99px 15px 106px;
+	background-color: #fcfcfc;
+	background: linear-gradient(-180deg, rgba(255,255,255,0) 0%, rgba(0,0,0,0.075) 100%);
+
+	@include breakpoint-sm {
+		padding: 156px 15px;
+	}
+
+	.container {
+		text-align: center;
+	}
+
+	.banner {
+		@extend %module-title-bourton-sm;
+		font-size: $font-size-title-mobile;
+		letter-spacing: -2.38px;
+		margin-bottom: 36px;
+
+		@include breakpoint-sm {
+			font-size: $font-size-sub-title;
+		}
+	}
+
+	.input-container {
+		@include flex;
+		max-height:50px;
+		@include breakpoint-sm {
+			display: inline-block;
+			max-width: 375px;
+			margin: 0 auto;
+		}
+
+		.red-btn {
+			transform: scale(1);
+			transition: all 400ms ease-in-out;
+			&:hover {
+				@include breakpoint-sm {
+					transform: scale(1.1)
+				}
+			}
+		}
+	}
+
+	.zip-code-input {
+		padding: 11px 20px;
+		font-size: 16px;
+		flex-grow: 1;
+		border: 1px solid $alizarin;
+		border-radius: 0;
+
+		@include breakpoint-sm {
+			font-size: $font-size-sm-mobile;
+			padding: 12px 20px 15px;
+		}
+	}
+
+	.red-btn {
+		@include breakpoint-sm-max {
+			font-size: 17px;
+		}
+	}
+}

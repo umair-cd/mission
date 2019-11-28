@@ -1,0 +1,311 @@
+.product-detail-related-section {
+
+	.container {
+		padding-left: 15px !important;
+		padding-right: 15px !important;
+	}
+
+	.nav-tabs {
+		display: block;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		position: relative;
+		overflow: hidden;
+		background: #fafafa;
+		height: 40px;
+		user-select: none;
+		border: 1px solid $alizarin;
+		justify-content: center;
+		margin-bottom: 61px;
+
+		@include breakpoint-sm {
+			max-width: 770px;
+			margin: 0 auto 90px;
+			height: 50px;
+		}
+
+		&:after{
+			content: "";
+			width: 50%;
+			background: $alizarin;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			transition: all 250ms ease-in-out;
+		}
+
+		&.slide:after{
+			left: 50%;
+		}
+
+		& > li {
+			display: inline-block;
+			float: none;
+			// flex-basis: 50%;
+			text-align: center;
+			& > a {
+				border:none;
+			}
+		}
+
+	}
+
+	.nav-item {
+		width: 49%;
+
+		& > .nav-link {
+			width: 100%;
+			@extend %merlo-medium;
+			font-size: $font-size-button-xs;
+			color: $alizarin;
+			background-color: transparent;
+			margin-right: 0;
+			position: relative;
+			z-index: 1;
+			display: inline-block;
+			transition: color 250ms ease-in-out;
+			user-select: none;
+			border: none;
+			&:hover, &:focus{
+				border: none;
+			}
+
+			@include breakpoint-sm {
+				font-size: $font-size-text-link;
+				padding: 13px 15px;
+			}
+		}
+
+		&.active > .nav-link {
+			border: none;
+			background-color: transparent;
+			color: $white;
+
+			&:hover,
+			&:focus {
+				cursor: pointer;
+			}
+		}
+	}
+
+	// ===================================
+	// Related Recipes Section
+	// ===================================
+
+	.product-related-recipes {
+
+		.related-cta {
+			@extend %merlo-medium;
+			text-align: center;
+			color: $gray;
+			font-size: .9375em;
+			padding: 0 15px;
+			margin-bottom: 65px;
+
+			@include breakpoint-sm {
+				color: $mine-shaft;
+				font-size: $font-size-xs-desktop;
+				max-width: 550px;
+				margin: 0 auto 83px;
+				padding: 0;
+			}
+		}
+
+		.blurb {
+			color: $gray;
+			text-align: center;
+			font-size: 15px;
+			padding: 0 15px 25px;
+			max-width: 550px;
+			margin: 0 auto;
+
+			@include breakpoint-sm {
+				font-size: 22px;
+			}
+		}
+
+		.related-recipes {
+			padding: 0;
+			margin-bottom: 60px;
+
+			&.slick-slider {
+                @include breakpoint-sm {
+                    padding-left: 15px;
+                }
+			}
+
+			.slick-slide > div {
+				width: 315px !important;
+			}
+
+			@include breakpoint-sm {
+				@include flex;
+				justify-content: space-evenly;
+				flex-wrap: wrap;
+				margin-bottom: 90px;
+			}
+
+			@include breakpoint-lg {
+				justify-content: space-between;
+				flex-wrap: unset;
+			}
+		}
+
+		.recipe-card {
+			margin-bottom: 30px;
+
+			&:nth-child(n+5) {
+				display: none !important;
+
+				@include breakpoint-sm { display: block !important; }
+			}
+		}
+
+		.recipe-card:hover {
+		  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.15), 0 10px 10px rgba(0, 0, 0, 0.05);
+		  transform: translate(0px, -1px);
+		  transition: all 0.5s;
+		  -webkit-transition: all 0.5s;
+		  -moz-transition: all 0.5s;
+		  -o-transition: all 0.5s;
+		}
+
+		.recipe-card-image-container {
+			width: 48%;
+
+			@include breakpoint-sm {
+				width: auto;
+			}
+		}
+
+		.recipe-card-info {
+			width: 52%;
+
+			@include breakpoint-sm { width: auto; }
+		}
+
+		.red-btn-container {
+			text-align: center;
+			margin-bottom: 60px;
+			padding: 0 15px;
+		}
+
+		.product-red-btn {
+			@extend .red-btn;
+			display: block;
+			min-width: 170px;
+
+			@include breakpoint-sm { display: inline-block; }
+		}
+	}
+
+	// ===================================
+	// Nutrition & Ingredients Section
+	// ===================================
+
+	.nutrition-and-ingredients {
+		text-align: center;
+		padding-bottom: 77px;
+
+		@include breakpoint-sm { padding-bottom: 150px; }
+
+		.banner {
+			@extend %module-title-bourton-sm;
+			color: $mine-shaft;
+			letter-spacing: -2px;
+			font-size: $font-size-md-desktop;
+			margin-bottom: 12px;
+
+			@include breakpoint-sm {
+				font-size: $font-size-smaller-title;
+			}
+		}
+
+		.eyebrow {
+			@extend %merlo-medium;
+			display: block;
+			color: $gray;
+			font-size: $font-size-button-xs;
+			margin-bottom: 61px;
+
+			@include breakpoint-sm {
+				font-size: $font-size-xs-mobile;
+			}
+		}
+
+		.nutrition-highlights {
+			margin-bottom: 52px;
+		}
+
+		.container {
+			@include breakpoint-sm {
+				width: 570px;
+			}
+		}
+
+		.nutrition-highlight {
+			margin-bottom: 27px;
+
+			@include breakpoint-sm {
+				margin-bottom: 91px;
+			}
+		}
+
+		.nutrition-category {
+			@extend %merlo-bold;
+			display: block;
+			font-size: 15px;
+			margin-bottom: 11px;
+			color: $mine-shaft;
+
+			@include breakpoint-sm { margin-bottom: 22px; }
+		}
+
+		.nutrition-value {
+			@extend %merlo-medium;
+			display: block;
+			font-size: $font-size-sm-desktop;
+			color: $gray;
+		}
+
+		.ingredients-section {
+
+			.banner { margin-bottom: 43px; }
+
+			@include breakpoint-sm {
+				.banner { margin-bottom: 60px; }
+			}
+		}
+
+		.ingredients {
+			@extend %merlo-medium;
+			padding: 0 15px;
+			text-align: left;
+			font-size: 15px;
+			color: $gray;
+			line-height: 1.5;
+			margin-bottom: 60px;
+
+			@include breakpoint-sm {
+				max-width: 898px;
+				padding: 0;
+				margin: 0 auto 60px;
+				text-align: center;
+				font-size: $font-size-sm-mobile;
+			}
+		}
+
+		.nutrition-facts-cta {
+			@extend %merlo-medium;
+			color: $alizarin;
+			font-size: $font-size-footer-nav;
+			display: inline-block;
+			cursor: pointer;
+
+			@include breakpoint-sm { font-size: $font-size-button; }
+		}
+	}
+
+}

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block body_class %}collection-detail{% endblock body_class %}
+
+{% block content %}
+
+{% include "partials/share-modal.html" %}
+
+<header class="header-collection">
+    {% include "partials/header_hero_simple.html" with banner="Recipe Collection" hero_title=collection.title image=collection.image  %}
+</header>
+<section class="background">
+  <div class ="container recipes collection-recipes animation-scroll-activated animation-crossfade">
+    <p>{{ collection.description }}</p>
+    {% include "partials/recipe-grid.html"%}
+    <div class="container-load-more">
+        <button  class = "load-more" >Load More</button>
+    </div>
+  </div>
+</section>
+<section class="other-recipe-collections black-gradient">
+    <div class="container animation-scroll-activated animation-crossfade">
+        <h1>Recipe Collections</h1>
+        <div class="scrollable-wraper">
+            {% include "partials/list-of-collections.html" %}
+        </div>
+        <div class="button-wraper">
+            <a href="{% url 'collection-landing' %}">See All Recipe Collections</a>
+        </div>
+    </div>
+</section>
+<section>
+  {% include "partials/find_a_store.html" %}
+</section>
+{% endblock %}
+
+{% block title %}{{ collection.title }} - Mission Foods Recipes{% endblock %}
+{% block description %}Browse the recipes in our {{ collection.title }} collection and find a delicious dish from one of our specialized categories.{% endblock %}
+
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'css/collection-grid.css' %}">
+{% endblock extra_head %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'js/collection-detail.js' %}" ></script>
+{% endblock extra_js %}

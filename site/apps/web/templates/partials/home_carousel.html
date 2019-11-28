@@ -1,0 +1,21 @@
+<div class="home-carousel">
+	<div class="js-home-carousel">
+		{% for slide in home_carousel %}
+			<div class="js-carousel-slide slide">
+				<div class="slide-overlay"></div>
+				<div class="slide-background lazyload" data-bg="{% if slide.background_image %}{{ slide.background_image.url }}{% endif %}" style="background-image: url({% if slide.background_image %}{{ slide.background_image.url }}{% endif %})"></div>
+				<div class="slide-content">
+					<h1 class="slide-title">
+						{% if slide.title %}<div class="slide-main-title"><span>{{ slide.title }}</span></div>{% endif %}
+						{% if slide.sub_title %}<br><div class="slide-sub-title"><span>{{ slide.sub_title }}</span></div>{% endif %}
+	
+						{% if not slide.title %}<div class="slide-main-placeholder"><span>&nbsp;</span></div>{% endif %}
+						{% if not slide.sub_title %}<br><div class="slide-sub-placeholder"><span>&nbsp;</span></div>{% endif %}
+					</h1>
+					<button class="slide-cta red-btn" href="{{ slide.cta_url }}" tabindex="0">{{ slide.cta_text }}</button>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+<div class="window"></div>

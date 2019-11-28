@@ -1,0 +1,234 @@
+{% extends 'base.html' %}
+{% load staticfiles web_extras %}
+
+{% block body_class %}recipe-list{% endblock body_class %}
+
+{% block content %}
+
+{% include "partials/share-modal.html" %}
+
+<header>
+    <div class="interior-carousel">
+        <div class="js-interior-carousel">
+            {% for slide in page.recipepageherocollection_set.all %}
+            <div class="js-carousel-slide slide">
+                <div class="slide-overlay"></div>
+                {% if slide.collection.image %}
+                <div class="slide-background">
+                  <img
+                    alt=""
+                    src="{{ slide.collection.image.url }}"
+                    data-src="{{ slide.collection.image.url }}"
+                    class="lazyload"
+                  />
+                </div>
+                {% endif %}
+                <div class="slide-content">
+                  <div class="eyebrown-title">{{ slide.eyebrow_text }}</div>
+                  <h1 class="slide-title">
+                      <div class="slide-main-title">{{ slide.collection.title }}</div>
+                  </h1>
+                  <a
+                    class="slide-cta red-btn"
+                    href="{% url 'collection-detail' slug=slide.collection.slug %}"
+                  >
+                    {{ slide.cta_text }}
+                  </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</header>
+<div class="window"></div>
+<!-- Search form -->
+<section class="recipe-list-content">
+    <div class="container animation-scroll-activated animation-crossfade">
+        <form>
+            <div class="search-box-wrapper">
+              <button class="btn btn-inline" aria-label="Search recipes">
+                <i class="fa fa-search"></i>
+              </button>
+              <input
+                name="q"
+                value="{{ search }}"
+                class="form-control js-recipe-search-input"
+                type="text"
+                placeholder="Search Recipes"
+                aria-label="Search Recipes"
+              />
+            </div>
+            <fieldset class="search-form-filter">
+                <legend class="line-behind"><span>Filter By</span></legend>
+
+                <div class="search-form-filter-fields">
+                  <select
+                    name="meal_type"
+                    aria-label="Meal type"
+                    class="form-control-inline"
+                    onchange="this.form.submit()"
+                  >
+                    <option value="" selected>Meal Type</option>
+                    {% for value, label in meal_types %}
+                    <option value="{{ value }}" {{ value|is_selected:active_meal_type }}>
+                      {{ label }}
+                    </option>
+                    {% endfor %}
+                  </select>
+
+                  <select
+                    name="recipe_type"
+                    aria-label="Recipe type"
+                    class="form-control-inline"
+                    onchange="this.form.submit()"
+                  >
+                    <option value="" selected>Recipe Type</option>
+                    {% for value, label in recipe_types %}
+                    <option value="{{ value }}" {{ value|is_selected:active_recipe_type }}>
+                      {{ label }}
+                    </option>
+                    {% endfor %}
+                  </select>
+
+                    <select
+                      name="cook_time"
+                      aria-label="Cooking type"
+                      class="form-control-inline"
+                      onchange="this.form.submit()"
+                    >
+                      <option value="" selected>Cooking Time</option>
+                      {% for value, label in cook_times %}
+                      <option value="{{ value }}" {{ value|is_selected:active_cook_time }}>
+                        {{ label }}
+                      </option>
+                      {% endfor %}
+                    </select>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+    <div class="recipe-grid-wrapper container-grid animation-scroll-activated animation-crossfade">
+        {% if is_filtered %}
+        <h2 id="results-header" class="js-results-title">
+          {{ recipes.count }} Result{{ recipes.count | pluralize }}{% if search %} for {{ search }}{% endif %}
+        </h2>
+        {% else %}
+        <h2 id="recipes-header" class="all-recipes">All Recipes</h2>
+        {% endif %}
+        <ul class="grid">
+          {% for recipe in recipes %}
+          <li>{% include "partials/recipe_card.html" %}</li>
+          {% endfor %}
+        </ul>
+    </div>
+</section>
+
+{% if is_paginated %}
+<div class="container pagination-wrapper background">
+    <ul class="pagination">
+      {% if page_obj.has_previous %}
+      <li>
+          <a
+            href="?page={{ page_obj.previous_page_number }}#recipes-header"
+            rel="left"
+            aria-label="Previous"
+          >
+            <span class="fa fa-caret-left" aria-hidden="true"></span>
+        </a>
+      </li>
+      {% else %}
+      <li class="disabled"><span class="fa fa-caret-left" aria-hidden="true"></span></li>
+      {% endif %}
+      {% for i in page_obj.paginator.page_range %}
+        {% if i <= page_obj.number|add:1 and i >= page_obj.number|add:-1 %}
+          {% if page_obj.number == i %}
+            <li class="active">
+                <span>{{ i }} <span class="sr-only">(current)</span></span>
+            </li>
+          {% else %}
+            <li>
+                <a href="?page={{ i }}#recipes-header">{{ i }}</a>
+            </li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+      {% if page_obj.has_next %}
+        <li>
+          <a
+            href="?page={{ page_obj.next_page_number }}#recipes-header"
+            rel="right"
+            aria-label="Next"
+          >
+            <span class="fa fa-caret-right" aria-hidden="true"></span>
+          </a>
+        </li>
+      {% else %}
+        <li class="disabled"><span class="fa fa-caret-right" aria-hidden="true"></span></li>
+      {% endif %}
+    </ul>
+</div>
+{% endif %}
+
+<section class="other-recipe-collections black-gradient">
+    <div class="container animation-scroll-activated animation-crossfade">
+        <h1>other recipe collections</h1>
+        <div class="scrollable-wraper">
+            {% include "partials/list-of-collections.html" with collections=page.collections.all %}
+        </div>
+        <div class="button-wraper">
+            <a href="{% url 'collection-landing' %}">{{ page.collections_title }}</a>
+        </div>
+    </div>
+</section>
+
+<section class="background">
+    {% include "partials/find_a_store.html" %}
+</section>
+
+{% endblock %}
+
+{% block title %}
+    {% if is_paginated and page_obj.number > 1%}
+        Recipe Results - Page {{page_obj.number}} - Mission Foods
+    {% else %}
+        Our Recipes - Find a Recipe - Mission Foods
+    {% endif %}
+{% endblock title %}
+{% block description %}
+    {% if is_paginated and page_obj.number > 1%}
+        Browse our recipe collection and get inspired from the recipes found on result page {{page_obj.number}}. Find a recipe to satisfy your cravings from Mission Foods.
+    {% else %}
+        Search our full collection and find a recipe to satisfy your cravings. You can browse our featured recipes or filter by meal type or cooking time.
+    {% endif %}
+{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/recipe-landing.css' %}" />
+<script type="application/ld+json">
+    {
+      "@context": "http://schema/org/",
+      "@type":"ItemList",
+      "itemListElement":[
+      {% for recipe in recipes %}
+        {% if forloop.last %}
+          {
+            "@type":"ListItem",
+            "position":"{{ forloop.counter }}",
+            "url":"{% url 'recipe-detail' recipe.slug %}"
+          }
+        {% else%}
+          {
+            "@type":"ListItem",
+            "position":"{{ forloop.counter }}",
+            "url":"{% url 'recipe-detail' recipe.slug %}"
+          },
+        {% endif %}
+      {% endfor %}
+      ]
+    }
+</script>
+{% endblock extra_head %}
+
+{% block extra_js %}
+<script type="text/javascript" src="{% static 'js/recipe-landing.js' %}"></script>
+{% endblock extra_js %}

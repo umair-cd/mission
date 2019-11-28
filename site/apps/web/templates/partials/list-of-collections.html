@@ -1,0 +1,21 @@
+<ul class="list-of-collections">
+    {% for collection in collections %}
+        <li class="collections">
+            {% include "partials/collection-landing/collection-item.html" %}
+        </li>
+    {% endfor %}
+</ul>
+<a href="#" id="loadMore">Load More</a>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function () {
+  $(".collections").slice(0, 6).show();
+  $("#loadMore").on('click', function (e) {
+      e.preventDefault();
+      $(".collections:hidden").slice(0, 3).slideDown();
+      if ($(".collections:hidden").length == 0) {
+          $("#load").fadeOut('slow');
+      }
+  });
+});
+</script>

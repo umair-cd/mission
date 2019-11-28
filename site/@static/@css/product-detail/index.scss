@@ -1,0 +1,476 @@
+@import "~bootstrap-styles/bootstrap/variables";
+@import "~bourbon-styles/bourbon";
+@import "~breakpoint-styles/breakpoint";
+
+@import "../common/config";
+@import "../common/mixins";
+@import "../common/fonts";
+
+.product-detail {
+	font-family: $merlo-neue-round;
+	background-color: $background-color;
+	
+	// destini widget overrides
+	.destini-modal {
+		z-index: 1050;
+		top: 0;
+
+		.modal-body {
+			top: 15%;
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+
+		.close {
+			position: absolute;
+		    top: 15px;
+		    right: 25px;
+		    text-shadow: none;
+		    font-size: 40px;
+			color: $white;
+			opacity: 1;
+		}
+	}
+
+	.product-detail-video{
+		margin-bottom: 0px;
+		padding-bottom: 80px;
+		text-align: center;
+
+		h3{
+			margin-top:0px;
+		}
+
+		.eyebrow {
+			@extend %merlo-bold;
+			color: $gray;
+			font-size: $font-size-eyebrow;
+			text-transform: uppercase;
+			letter-spacing: 5px;
+			margin-bottom: 30px;
+
+			@include breakpoint-sm {
+				margin-bottom: 10px;
+			}
+		}
+
+		.recipe-video-title {
+			@extend %module-title-bourton-sm;
+			font-size: $font-size-smaller-title;
+			color: $mine-shaft;
+			margin-bottom: 30px;
+
+			@include breakpoint-sm {
+				font-size: $font-size-sub-title;
+				margin-bottom: 60px;
+			}
+
+			a {
+				color: $mine-shaft;
+			}
+		}
+	}
+	.product-basic-info{
+		padding-top: 50px;
+		padding-bottom: 60px;
+		background-image: linear-gradient(-180deg, rgba(255, 255, 255, 0) 50%, $background-color 100%);
+
+		@include breakpoint-sm {
+			padding-bottom: 135px;
+			padding-top: 90px;
+		}
+
+		.product-thumbnails {
+			@include breakpoint-md {
+				padding: 0 5px;
+			}
+			@include breakpoint-lg {
+				padding: 0 15px;
+			}
+		}
+	}
+
+	.container {
+		padding-left: 30px;
+		padding-right: 30px;
+
+		@include breakpoint-sm {
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+	}
+
+	.product-thumbnail-container {
+		margin-bottom: 12px;
+		border: 1px inset transparent;
+
+		&:hover {
+			cursor: pointer;
+			border: 1px inset $alizarin;
+		}
+
+		@include breakpoint-sm {
+			background-color: $mercury;
+			border: 1px inset transparent;
+			&.is-active { border: 1px inset $alizarin; }
+		}
+	}
+
+	.product-thumbnail {
+		display: block;
+		width: 100%;
+	}
+
+	.product-detail-main-image {
+		display: none;
+		width: auto;
+		margin: 0 auto;
+
+		@include breakpoint-sm {
+			display: block;
+			width: 100%;
+		}
+	}
+
+	.product-detail-info {
+		text-align: center;
+
+		@include breakpoint-sm {
+			text-align: left;
+		}
+	}
+
+	.product-title {
+		@extend %marquee-title-bourton;
+		color: $mine-shaft;
+		letter-spacing: -2px;
+		font-size: $font-size-md-desktop;
+		text-rendering: geometricPrecision;
+		margin-bottom: 15px;
+		margin-top: 15px;
+		line-height: 1.1;
+
+		@include breakpoint-sm {
+			margin-top: 0;
+			margin-bottom: 26px;
+			font-size: $font-size-smaller-title;
+			max-width: 420px;
+			line-height: 1.05;
+			margin-top: 0;
+		}
+	}
+
+	.available-sizes {
+		margin-bottom: 30px;
+
+		span {
+			vertical-align: middle;
+		}
+	}
+
+	.available-sizes-cta {
+		@extend %merlo-bold;
+		display: block;
+		font-size: .8125em;
+		letter-spacing: .85px;
+		text-transform: uppercase;
+		margin-bottom: 15px;
+
+		@include breakpoint-sm {
+			display: inline-block;
+			margin-right: 15px;
+			margin-bottom: 0;
+			font-size: $font-size-eyebrow;
+		}
+	}
+
+	.product-size-circle {
+		@extend %merlo-bold;
+
+		display: inline-block;
+		height: 40px;
+		width: 40px;
+		border-radius: 20px;
+		border: 1px solid $gray;
+		text-align: center;
+
+		&:not(:last-child) {
+			margin-right: 10px;
+		}
+	}
+
+	.product-size-count {
+		color: $gray;
+		line-height: 3.1;
+		font-size: $font-size-eyebrow;
+	}
+
+	.purchase-cta {
+		margin-bottom: 60px;
+
+		@include breakpoint-sm {
+		}
+	}
+
+	.red-btn {
+		display: block;
+		@include breakpoint-sm {
+			display: inline-block !important;
+			margin-right: 15px;
+			text-align: center;
+			padding: 14px 35px;
+			margin-bottom: 6px;
+			transition: all .3s ease-in-out;
+		}
+	}
+
+	.red-btn:hover {
+		transform: scale(1.15);
+	}
+
+	.product-information {
+		border-top: 1px solid $silver;
+		padding: 30px 0 15px;
+		text-align: left;
+		margin-bottom: 0;
+
+		@include breakpoint-sm {
+			margin-bottom: 60px;
+			border-bottom: 1px solid $silver;
+		}
+	}
+
+	.product-description {
+		@extend %merlo-medium;
+		color: $gray;
+		font-size: .9375em;
+		margin-bottom: 39px;
+
+		@include breakpoint-sm {
+			font-size: $font-size-sm-mobile;
+			margin-bottom: 30px;
+		}
+	}
+
+	.availability-cta {
+		@extend %merlo-medium;
+		font-style: italic;
+		color: $gray;
+		font-size: .6875em;
+
+		@include breakpoint-sm {
+			font-size: $font-size-xs-mobile;
+		}
+	}
+
+	.product-logos-container{
+		display:none;
+		@include breakpoint-sm{
+			width: 288px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-left: auto;
+			margin-right: auto;
+			margin: 45px auto 0;
+		}
+	}
+
+	.product-logo{
+		background-repeat: no-repeat;
+		&.gluten-free-logo{
+			background-image: url("../../@imgs/gluten-free.svg");
+			height: 62px;
+			width: 61px;
+		}
+		&.no-artificial-colors-logo{
+			background-image: url("../../@imgs/no-artificial-colors.svg");
+			height: 62px;
+			width: 53px;
+		}
+		&.no-artificial-flavors-logo{
+			background-image: url("../../@imgs/no-artificial-flavors.svg");
+			height: 34px;
+			width: 79px;
+		}
+		&.usda-organic-logo{
+			background-image: url("../../@imgs/usda-organic.svg");
+			height: 62px;
+			width: 62px;
+		}
+		&.non-gmo-logo{
+			background-image: url("../../@imgs/non-gmo.svg");
+			height: 62px;
+			width: 56px;
+		}
+	}
+
+	.product-logos-container-mobile{
+		width: 230px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-left: auto;
+		margin-right: auto;
+		padding-bottom: 45px;
+
+		.product-logo {
+			margin: 0 10px;
+		}
+
+		@include breakpoint-sm{
+			display:none;
+		}
+	}
+
+	.nutrition-fact-container{
+		align-items: center;
+		border-bottom: 1px solid $silver;
+		padding-bottom: 20px;
+		.link{
+			display: inline-block;
+			text-decoration: none;
+			text-transform: capitalize;
+			color:$alizarin;
+			padding: 0px;
+			cursor: pointer;
+		}
+
+		@include breakpoint-sm {
+			padding-bottom: 0;
+			border-bottom: 0;
+		}
+
+	}
+
+	// slick overrides
+	.slick-dots {
+		left: 0;
+
+		li {
+			margin-left: 0;
+
+			button:before {
+				color: $dusty-grey;
+				font-size: 12px;
+			}
+
+			&.slick-active {
+				button:before {
+					color: $alizarin;
+				}
+			}
+		}
+	}
+	.related-products{
+		width: 100vw;
+		background-color: $background-color;
+		padding: 0 30px 50px;
+
+		@include breakpoint-sm {
+			padding: 0 5vw 5vw;
+		}
+
+		.title-container{
+			border-top: 1px solid #c8c8c8;
+			display: flex;
+			justify-content: center;
+			padding: 50px 50px 0;
+
+			@include breakpoint-md {
+				padding: 60px;
+			}
+
+			.title{
+				@extend %marquee-title-bourton;
+				color: $mine-shaft;
+				letter-spacing: -2px;
+				font-size: $font-size-md-desktop;
+				text-rendering: geometricPrecision;
+				margin-bottom: 15px;
+				margin-top: 15px;
+				line-height: 1.1;
+
+				@include breakpoint-sm {
+					margin-top: 0;
+					margin-bottom: 26px;
+					font-size: $font-size-smaller-title;
+					max-width: 420px;
+					line-height: 1.05;
+					margin-top: 0;
+				}
+			}
+		}
+
+		.products-container{
+			display: flex;
+			direction: row;
+			flex-wrap: wrap;
+			justify-content: center;
+
+			.product-card{
+				font-size: 1.2em;
+				display: flex;
+				flex-direction: column;
+				text-align: center;
+				align-items: center;
+				position: relative;
+				width: 150px;
+				width: 270px;
+				margin: 10px;
+				padding: 15px;
+				color: $mine-shaft;
+				transition: background-color 300ms ease-in-out;
+
+				@include breakpoint-md {
+					height: 445px;
+					padding: 25px;
+					margin: 15px;
+				}
+
+				@media(min-width:1025px) {
+					&:hover{
+						background-color: $white;
+
+						.product-item-cta {
+							display:inline;
+							margin:0 auto;
+							position:absolute;
+						}
+					}
+				}
+				.prod-img{
+					
+					max-width: 130px;
+					max-height: 275px;
+					margin:0 auto;
+
+					@include breakpoint-md {
+						max-width: 215px;
+					}
+				}
+				.product-item-title {
+					margin: 25px 0 0;
+					// padding: 0 15px;
+					min-height: 50px;
+					display:block;
+					color: $mine-shaft;
+					font-size: .9375em;
+				}
+
+				.product-item-cta {
+					display: none;
+					color: $alizarin;
+					font-size: .9375em;
+					bottom: 20px;
+
+					@include breakpoint-md {
+						position: absolute;
+						transition: opacity 300ms ease-in-out;
+					}
+				}
+			}
+		}
+	}
+
+}

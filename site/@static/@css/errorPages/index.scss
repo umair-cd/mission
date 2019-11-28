@@ -1,0 +1,85 @@
+
+@import "~bootstrap-styles/bootstrap/variables";
+@import "~bourbon-styles/bourbon";
+@import "~breakpoint-styles/breakpoint";
+
+@import "../common/config";
+@import "../common/mixins";
+@import "../common/fonts";
+
+
+.errorContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10vw 5vw;
+    background-color: $background-color;
+
+    @include breakpoint-sm {
+        padding: 10vw 12vw;
+        flex-direction: row;
+    }
+
+    .side{
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 3;
+
+        .text{
+            border-width: 7px 0px 7px 0px;
+            border-style: solid;
+            border-color: $alizarin;
+            text-align: center;
+            padding: 20px 0px;
+
+            @include breakpoint-sm {
+                border: none;
+                text-align: left;
+                padding: 0px;
+            }
+
+            h1{
+                @extend %marquee-title-bourton;
+                font-size: 4.8em;
+                letter-spacing: -7px;
+                display: block;
+
+                @include breakpoint-sm {
+                    border-width: 7px 0px 7px 0px;
+                    border-style: solid;
+                    line-height: 1.4;
+                    border-color: $alizarin;
+                    padding: 10px 0px
+                }
+            }
+
+            p{
+                @extend %merlo-medium;
+                font-size: 1.4em;
+                padding: 10px 0px;
+            }
+        }
+
+        a{
+            margin-top: 40px;
+            width: auto;
+            text-align: center;
+            @include breakpoint-sm {
+                width: fit-content;
+            }
+        }
+
+    }
+
+
+    img{
+        width: 90vw;
+        padding: 0px 0px 30px 0px;
+
+        @include breakpoint-sm {
+            width: 50vw;
+            padding: 0px 40px 0px 0px;
+		}
+    }
+}

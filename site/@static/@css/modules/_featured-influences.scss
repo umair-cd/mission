@@ -1,0 +1,92 @@
+.featured-influences {
+	width:100%;
+	position: relative;
+	background-color: rgba(14, 18, 20, .9);
+	overflow: hidden;
+	@include breakpoint-sm{
+		height: 40vw;
+	}
+
+	.influences-img {
+		img {
+			object-fit: cover;
+			width:100%;
+			display:block;
+		}
+	}
+
+	.influences-content {
+		padding: 50px 30px 60px;
+		position: relative;
+		text-align: center;
+
+		@include breakpoint-lg {
+			padding: 0 100px;
+		}
+	}
+
+	.banner {
+		@extend %merlo-bold;
+
+		font-size: $font-size-eyebrow;
+		text-transform: uppercase;
+		letter-spacing: 5px;
+		color: $silver;
+		margin-bottom: 30px;
+	}
+
+	.title {
+		@extend %module-title-bourton-sm;
+		margin-bottom: 30px;
+		color: $silver;
+		font-size: 2.250em;
+
+		@include breakpoint-md{
+			font-size:$font-size-sub-title;
+			letter-spacing: -4px;
+		}
+		@include breakpoint-lg{
+			font-size: 48px;
+		}
+	}
+
+	.blurb {
+		@extend %merlo-medium;
+
+		color: $silver;
+		font-weight: 100;
+		font-size: 15px;
+		margin-bottom: 50px;
+		@include breakpoint-md{
+			font-size: 16px;
+		}
+	}
+}
+
+
+@include breakpoint-sm  {
+	.featured-influences {
+		@include flex;
+		align-items: center;
+
+		.influences-img {
+			flex-basis: 50%;
+
+			img {
+				align-self: start;
+				display: block;
+				width: 100%;
+			}
+		}
+
+		.influences-content {
+			width:50%;
+		}
+	}
+}
+
+.black-gradient {
+	background: rgb(7,9,10);
+	background: linear-gradient(0deg, rgba(7,9,10,1) 2%, rgba(14,16,17,1) 8%, rgba(21,23,24,1) 14%, rgba(27,29,30,1) 20%, rgba(32,35,36,1) 26%, rgba(36,38,40,1) 32%, rgba(39,42,42,1) 38%, rgba(41,43,45,1) 44%, rgba(42,45,46,1) 50%, rgba(41,43,45,1) 56%, rgba(39,42,42,1) 62%, rgba(36,38,40,1) 68%, rgba(32,35,36,1) 74%, rgba(27,29,30,1) 80%, rgba(21,23,24,1) 86%, rgba(14,16,17,1) 92%, rgba(7,9,10,1) 98%);
+	box-shadow: 0 15px 35px 0 rgba(0,0,0,0.3);
+}

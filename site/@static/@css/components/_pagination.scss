@@ -1,0 +1,44 @@
+.pagination-wrapper {
+    display:flex;
+    width: 100%;
+    padding: 0 30px;
+}
+.pagination {
+    margin: 2rem auto;
+    @extend %merlo-medium;
+
+    li > a {
+        background: none;
+        border: none;
+        color: $gray;
+        margin: 0 7px;
+        padding: 4px 0;
+        width: 30px;
+        text-align: center;
+        transition: background-color 300ms ease-in-out;
+
+        &:hover {
+            border: 1px solid $alizarin;
+            background-color: $alizarin;
+            color: $white;
+       }
+    }
+
+    .disabled > span {
+        background: none;
+        border: none;
+        color: $gray;
+    }
+
+    .active {
+        span {
+            border: 1px solid $alizarin;
+            background-color: $alizarin;
+            margin: 0 7px;
+            padding: 4px 0;
+            width: 30px;
+            text-align: center;
+        }
+
+    }
+}

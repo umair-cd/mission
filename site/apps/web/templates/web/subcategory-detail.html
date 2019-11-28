@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block body_class %}subcategory-detail{% endblock body_class %}
+
+{% block content %}
+{% include "partials/header_hero_simple.html" with image=subcategory.list_image banner=subcategory.category.first.title hero_title=subcategory.title %}
+<div class="subcategory-wrapper">
+	<p class="subcategory-description">
+		{{ object.description }}
+	</p>
+
+	<div class="subcategory-products product-grid">
+		{% for product in subcategory.product.all %}
+			<div class="product-item">
+				{% if product.image %}
+					<a href="{% url 'product-detail' slug=product.slug %}">
+							{% if product.is_new %}
+								<div class="product-badge">
+									NEW
+								</div>
+							{% endif %}
+						<img alt="" src="{{ product.image.url }}">
+						<p class="product-item-title" href="{% url 'product-detail' slug=product.slug %}">{{ product.title }}</p>
+					</a>
+				{% endif %}
+				<a class="product-item-cta" href="{% url 'product-detail' slug=product.slug %}">Learn More</a>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
+{% include "partials/find_a_store.html" %}
+
+{% endblock %}
+
+{% block title %}{{ subcategory.title }} - Mission Foods{% endblock %}
+{% block description %}View all of our {{ subcategory.title }} products. See what Mission Foods has to offer and where to buy your favorites.{% endblock %}
+
+{% block extra_head %}
+	<link rel="stylesheet" href="{% static 'css/subcategory-detail.css' %}">
+{% endblock extra_head %}
+
+{% block extra_js %}
+	<script type="text/javascript" src="{% static 'js/subcategory-detail.js' %}" ></script>
+{% endblock extra_js %}
+

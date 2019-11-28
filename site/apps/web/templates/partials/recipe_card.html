@@ -1,0 +1,33 @@
+<div class="recipe-card">
+    <a href="{% url 'recipe-detail' recipe.slug %}" aria-label="{{ recipe.title }} Recipe">
+		<div class="recipe-card-image-container">
+			{% if recipe.featured_collection %}
+			<div class="recipe-card-featured-collection">{{ recipe.featured_collection }}</div>
+			{% endif %}
+			{% if recipe.image %}
+            <div
+                class="recipe-card-image lazyload"
+                data-bg="{{ recipe.image.url }}"
+                style="background-image: url({{ recipe.image.url }})"
+            ></div>
+			{% endif %}
+		</div>
+	</a>
+	<div class="recipe-card-info">
+		<a href="{% url 'recipe-detail' recipe.slug %}">
+			<h3 class="recipe-card-title">{{ recipe.title }}</h3>
+		</a>
+		<a href="{% url 'recipe-detail' recipe.slug %}" class="recipe-card-link">View Recipe</a>
+		<a
+			class="recipe-card-share-icon"
+			data-url="{{ request.scheme }}://{{ request.get_host }}{% url 'recipe-detail' recipe.slug %}"
+			data-image-url="{% if MEDIA_URL == '/uploads/' %}{% if recipe.meta_og_image %}{{ request.scheme }}://{{ request.get_host }}{{ recipe.meta_og_image.url }}{% elif recipe.image %}{{ request.scheme }}://{{ request.get_host }}{{ recipe.image.url }}{% endif %}
+			{% else %}{% if recipe.meta_og_image %}{{ recipe.meta_og_image.url }}{% elif recipe.image %}{{ recipe.image.url }}{% endif %}{% endif %}"
+			data-description="{% if recipe.meta_description %}{{ recipe.meta_description }}{% endif %}"
+			data-title="{{ recipe.title }}"
+			data-featured-title="{% if recipe.featured_product %}{{ recipe.featured_product.title }}{% endif %}"
+		>
+		{% include "partials/svg/share-icon.html" %}
+		</a>
+	</div>
+</div>

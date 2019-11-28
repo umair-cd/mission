@@ -1,0 +1,714 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block body_class %}about-us{% endblock body_class %}
+
+{% block content %}
+<style>
+    .error {
+        color: #a94442;
+    }
+
+</style>
+<div class="container">
+
+    <form action="{% url 'ccpa-request-email' %}" method="post" id="post-form">
+        {% csrf_token %}
+        <div class="form-wrap">
+            <h2 class="cpa-title">CCPA Request Form</h2>
+            <p class="complete-request">Please complete this request form only if you are a California resident.
+                Requests from non-California residents will be disregarded.</p>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4>Type of Request</h4>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label class="typeck">
+                                <input type="checkbox">Request to Know What Personal Information Mission Foods Has on
+                                File
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label class="typeck">
+                                <input type="checkbox"> Request to Delete Personal Information Mission Foods
+                                Has on File
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4>What I would like to know about the personal information Mission Foods has on file for me:</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label class="ck">
+                                <input type="checkbox">The Specific Personal Information on File
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label class="ck">
+                                <input type="checkbox"> The Types of Personal Information
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label class="ck">
+                                <input type="checkbox">The Types of Sources the Information was Collected
+                                From
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label class="ck">
+                                <input type="checkbox"> The Business Purpose for Collecting the Personal
+                                Information
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label class="ck">
+                                <input type="checkbox">The Types of Personal Information that was Shared with
+                                Third-Parties
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label class="ck">
+                                <input type="checkbox"> The Types of Third Parties with Whom my Personal
+                                Information was
+                                Shared
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4>Requestor’s Contact Information</h4>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="radio" id="form1" name="formselect"> Request Made by Consumer
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="form1div">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="f-name">First Name <span>*</span></label>
+                            <input type="text" class="form-control" name="firstname" id="f-name">
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="l-name">Last Name <span>*</span></label>
+                            <input type="text" class="form-control" name="lastname" id="l-name">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="address">Address <span>*</span></label>
+                            <input type="text" class="form-control" name="address" id="address">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="city">City <span>*</span></label>
+                            <input type="text" class="form-control" name="city" id="city">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="state">State <span>*</span></label>
+                            <select class="form-control" name="state" id="state">
+                                <option value="">select state</option>
+                                <option value="AL">Alabama</option>
+                                <option value="AK">Alaska</option>
+                                <option value="AZ">Arizona</option>
+                                <option value="AR">Arkansas</option>
+                                <option value="CA">California</option>
+                                <option value="CO">Colorado</option>
+                                <option value="CT">Connecticut</option>
+                                <option value="DE">Delaware</option>
+                                <option value="DC">District Of Columbia</option>
+                                <option value="FL">Florida</option>
+                                <option value="GA">Georgia</option>
+                                <option value="HI">Hawaii</option>
+                                <option value="ID">Idaho</option>
+                                <option value="IL">Illinois</option>
+                                <option value="IN">Indiana</option>
+                                <option value="IA">Iowa</option>
+                                <option value="KS">Kansas</option>
+                                <option value="KY">Kentucky</option>
+                                <option value="LA">Louisiana</option>
+                                <option value="ME">Maine</option>
+                                <option value="MD">Maryland</option>
+                                <option value="MA">Massachusetts</option>
+                                <option value="MI">Michigan</option>
+                                <option value="MN">Minnesota</option>
+                                <option value="MS">Mississippi</option>
+                                <option value="MO">Missouri</option>
+                                <option value="MT">Montana</option>
+                                <option value="NE">Nebraska</option>
+                                <option value="NV">Nevada</option>
+                                <option value="NH">New Hampshire</option>
+                                <option value="NJ">New Jersey</option>
+                                <option value="NM">New Mexico</option>
+                                <option value="NY">New York</option>
+                                <option value="NC">North Carolina</option>
+                                <option value="ND">North Dakota</option>
+                                <option value="OH">Ohio</option>
+                                <option value="OK">Oklahoma</option>
+                                <option value="OR">Oregon</option>
+                                <option value="PA">Pennsylvania</option>
+                                <option value="RI">Rhode Island</option>
+                                <option value="SC">South Carolina</option>
+                                <option value="SD">South Dakota</option>
+                                <option value="TN">Tennessee</option>
+                                <option value="TX">Texas</option>
+                                <option value="UT">Utah</option>
+                                <option value="VT">Vermont</option>
+                                <option value="VA">Virginia</option>
+                                <option value="WA">Washington</option>
+                                <option value="WV">West Virginia</option>
+                                <option value="WI">Wisconsin</option>
+                                <option value="WY">Wyoming</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="zip-code">Zip Code <span>*</span></label>
+                            <input type="text" class="form-control" name="zipcode" id="zip-code">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="p-num">Telephone Number <span>*</span></label>
+                            <input type="text" class="form-control" name="pnumber" id="p-num">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="email">Email Address <span>*</span></label>
+                            <input type="text" class="form-control" name="email" id="email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="radio" id="form2" name="formselect">Request Made by Authorized
+                                Agent
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="form2div">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h4>Authorized Agent’s Contact Information</h4>
+                        <label class="person-label">Name of Person or Entity </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="first-name">First Name <span>*</span></label>
+                            <input type="text" class="form-control" name="firstnameone" id="first-name">
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="lastname">Last Name <span>*</span></label>
+                            <input type="text" class="form-control" name="lastnameone" id="lastname">
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="busi-name">Business Entity Name <span>*</span></label>
+                            <input type="text" class="form-control" name="businessname" id="busi-name">
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="consumer">Relationship to Consumer</label>
+                            <input type="text" class="form-control" name="customer" id="consumer">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="address-one">Address <span>*</span></label>
+                            <input type="text" class="form-control" name="addressone" id="address-one">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="city-one">City <span>*</span></label>
+                            <input type="text" class="form-control" name="cityone" id="city-one">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="state-one">State <span>*</span></label>
+                            <select class="form-control" name="stateone" id="state-one">
+                                <option value="">select state</option>
+                                <option value="AL">Alabama</option>
+                                <option value="AK">Alaska</option>
+                                <option value="AZ">Arizona</option>
+                                <option value="AR">Arkansas</option>
+                                <option value="CA">California</option>
+                                <option value="CO">Colorado</option>
+                                <option value="CT">Connecticut</option>
+                                <option value="DE">Delaware</option>
+                                <option value="DC">District Of Columbia</option>
+                                <option value="FL">Florida</option>
+                                <option value="GA">Georgia</option>
+                                <option value="HI">Hawaii</option>
+                                <option value="ID">Idaho</option>
+                                <option value="IL">Illinois</option>
+                                <option value="IN">Indiana</option>
+                                <option value="IA">Iowa</option>
+                                <option value="KS">Kansas</option>
+                                <option value="KY">Kentucky</option>
+                                <option value="LA">Louisiana</option>
+                                <option value="ME">Maine</option>
+                                <option value="MD">Maryland</option>
+                                <option value="MA">Massachusetts</option>
+                                <option value="MI">Michigan</option>
+                                <option value="MN">Minnesota</option>
+                                <option value="MS">Mississippi</option>
+                                <option value="MO">Missouri</option>
+                                <option value="MT">Montana</option>
+                                <option value="NE">Nebraska</option>
+                                <option value="NV">Nevada</option>
+                                <option value="NH">New Hampshire</option>
+                                <option value="NJ">New Jersey</option>
+                                <option value="NM">New Mexico</option>
+                                <option value="NY">New York</option>
+                                <option value="NC">North Carolina</option>
+                                <option value="ND">North Dakota</option>
+                                <option value="OH">Ohio</option>
+                                <option value="OK">Oklahoma</option>
+                                <option value="OR">Oregon</option>
+                                <option value="PA">Pennsylvania</option>
+                                <option value="RI">Rhode Island</option>
+                                <option value="SC">South Carolina</option>
+                                <option value="SD">South Dakota</option>
+                                <option value="TN">Tennessee</option>
+                                <option value="TX">Texas</option>
+                                <option value="UT">Utah</option>
+                                <option value="VT">Vermont</option>
+                                <option value="VA">Virginia</option>
+                                <option value="WA">Washington</option>
+                                <option value="WV">West Virginia</option>
+                                <option value="WI">Wisconsin</option>
+                                <option value="WY">Wyoming</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="zip-code-one">Zip Code <span>*</span></label>
+                            <input type="text" class="form-control" name="zipcodeone" id="zip-code-one">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="tele-num">Telephone Number <span>*</span></label>
+                            <input type="text" class="form-control" name="telenum" id="tele-num">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="email-address">Email Address <span>*</span></label>
+                            <input type="text" class="form-control" name="emailone" id="email-address">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4>Requestor’s Contact Information</h4>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label class="contactck">
+                                <input type="checkbox">Mail
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label class="contactck">
+                                <input type="checkbox">Email
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="give-us-a-call">
+            <div class="container">
+                <input class="cta red-btn" type="submit" value=" submit">
+            </div>
+        </section>
+        <br>
+        <br>
+    </form>
+</div>
+{% endblock %}
+
+{% block title %}Mission - CCPA{% endblock title %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/contact-us.css' %}" />
+<link rel="stylesheet" href="{% static 'css/ccpa-request-form.css' %}" />
+{% endblock extra_head %}
+
+{% block extra_js %}
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#form1div").hide();
+        $("#form2div").hide();
+    });
+    $('#form1').change(function () {
+        if ($("#form1").is(":checked")) {
+            $("#form1div").show();
+            $("#form2div").hide();
+        }
+    });
+    $('#form2').change(function () {
+        if ($("#form2").is(":checked")) {
+            $("#form2div").show();
+            $("#form1div").hide();
+        }
+    });
+    $(document).on('submit', '#post-form', function (e) {
+        e.preventDefault();
+        var $form = $(this);
+        var requests_type = new Array();
+
+
+        $(".typeck").each(function () {
+            var request_type = $(this).text();
+            request_type = $.trim(request_type);
+            var status = "false";
+            if ($("input:checkbox", this).is(":checked")) {
+                status = "true";
+            }
+            var request = {
+                request_type: request_type,
+                status: status
+            };
+            requests_type.push(request);
+        });
+
+        var personal_informations = new Array();
+
+        $(".ck").each(function () {
+            personal_information = $(this).text();
+            personal_information = $.trim(personal_information);
+            var status = "false";
+            if ($("input:checkbox", this).is(":checked")) {
+                status = "true";
+            }
+
+            var objpersonal_information = {
+                personal_information: personal_information,
+                status: status
+            };
+            personal_informations.push(objpersonal_information);
+        });
+
+
+        var contact_informations = new Array();
+        $(".contactck").each(function () {
+            contact = $(this).text();
+            contact = $.trim(contact);
+            var status = "false";
+            if ($("input:checkbox", this).is(":checked")) {
+                status = "true";
+            }
+            var contact_information = {
+                contact: contact,
+                status: status
+            };
+            contact_informations.push(contact_information);
+        });
+
+        $form.validate({
+            rules: {
+                firstname: {
+                    required: true,
+                },
+                lastname: {
+                    required: true,
+                },
+                address: {
+                    required: true,
+                },
+                city: {
+                    required: true,
+                },
+                state: {
+                    required: true,
+                },
+                zipcode: {
+                    required: true,
+                },
+                pnumber: {
+                    required: true,
+                },
+                email: {
+                    required: true,
+                    email: true,
+                },
+                firstnameone: {
+                    required: true
+                },
+                lastnameone: {
+                    required: true
+                },
+                businessname: {
+                    required: true
+                },
+                customer: {
+                    required: true
+                },
+                addressone: {
+                    required: true
+                },
+                cityone: {
+                    required: true
+                },
+                stateone: {
+                    required: true
+                },
+                zipcodeone: {
+                    required: true
+                },
+                telenum: {
+                    required: true
+                },
+                emailone: {
+                    required: true
+                }
+            },
+            messages: {
+                firstname: {
+                    required: "Enter First Name"
+                },
+                lastname: {
+                    required: "Enter Last Name"
+                },
+                address: {
+                    required: "Enter Address",
+                },
+                city: {
+                    required: "Enter City",
+                },
+                state: {
+                    required: "Select state",
+                },
+                zipcode: {
+                    required: "Enter zipcode",
+                },
+                pnumber: {
+                    required: "Enter Talephone Number",
+                },
+                email: {
+                    required: "Enter Email",
+                    email: "Enter valid email",
+                },
+                firstnameone: {
+                    required: "Enter First Name"
+                },
+                lastnameone: {
+                    required: "Enter Last Name"
+                },
+                businessname: {
+                    required: "Enter business entity name"
+                },
+                customer: {
+                    required: "Enter relationship to customer"
+                },
+                addressone: {
+                    required: "Enter address"
+                },
+                cityone: {
+                    required: "Enter city"
+                },
+                stateone: {
+                    required: "Select state"
+                },
+                zipcodeone: {
+                    required: "Enter zip code"
+                },
+                telenum: {
+                    required: "Enter talephone"
+                },
+                emailone: {
+                    required: "Enter email"
+                }
+            }
+        });
+        $form.validate();
+        if ($form.valid()) {
+            if ($("#form1").is(":checked") || $("#form2").is(":checked")) {
+                data = {}
+                if ($("#form1").is(":checked")) {
+                    firstname = $("#f-name").val();
+                    lastname = $("#l-name").val();
+                    address = $("#address").val();
+                    city = $("#city").val();
+                    state = $("#state option:selected").text();
+                    zipcode = $("#zip-code").val();
+                    talephone_number = $("#p-num").val();
+                    email = $("#email").val();
+                    data = {
+                        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                        form_type: "form1",
+                        requests_type: JSON.stringify(requests_type),
+                        personal_informations: JSON.stringify(personal_informations),
+                        contact_informations: JSON.stringify(contact_informations),
+                        firstname: firstname,
+                        lastname: lastname,
+                        address: address,
+                        city: city,
+                        state: state,
+                        zipcode: zipcode,
+                        talephone_number: talephone_number,
+                        email: email
+                    }
+
+                }
+                if ($("#form2").is(":checked")) {
+                    firstname = $("#first-name").val();
+                    lastname = $("#lastname").val();
+                    business_entity_name = $("#busi-name").val();
+                    relationship_to_consumer = $("#consumer").val();
+                    address = $("#address-one").val();
+                    city = $("#city-one").val();
+                    state = $("#state-one option:selected").text();
+                    zipcode = $("#zip-code-one").val();
+                    talephone_number = $("#tele-num").val();
+                    email = $("#email-address").val();
+                    data = {
+                        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                        form_type: "form2",
+                        requests_type: JSON.stringify(requests_type),
+                        personal_informations: JSON.stringify(personal_informations),
+                        contact_informations: JSON.stringify(contact_informations),
+                        firstname: firstname,
+                        lastname: lastname,
+                        business_entity_name: business_entity_name,
+                        relationship_to_consumer: relationship_to_consumer,
+                        address: address,
+                        city: city,
+                        state: state,
+                        zipcode: zipcode,
+                        talephone_number: talephone_number,
+                        email: email
+                    }
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "ccpa-request-email" %}',
+                    data: data,
+                    success: function (json) {
+                        alert('hello');
+                    },
+                    error: function (xhr, errmsg, err) {
+                        alert('no');
+                    }
+                });
+            } else {
+                alert("Select Requestor’s Contact Information");
+            }
+
+        }
+
+
+    });
+
+</script>
+{% endblock extra_js %}

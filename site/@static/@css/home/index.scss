@@ -1,0 +1,300 @@
+// ------------------------------------
+// HOME STYLES
+// ------------------------------------
+
+// Order matters here...
+@import '~bootstrap-styles/bootstrap/variables';
+@import '~bourbon-styles/bourbon';
+@import '~breakpoint-styles/breakpoint';
+
+@import '../common/config';
+@import '../common/mixins';
+@import '../common/fonts';
+@import '../common/animations';
+@import '../common/helpers';
+
+.home-page {
+    .navbar {
+        &.is-fixed {
+            position: fixed;
+            height: 70px;
+
+            @include breakpoint-sm {
+                height: auto;
+
+                .navigation-container {
+                    padding: 20px 45px;
+                }
+                .mission-logo {
+                    width: 108px;
+                    height: 72px;
+                }
+            }
+        }
+    }
+
+    .desktop-navbar-content {
+        &.is-fixed {
+            position: fixed;
+            top: 100px;
+        }
+    }
+
+    .header-nav-offset {
+        @include breakpoint-sm {
+            margin-top: 0;
+        }
+    }
+
+    #searchButton {
+        border: none;
+        background: none;
+    }
+
+    .navbar-nav li {
+        @include breakpoint-sm {
+            font-size: $font-size-navigation;
+        }
+    }
+
+    .navbar-brand {
+        .mission-logo {
+            @include breakpoint-sm {
+                width: 108px;
+                height: 72px;
+            }
+        }
+    }
+
+    .window {
+        @include breakpoint-sm {
+            max-height: none;
+        }
+    }
+
+    .collapsible-quick-snack {
+        background-color: $alizarin;
+        color: $white;
+        list-style-type: none;
+        position: relative;
+        text-align: center;
+        padding: 17.5px 0;
+        margin-bottom: 0;
+
+        @include breakpoint-sm {
+            padding: 33.5px 0;
+        }
+
+        &.is-fixed {
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            z-index: 5;
+        }
+    }
+
+    .dropdown-cta {
+        @extend %merlo-medium;
+
+        font-size: $font-size-md-mobile;
+
+        @include breakpoint-sm {
+            font-size: $font-size-sm-desktop;
+        }
+    }
+
+    .dropdown-toggle {
+        @extend %merlo-medium;
+        color: $white;
+        list-style-type: none;
+        cursor: pointer;
+        overflow: hidden;
+        height: 33px;
+
+        font-size: $font-size-md-mobile;
+
+        @include breakpoint-sm {
+            font-size: $font-size-sm-desktop;
+        }
+
+        &:hover,
+        &:focus {
+            text-decoration: none;
+        }
+    }
+
+    .selected-collection {
+        padding-bottom: 2px;
+        perspective-origin: bottom center;
+        perspective: 200px;
+
+        span {
+            position: relative;
+            bottom: 0;
+            z-index: 0;
+            color: $school-bus;
+        }
+        .next-selected-label {
+            display: none;
+        }
+    }
+
+    .caret-container {
+        display: inline-block;
+        margin-left: 12px;
+
+        svg {
+            width: 12px;
+            height: 8px;
+        }
+
+        g {
+            fill: $white;
+        }
+    }
+
+    .dropdown-menu {
+        margin-top: 0;
+        width: 100%;
+        top: 96%;
+        border: 0;
+        box-shadow: none;
+        background-color: $alizarin;
+
+        @include breakpoint-sm {
+            padding: 32px 0;
+        }
+    }
+
+    .collapsible-wrapper {
+        padding: 65px 15px 10px;
+        list-style-type: none;
+
+        columns: 2;
+        -webkit-columns: 2;
+        -moz-columns: 2;
+
+        @include breakpoint-sm {
+            max-width: 1170px;
+            margin: 5% auto 0 auto;
+            padding: 24px 15px 34px;
+
+            columns: 4;
+            -webkit-columns: 4;
+            -moz-columns: 4;
+        }
+    }
+
+    .quick-snack-item {
+        @extend %merlo-medium;
+
+        padding: 13.8px 0;
+        margin-bottom: 20px;
+        text-align: center;
+        break-inside: avoid;
+        background-color: $cinnebar;
+
+        &:hover,
+        &:focus {
+            background-color: $almond;
+            cursor: pointer;
+        }
+
+        @include breakpoint-sm {
+            /* */
+        }
+    }
+
+    .dropdown-link {
+        @extend %merlo-medium;
+
+        color: $white;
+        font-size: 0.875em;
+
+        &:hover,
+        &:active {
+            color: $white;
+            background-color: transparent;
+            text-decoration: none;
+        }
+    }
+
+    .dropdown-cta-btn {
+        @extend %merlo-medium;
+
+        padding: 12px 0;
+        text-align: center;
+    }
+
+    .view-all-btn {
+        display: block !important;
+        width: 220px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 12px 12px;
+        color: $white;
+        background-color: transparent;
+        font-size: 16px;
+        font-weight: normal;
+        border: solid 0.7px $white;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .learn-more-btn {
+        width: 170px;
+        height: 40px;
+        line-height: 40px;
+        padding: 0;
+    }
+
+    .related-recipes-carousel {
+        .slick-list {
+            overflow: visible;
+        }
+    }
+
+    .related-recipes {
+        .container{
+            @include breakpoint-sm {
+                width: 90%;
+            }
+            @include breakpoint-lg {
+                width: 1170px;
+            }
+        }
+    }
+    .related-recipe-items{
+        .slick-track{
+            @include breakpoint-sm {
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+    .recipe-card {
+        @include breakpoint-sm {
+            display: inline-block !important;
+            max-width: 20vw;
+        }
+
+        @include breakpoint-lg {
+            max-width: 270px;
+        }
+
+        .recipe-card-image {
+            @include breakpoint-sm {
+                width: 20vw;
+                height: 14.81vw;
+            }
+
+            @include breakpoint-lg {
+                width: 270px;
+                height: 200px;
+            }
+        }
+    }
+}
+.desktop-navbar-content {
+    position: fixed;
+}

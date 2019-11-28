@@ -1,0 +1,27 @@
+<div class="influencers-section">
+    <div class="section-title">
+        {{ influencers_section.title }}
+    </div>
+    <div class="section-description">
+        {{ influencers_section.description }}
+    </div>
+    <div class="influencer-arrow-container"></div>
+    <div class="influencer-carousel">
+        {% for influencer in influencers_section.influencers %}
+        <div class="influencer">
+            <div
+                class="influencer-image"
+                style="background-image: url('{{ influencer.image_url }}')"
+                title="{{ influencer.image_alt_text }}"
+            ></div>
+            <div class="influencer-eyebrow">{{ influencer.blog_title }}</div>
+            <div class="influencer-recipe-title">
+                {{ influencer.recipe_title }}
+            </div>
+            <a href="{{ influencer.button_link }}" class="influencer-link">
+                {{ influencer.button_label }}
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>

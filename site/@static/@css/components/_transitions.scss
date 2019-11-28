@@ -1,0 +1,28 @@
+// Scroll animations
+.animation-fade-up-in {
+	transform: translate3d(0, 50px, 0);
+	opacity: 0;
+	transition: all 400ms ease-in-out;
+
+	body.our-history & {
+		transform: translate3d(0, 0, 0);
+		transition: all 400ms ease-in-out;
+		opacity: 1;
+	}
+}
+.animation-fade-up-in.animation-active {
+	transform: translate3d(0, 0, 0);
+	opacity: 1;
+
+	body.our-history & {
+		opacity: 0;
+	}
+}
+
+.animation-crossfade {
+	opacity: 0;
+	transition: opacity 700ms ease-in-out;
+}
+.animation-crossfade.animation-active {
+	opacity: 1;
+}

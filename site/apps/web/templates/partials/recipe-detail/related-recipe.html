@@ -1,0 +1,16 @@
+<section class="related-recipe-section">
+    <div class="container animation-scroll-activated animation-crossfade">
+        <div class="flex-center">
+            <h3 class="title">Related Recipes</h3>
+        </div>
+        <div class="js-related-recipes-slider">
+            {% for related_recipe in recipe.related_recipes %}
+                {% with recipe=related_recipe %}
+                    <div class="scroll-content">
+                        {% include "partials/recipe_card.html" %}
+                    </div>
+                {% endwith %}
+            {% endfor %}
+        </div>
+    </div>
+</section>

@@ -1,0 +1,21 @@
+<div class="find-a-store-module-bg">
+    <div class="find-a-store-module animation-scroll-activated animation-crossfade">
+        <div class="container">
+            <h3 class="banner">Where to buy</h3>
+            <form action="{% url 'where-to-buy' %}" method="GET">
+                <div class="input-container">
+                    <input type="hidden" name="MM" value="panel2" />
+                    <input
+                        name="ZIP"
+                        class="zip-code-input"
+                        type="tel"
+                        pattern="[0-9]*"
+                        placeholder="Enter Zip Code"
+                        aria-label="Zip Code"
+                    />
+                    <button class="red-btn">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

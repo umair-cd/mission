@@ -1,0 +1,74 @@
+@import '~bootstrap-styles/bootstrap/variables';
+@import '~bourbon-styles/bourbon';
+@import '~breakpoint-styles/breakpoint';
+
+@import '../common/config';
+@import '../common/mixins';
+@import '../common/fonts';
+
+.generic {
+    header {
+        position: relative;
+        height: 83px;
+        background-color: $background-color;
+        hr {
+            border-top: 1px solid $gray;
+            @include breakpoint-xs-max() {
+                margin-top: 16px;
+                margin-bottom: 16px;
+            }
+        }
+    }
+}
+
+main {
+    background-color: $background-color;
+    padding-top: 26px;
+    @include breakpoint-sm {
+        padding-top: 47px;
+    }
+
+    p {
+        font-family: $merlo-neue-round;
+        color: $gray;
+        font-size: 0.938em;
+        line-height: 30px;
+        margin-bottom: 30px;
+        @include breakpoint-sm {
+            font-size: $font-size-md-mobile;
+            margin-bottom: 46px;
+        }
+    }
+
+    .intro {
+        text-align: center;
+        padding-bottom: 55px;
+        @include breakpoint-sm {
+            padding: 0 0 77px 0;
+        }
+        margin-right: auto;
+        margin-left: auto;
+        h2 {
+            @extend %module-title-bourton;
+            padding-bottom: 26px;
+            margin: 0;
+            @include breakpoint-sm {
+                padding-bottom: 42px;
+            }
+        }
+        p {
+            margin: 0px;
+        }
+    }
+
+    .content {
+        max-width: 770px;
+        margin-right: auto;
+        margin-left: auto;
+        padding: 0 30px 100px;
+
+        a {
+            color: #2e74b1;
+        }
+    }
+}

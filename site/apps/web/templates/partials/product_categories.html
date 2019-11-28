@@ -1,0 +1,32 @@
+<div class="product-category-grid">
+	<div class="featured-gradient"></div>
+	<h2 class="title animation-scroll-activated animation-crossfade">{{ page_info.product_category_headline }}</h2>
+	<ul class="animation-scroll-activated animation-fade-up-in desktop-product-menu">
+		{% for category in categories %}
+			<li class="col-xs-12 category-tab js-category-selector js-category-{{ category.slug }} {% if forloop.first %}active{% endif %}" data-slug="{{ category.slug }}">
+				<div class="category-wrapper">
+					{% if category.image %}
+						<img class="lazyload" alt="{{ category.title }}" data-src="{{ category.image.url }}" src="{{ category.image.url }}">
+					{% endif %}
+					<h3>{{ category.title }}</h3>
+				</div>
+			</li>
+		{% endfor %}
+	</ul>
+	<div class="mobile-select-menu js-mobile-select-menu">
+		<select>
+			{% for category in categories %}
+				<option value="{{category.slug}}" class="js-category-selector js-category-{{ category.slug }}">{{ category.title }}</option>
+			{% endfor %}
+		</select>
+	</div>
+	<ul class="fixed-subnav js-product-category-grid">
+		{% for category in categories %}
+			<li class="col-xs-12 category-tab js-category-selector js-category-{{ category.slug }} {% if forloop.first %}active{% endif %}" data-slug="{{ category.slug }}">
+				<div class="category-wrapper">
+					<h3>{{ category.title }}</h3>
+				</div>
+			</li>
+		{% endfor %}
+	</ul>
+</div>

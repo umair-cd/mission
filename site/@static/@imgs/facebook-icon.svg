@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="35px" height="35px" viewBox="0 0 35 35" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>Fill 4</title>
+    <desc>Created with Sketch.</desc>
+    <g id="D---Recipe-Landing" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="D---Recipe-Landing---SHARE" transform="translate(-618.000000, -1313.000000)" fill="#7F7F7F">
+            <g id="Share-Pop-up" transform="translate(563.000000, 1195.000000)">
+                <g id="components" transform="translate(55.000000, 60.000000)">
+                    <g id="↳-social" transform="translate(0.000000, 58.000000)">
+                        <path d="M18.69525,35 L1.932,35 C0.86625,35 0,34.1355 0,33.068 L0,1.932 C0,0.8645 0.86625,0 1.932,0 L33.068,0 C34.1355,0 35,0.8645 35,1.932 L35,33.068 C35,34.1355 34.1355,35 33.068,35 L24.15,35 L24.15,21.44625 L28.7,21.44625 L29.38075,16.163 L24.15,16.163 L24.15,12.7925 C24.15,11.263 24.57525,10.22 26.768,10.22 L29.5645,10.21825 L29.5645,5.495 C29.0815,5.43025 27.42075,5.28675 25.48875,5.28675 C21.45675,5.28675 18.69525,7.74725 18.69525,12.26925 L18.69525,16.163 L14.13475,16.163 L14.13475,21.44625 L18.69525,21.44625 L18.69525,35 Z" id="Fill-4"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

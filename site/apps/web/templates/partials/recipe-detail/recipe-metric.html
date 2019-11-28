@@ -1,0 +1,68 @@
+{% load web_extras %}
+
+<section class="recipe-metrics">
+  <div class="container">
+    <div class="row">
+      {% if recipe.prep_time %}
+        <div class="metric-container {{ recipe|get_recipe_metric_container_class }}">
+          <div class="metric-inner-container ">
+            <div class="metric-icon prep-time-icon"></div>
+            <div class="metric-text">
+              <h5 class="metric">
+                Prep Time
+              </h5>
+              <div class="unit">
+                <div class="taller">{{ recipe.prep_time }}</div>
+                <div>&nbsp;minute{{ recipe.prep_time | pluralize }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+      {% if recipe.cook_time %}
+        <div class="metric-container {{ recipe|get_recipe_metric_container_class }}">
+          <div class="metric-inner-container ">
+            <div class="metric-icon cook-time-icon"></div>
+            <div class="metric-text">
+              <h5 class="metric">
+                Cook Time
+              </h5>
+              <div class="unit">
+                <div class="taller">{{ recipe.cook_time }}</div>
+                <div>&nbsp;minute{{ recipe.cook_time | pluralize }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+      {% if recipe.makes %}
+        <div class="metric-container {{ recipe|get_recipe_metric_container_class }}">
+          <div class="metric-inner-container ">
+            <div class="metric-icon servings-icon"></div>
+            <div class="metric-text">
+              <h5 class="metric">Makes</h5>
+              <div class="unit">
+                <div class="taller">{{ recipe.makes }}</div>
+                <div>&nbsp;serving{{ recipe.makes | pluralize }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+      {% if recipe.nutrition %}
+        <div class="metric-container {{ recipe|get_recipe_metric_container_class }}">
+          <div class="metric-inner-container ">
+            <div class="metric-icon nutrition-icon"></div>
+            <div class="metric-text">
+              <h5 class="metric">Nutrition</h5>
+              <div class="unit">
+                <div class="taller">{{ recipe.nutrition }}</div>
+                <div>&nbsp;calorie{{ recipe.nutrition | pluralize }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>

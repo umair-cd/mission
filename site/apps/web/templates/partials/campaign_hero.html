@@ -1,0 +1,24 @@
+<div class="campaign-hero">
+    <div class="campaign-carousel">
+        {% for slide in hero_section.images %}
+        <div class="campaign-carousel-slide">
+            {% if slide.image_url %}
+            <div class="hero-background">
+                <img
+                    alt="{{ slide.image_alt_text }}"
+                    src="{{ slide.image_url }}"
+                    data-src="{{ slide.image_url }}"
+                    class="lazyload"
+                />
+            </div>
+            {% endif %}
+            <div class="hero-content">
+                <a class="hero-button red-btn" href="{{ slide.cta_button_link }}">
+                    {{ slide.cta_button_label }}
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="campaign-hero-window"></div>

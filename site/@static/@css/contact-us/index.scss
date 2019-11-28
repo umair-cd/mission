@@ -1,0 +1,196 @@
+@import '~bootstrap-styles/bootstrap/variables';
+@import '~bourbon-styles/bourbon';
+@import '~breakpoint-styles/breakpoint';
+
+@import '../common/config';
+@import '../common/mixins';
+@import '../common/fonts';
+
+header {
+    position: relative;
+    background: $background-color;
+
+    .header-hero-simple {
+        .title {
+            color: $mine-shaft;
+        }
+        .banner {
+            color: $white;
+        }
+    }
+    p {
+        font-family: $merlo-neue-round;
+        text-align: center;
+        color: $gray;
+        display: block;
+        width: 80%;
+        margin-right: auto;
+        margin-left: auto;
+        @include breakpoint-sm {
+            width: 60%;
+        }
+    }
+    hr {
+        border-top: 1px solid $silver;
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
+}
+
+.header-hero-image {
+    .header-hero {
+        position: unset;
+        overflow: visible;
+        height: 300px;
+        background-color: whitesmoke;
+    }
+
+    .hero-text {
+        background-color: whitesmoke;
+        .banner {
+            color: $gray;
+            background-color: transparent;
+        }
+        .title {
+            color: #333333;
+            background-color: transparent;
+        }
+
+        .blurb {
+            color: $gray;
+        }
+    }
+
+    .window {
+        height: 300px;
+    }
+}
+
+.iframe {
+    background: $background-color;
+    .container {
+        background: transparent;
+        display: flex;
+        flex-direction: column-reverse;
+
+        @include breakpoint-md {
+            flex-direction: row;
+        }
+    }
+    iframe {
+        border: none;
+        background: transparent;
+        width: 100%;
+
+        @include breakpoint-md {
+            width: 70%;
+        }
+    }
+
+    .faq-callout {
+        width: 100%;
+        background-color: $white;
+        padding: 10% 0;
+        box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.05);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+        @include breakpoint-md {
+            padding: 5% 3%;
+            width: 30%;
+            height: 50%;
+        }
+
+        .callout-title {
+            text-rendering: geometricPrecision;
+            font-family: 'BourtonBase';
+            text-transform: capitalize;
+            margin-bottom: 20px;
+            font-size: 1.625em;
+            letter-spacing: -2.17px;
+            text-align: center;
+        }
+
+        .view-faq {
+            width: 170px;
+            height: 40px;
+            line-height: 40px;
+            padding: 0;
+            margin: 0 auto;
+            display: block;
+            text-transform: capitalize;
+            font-size: 0.8125em;
+            background-color: #da291c;
+            color: #000;
+            font-family: $merlo-neue-round;
+            font-weight: 500;
+            font-style: normal;
+            text-rendering: geometricPrecision;
+            text-align: center;
+            color: $white;
+
+            &:hover,
+            &:focus {
+                text-decoration: none;
+            }
+
+            @include breakpoint-sm {
+                margin-bottom: 20px;
+            }
+        }
+
+        .recent-topics {
+            padding: 0;
+            display: none;
+
+            @include breakpoint-sm {
+                display: block;
+            }
+        }
+
+        ul {
+            padding: 0;
+
+            li {
+                font-family: $merlo-neue-round;
+                text-align: center;
+                font-size: 14px;
+                line-height: 20px;
+                text-decoration: none;
+                list-style: none;
+                color: $gray;
+                padding-bottom: 10px;
+            }
+        }
+    }
+}
+.give-us-a-call {
+    // background: linear-gradient(-180deg, rgba(255,255,255,0) 0%, rgba(131,131,131,0.035) 10%, rgba(0,0,0,0.075) 100%);
+    padding-top: 50px;
+    padding-bottom: 65px;
+    h3 {
+        @extend %module-title-bourton;
+        text-align: center;
+    }
+    p {
+        font-family: $merlo-neue-round;
+        text-align: center;
+        color: $gray;
+        display: block;
+        width: 80%;
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 25px;
+        margin-bottom: 18px;
+        @include breakpoint-sm {
+            width: 60%;
+        }
+    }
+    .cta {
+        width: 170px;
+        margin-right: auto;
+        margin-left: auto;
+        display: block;
+        text-align: center;
+        color: $white;
+    }
+}

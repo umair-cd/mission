@@ -1,0 +1,206 @@
+{% load date_utils staticfiles web_extras %}
+
+<section class="instructions-reviews">
+    <div class="container">
+        <div class="tab animation-scroll-activated animation-crossfade">
+            <ul class="tab-slider--tabs">
+                <li class="tab-slider--trigger active tab-instructions" rel="instructions">Ingredients & Instructions</li>
+                <li class="tab-slider--trigger tab-reviews" rel="reviews">Reviews</li>
+            </ul>
+        </div>
+        <div id="instructions-content" class="row">
+            <div class="col-sm-4">
+                {% if recipe.featured_product %}
+                <h3 class="title">FEATURED PRODUCT</h3>
+                <hr>
+                    {% include "partials/recipe-detail/product.html" %}
+                {% endif %}
+                <h3 class="title">INGREDIENTS</h3>
+                <hr>
+                <ul>
+                    {% for recipe_ingredient in recipe.recipe_ingredient.all %}
+                        <li>
+                            <div class="ingredient {% if forloop.first %}first{% endif %}">
+                                <h3 class="title">
+                                    {% if recipe_ingredient.amount %}
+                                        <span class="number">{{ recipe_ingredient.amount }}</span>
+                                    {% endif %}
+                                    {% if recipe_ingredient.fraction %}
+                                        <span class="fraction">{{ recipe_ingredient.fraction|display_fraction }}</span>
+                                    {% endif %}
+                                </h3>
+                                <div class="text-ingredient">{{ recipe_ingredient.name }}</div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                {% if recipe.nutritional_facts %}
+                <div class="nutrition-container">
+                    <a data-src="{{ recipe.nutritional_facts.url }}" class="js-open-image-modal">See Nutrition Facts</a>
+                </div>
+                {% endif %}
+            </div>
+            <div class="col-sm-8 instructions">
+                <h3 class="title">INSTRUCTIONS</h3>
+                <hr>
+                <div class="container-controls">
+                    <div class="controls">
+                        <a id="step-by-step" class="showed">Step by Step</a>
+                        {% if recipe.video_id %}
+                        <a id="videoBtn" class="hided">Video</a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% if recipe.video_id %}
+                    <div class="video-container product-detail-video">
+                        {% include "partials/styled-video.html" with image=recipe.video_image video_id=recipe.video_id %}
+                    </div>
+                {% endif %}
+                <ul class="steps-container">
+                    {% for recipe_instruction in recipe.recipe_instruction.all %}
+                        <li>
+                            <h4 class="title">{{ recipe_instruction.name }}</h4>
+                            {% if recipe_instruction.image.length %}
+                            <div>
+                                <img src="{% if recipe_instruction.image %}{{ recipe_instruction.image.url }}{% endif %}" alt=""/>
+                            </div>
+                            {% endif %}
+                            <p class="text">
+                                {{ recipe_instruction.description }}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div id="reviews-content" class="row">
+            <h3 class="title">Reviews for {{ recipe.title }}</h3>
+            <div id="review-info">
+                {% include "partials/recipe-detail/star-rating.html" %}
+                <h5>{{ reviews|length }} Review{{ reviews|length|pluralize }} </h5>
+            </div>
+            <button class="write-a-review-btn red-btn">write a review</button>
+            <div class="user-reviews-list">
+                <div class="custom-select">
+                    <div class="select-selected">sort by</div>
+                    <div id="options" class="select-items select-hide">
+                            <div>Reviews</div>
+                            <div>date</div>
+                    </div>
+                </div>
+                {% for review in reviews %}
+                    <div class="user-review">
+                        <header>
+                            <div class="star-rate">
+                                {{ review.rating.value|rate_to_stars|safe }}
+                                <span>{{ review.ownerId }}</span>
+                            </div>
+                            <div>{{ review.sprinklrCreatedTime|format_sprinklr_date }}</div>
+                        </header>
+                        <h4>{{ review.title }}</h4>
+                        <p>
+                            {{ review.body }}
+                        </p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div id="reviews-modal-id" class="reviews-modal modal">
+        <div class="modal-content">
+            <form novalidate id="form-review" method="POST" action="{% url 'recipe-detail' slug=recipe.slug %}">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 grid-divider">
+                        <div class="form-elements-container">
+                            <span class="close">&times;</span>
+                            <div class="clearfix"></div>
+                            <h3>LET US KNOW WHAT YOU THINK. SHARE YOUR EXPERIENCES WITH OUR PRODUCTS AND RECIPES.</h3>
+                            <hr>
+                            <span class="recipe-name">{{ recipe.title }}</span>
+                            {% csrf_token %}
+                            <div class="rating-section">
+                                <label class="star-label" for="rating">your rating:</label>
+                                <div class="star-rating">
+                                    <div class="star-rating-wraper">
+                                        {% for choice in form.rate %}
+                                            <input class="star-rating-input" id="star-rating-{{ forloop.revcounter }}" type="radio" name="rate" value="{{ forloop.revcounter }}">
+                                            <label class="star fa fa-star star-rate" for="star-rating-{{ forloop.revcounter }}" title="{{ forloop.revcounter }} out of 5 stars"></label>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            {{ form.name.label_tag }}
+                            <span class="error" aria-live="polite"></span>
+                            {{ form.name }}
+
+
+                            {{ form.email.label_tag }}
+                            <span class="error" aria-live="polite"></span>
+                            <text style="color:red; font-size:11px;">{{ form.email.errors.0 }}</text>
+                            {{ form.email }}
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="form-elements-container">
+                            {{ form.title.label_tag }}
+                            <span class="error" aria-live="polite"></span>
+                            {{ form.title }}
+
+                            {{ form.review.label_tag }}
+                            <span class="error" aria-live="polite"></span>
+                            {{ form.review }}
+
+                            <button id="preview-button" type="button" class="red-btn">Preview</button>
+                            <a class="close-sm">close</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="review-preview">
+                <div class="message-container">
+                    <header>
+                        <h3>Submit Review</h3>
+                        <i class='fa fa-close'></i>
+                    </header>
+                    <main>
+                        <span>are you sure you want to submit this review?</span>
+                        <div class="review-preview-content"></div>
+                    </main>
+                    <footer>
+                        <button class="cancel-btn white-btn">cancel</button>
+                        <button class="yes-btn red-btn">Yes</button>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% block extra_js %}
+    {% if form.errors %}
+        <script type="text/javascript">
+            var callback = function(){
+                var instructions_content = document.getElementById("instructions-content")
+                instructions_content.style = "display: none;"
+
+                var reviews_tab = document.getElementById("reviews-tab");
+                var reviews_content = document.getElementById("reviews-content")
+                reviews_tab.className += " active";
+                reviews_content.style = "display: block;"
+
+                var el = document.getElementById("reviews-modal-id");
+                el.className += " visible"
+            };
+
+            if (
+                document.readyState === "complete" ||
+                (document.readyState !== "loading" && !document.documentElement.doScroll)
+            ) {
+                callback();
+            } else {
+                document.addEventListener("DOMContentLoaded", callback);
+            }
+        </script>
+    {% endif %}
+{% endblock %}

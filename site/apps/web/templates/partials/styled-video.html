@@ -1,0 +1,16 @@
+{% load staticfiles %}
+<div class="styled-video">
+	<div class="video-section">
+		{% if image %}
+			<img class="video-image js-video-image" src="{{ image.url }}" alt="Recipe video preview" />
+			<span class="js-video-play-btn video-play-btn">
+				<img src="{{ STATIC_URL }}imgs/play-button.png" alt="Play button" />
+			</span>
+			<div class="js-iframe-wrapper iframe-wrapper">
+				<div id="yt-player"></div>
+			</div>
+		{% else %}
+			<div id="yt-player"></div>
+		{% endif %}
+	</div>
+</div>
