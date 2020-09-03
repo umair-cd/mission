@@ -17,7 +17,7 @@
     "hamburgers": "^0.9.3",
     "install": "^0.12.2",
     "jquery": "^3.4.1",
-    "lazysizes": "^4.1.6",
+    "lazysizes": "^5.2.1",
     "nunjucks": "^3.0.0",
     "nunjucks-loader": "^2.4.5",
     "or": "^0.2.0",
