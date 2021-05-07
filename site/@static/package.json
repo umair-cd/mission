@@ -22,7 +22,7 @@
     "nunjucks-loader": "^2.4.5",
     "or": "^0.2.0",
     "slick-carousel": "^1.8.0",
-    "underscore": "~1.8.3",
+    "underscore": "~1.12.1",
     "waypoints": "^4.0.1",
     "webpack-strip": "^0.1.0"
   },
