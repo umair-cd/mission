@@ -4,4 +4,4 @@ django-debug-toolbar
 pylint
 pytest-cov
 flake8
-ipython==6.5.0
+ipython==7.16.3
